@@ -1,16 +1,17 @@
 <template>
   <div class="product">
     <div class="image">
+
       <img
-        v-lazy="product.img"
+        v-lazy="'/images/product/'+product.category+'/'+product.img"
         alt=""
       />
     </div>
     <div class="content">
       <strong>{{product.name}}</strong>
+      <strong>{{product.size}}</strong>
     </div>
 
-    <strong>{{product.size}}</strong>
     <div class="price-align">
       <div class="big">{{product.price | currency}}</div>
       <cart-buttons

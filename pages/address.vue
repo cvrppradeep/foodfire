@@ -99,8 +99,8 @@ export default {
     user() {
       return (
         (this.$store.state.auth || {}).user || {
-          phone: "8895092508",
-          address: "Y-276"
+          phone: "",
+          address: ""
         }
       );
     },

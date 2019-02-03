@@ -2,20 +2,20 @@
   <div class="product">
     <div class="image">
       <img
-        v-lazy="selectedVariant.img"
+        v-lazy="'/images/product/'+product.category+'/'+selectedVariant.img"
         alt=""
       />
     </div>
     <div class="content">
       <strong>{{product.name}}</strong>
-    </div>
-    <div
-      class="variants"
-      v-for="(v,ix) in product.variants"
-      :key="ix"
-      @click="selectVariant(v)"
-    >
-      <strong>{{v.size}}</strong>
+      <div
+        class="variants"
+        v-for="(v,ix) in product.variants"
+        :key="ix"
+        @click="selectVariant(v)"
+      >
+        <strong>{{v.size}}</strong>
+      </div>
     </div>
     <div class="price-align">
       <div class="big">{{selectedVariant.price | currency}}</div>
