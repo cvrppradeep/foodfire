@@ -11,7 +11,7 @@
               </div>
               <div class="column">
                 <p class="grey">Delivery free</p>
-                <div>above {{50 | currency}}</div>
+                <div>above {{300 | currency}}</div>
               </div>
             </div>
             <div class="columns is-mobile">
@@ -21,7 +21,7 @@
               </div>
               <div class="column">
                 <p class="grey">Minimum order</p>
-                <div>{{0 | currency}}</div>
+                <div>{{100 | currency}}</div>
               </div>
             </div>
             <div class="green">
@@ -72,10 +72,10 @@ export default {};
 }
 .green {
   color: green;
-  margin-top:1.5rem;
+  margin-top: 1.5rem;
 }
-p{
-  margin-bottom:5px;
+p {
+  margin-bottom: 5px;
 }
 </style>
 

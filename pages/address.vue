@@ -1,11 +1,16 @@
 <template>
   <div>
     <nav-bar />
-    <div class="img1">
-      <img src="/personlogo.png">
-    </div>
-    <div class="card shadow-lg2 columns">
-      <div class="margin">
+    <form
+      novalidate
+      autocomplete="off"
+      @submit.stop.prevent="submit()"
+    >
+      <div class="img1">
+        <img src="/personlogo.png">
+      </div>
+      <div class="card shadow-lg2 columns">
+        <!-- <div class="margin">
         <label for="login"></label>
         <h5 v-if="user"><u>{{user.name}}</u></h5>
         <input
@@ -17,61 +22,67 @@
           v-model="user.email"
           disabled
         >
+      </div> -->
+        <br />
+        <div class="margin_phn">
+          <label for="phone"></label>
+          <input
+            type="tel"
+            name='phone'
+            v-model="user.phone"
+            placeholder="Phone No"
+            required
+          >
+        </div>
+        <!-- <h1>Qr No: </h1> -->
+        <div class="margin">
+          <input
+            type="text"
+            placeholder="Qr No"
+            v-model="user.address"
+          /></div>
       </div>
-      <p class="margin_phn">
-        <label for="Phone no"></label>
-        <input
-          type="tel"
-          name='Phone no'
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          placeholder="Phone no*"
-          required
-        >
-      </p>
-      <h1>Enter Address: </h1>
-      <div class="margin">
-        <textarea placeholder="Enter Address Here*"></textarea></div>
-    </div>
-    <div class="footer">
-      <a v-if="!cartItems.length==0">
-        <div class="cart-total footer">
-          <div class="container2 ">
-            <div class="card shadow-lg2 w100">
-              <div>
-                <div class="is-mobile">
-                  <div class="align">
-                    <div class="amount_align">
-                      <p class="gray">Total Amount</p>
+      <div class="footer">
+        <a v-if="!cartItems.length==0">
+          <div class="cart-total footer">
+            <div class="container2 ">
+              <div class="card shadow-lg2 w100">
+                <div>
+                  <div class="is-mobile">
+                    <div class="align">
+                      <div class="amount_align">
+                        <p class="gray">Total Amount</p>
+                      </div>
+                      <div>
+                        <h2>{{getTotal | currency}}</h2>
+                      </div>
                     </div>
                     <div>
-                      <h2>{{getTotal | currency}}</h2>
+                      <button
+                        type="submit"
+                        class="button"
+                        :class="disable"
+                        :disabled="getTotal==0 || loading"
+                      ><span :class="fadeIn">{{text}}</span>
+                      </button>
                     </div>
                   </div>
-                  <div>
-                    <button
-                      class="button"
-                      :class="disable"
-                      :disabled="getTotal==0 || loading"
-                      @click="setnewvalue()"
-                    ><span :class="fadeIn">{{text}}</span>
-                    </button>
+                  <div class="is-mobile">
+                    <p class="green">Please allow us 45mins for delivery</p>
                   </div>
+                  <div class="cart-total-after"> </div>
                 </div>
-                <div class="is-mobile">
-                  <p class="green">Please allow us 45mins for delivery</p>
-                </div>
-                <div class="cart-total-after"> </div>
               </div>
             </div>
           </div>
-        </div>
-      </a>
-    </div>
+        </a>
+      </div>
+    </form>
   </div>
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
-const Products = () => import("~/components/Products");
+const Product = () => import("~/components/Product");
 const NavBar = () => import("~/components/NavBar");
 export default {
   props: ["products"],
@@ -83,10 +94,15 @@ export default {
       disable: "disable"
     };
   },
-  components: { Products, NavBar },
+  components: { Product, NavBar },
   computed: {
     user() {
-      return (this.$store.state.auth || {}).user || null;
+      return (
+        (this.$store.state.auth || {}).user || {
+          phone: "8895092508",
+          address: "Y-276"
+        }
+      );
     },
     ...mapState({
       shipping: state => state.shipping || {},
@@ -101,49 +117,71 @@ export default {
   methods: {
     ...mapActions({
       checkout: "cart/checkout",
-      googleSignIn: "auth/googleSignIn",
       addToCart: "cart/addToCart"
     }),
-    setnewvalue() {
-      this.text = "Please Wait. . .";
-      this.fadeIn = "fadeIn";
-      this.disable = "";
-    },
-    async placeOrder() {
-      if (this.loading) return;
-      if (this.getTotal == 0) return;
-      this.loading = true;
-      if (!this.user) {
-        try {
-          await this.googleSignIn();
-          this.loading = false;
-          this.askAddress();
-        } catch (e) {
-          this.loading = false;
-        }
-      } else {
-        let address = "Y1, Sector-18";
-        this.checkout({ address });
+
+    async submit() {
+      let vm = this;
+      this.err = null;
+      if (!this.user.phone || this.user.phone == "") {
+        this.$store.commit("setErr", "Please enter your phone no");
+        return;
       }
-    },
-    askAddress() {
-      //   this.loading = true;
-      //   let user = this.user;
-      //   this.$dialog.prompt({
-      //     confirmText: "Confirm Order",
-      //     message: `Address:`,
-      //     inputAttrs: {
-      //       value: user.address,
-      //       placeholder: "Y-1, Sector-18"
-      //     },
-      //     onConfirm: address => {
-      //       this.loading = false;
-      //     },
-      //     onCancel: res => {
-      //       this.loading = false;
-      //     }
-      //   });
+      if (!this.user.address || this.user.address == "") {
+        this.$store.commit("setErr", "Please enter Qr No");
+        return;
+      }
+      try {
+        this.text = "Please Wait. . .";
+        this.fadeIn = "fadeIn";
+        this.disable = "";
+        await vm.checkout({
+          address: vm.user,
+          paymentMethod: "COD"
+        });
+      } catch (e) {
+        console.log("place order error...........", e.response.data);
+        this.err = e.response.data._message || e.response.data.msg;
+        this.$store.commit("setErr", this.err);
+      }
     }
+  },
+  head() {
+    return {
+      title: "Checkout with the products in your cart",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content:
+            "After this checkout process we will ship the item and it should be delivered within 7 working days"
+        },
+        {
+          hid: "og:description",
+          name: "Description",
+          property: "og:description",
+          content:
+            "After this checkout process we will ship the item and it should be delivered within 7 working days"
+        },
+
+        {
+          hid: "og:title",
+          name: "og:title",
+          property: "og:title",
+          content: "Checkout with the products in your cart"
+        },
+        // Twitter
+        {
+          name: "twitter:title",
+          content: "Checkout with the products in your cart"
+        },
+        {
+          name: "twitter:description",
+          content:
+            "After this checkout process we will ship the item and it should be delivered within 7 working days"
+        }
+      ]
+    };
   }
 };
 </script>

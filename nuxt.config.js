@@ -1,4 +1,4 @@
-import { ANALYTICS_TRACKING_ID, head, manifest } from "./config";
+import { PROXY, ANALYTICS_TRACKING_ID, head, manifest } from "./config";
 import helmet from 'helmet'
 module.exports = {
   mode: 'spa',
@@ -8,20 +8,32 @@ module.exports = {
   css: ['~assets/styles/reset.css', '~assets/styles/transitions.css'],
   plugins: [
     '~/plugins/filters.js',
-    '~/plugins/firestore.js',
     { src: '~plugins/lazy', ssr: false }
   ],
   modules: [
     '@nuxtjs/sitemap',
     'nuxt-robots-module',
+    '@nuxtjs/toast',
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     '@nuxtjs/component-cache',
-    '@nuxtjs/pwa',
-    '@nuxtjs/toast',
     'nuxt-client-init-module',
     'cookie-universal-nuxt',
     ['@nuxtjs/google-analytics', { id: ANALYTICS_TRACKING_ID }]
   ],
+  axios: {
+    baseURL: PROXY + '/api/',
+    browserBaseURL: '/api/',
+    proxy: true,
+    credentials: true
+  },
+  proxy: {
+    '/api': PROXY,
+    '/auth': PROXY,
+    '/images': PROXY,
+    '/groceries': PROXY,
+  },
   toast: {
     theme: "bubble",
     position: 'top-center',
@@ -45,7 +57,7 @@ module.exports = {
       }
     }
   },
-
+  router: { middleware: ['auth'] },
   serverMiddleware: [
     helmet({
       referrerPolicy: { policy: 'strict-origin-when-cross-origin' }

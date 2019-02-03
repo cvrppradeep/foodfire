@@ -95,16 +95,8 @@
   </div>
 </template>
 <script>
-import { db } from "~/service/firebase";
 export default {
   props: ["status"],
-
-  firestore() {
-    return {
-      orders: db.collection("orders").orderBy("createdAt", "desc")
-    };
-  },
-
   methods: {
     update: function(updated) {
       alert("Do you want to submit for sure?");

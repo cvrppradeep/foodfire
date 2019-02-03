@@ -44,9 +44,11 @@
           </div>
         </div>
       </center>
-      <products
+      <cart-product
         v-else
-        :products="cartItems"
+        v-for="(p,ix) in cartItems"
+        :key="ix"
+        :product="p"
         :showcart="true"
       />
     </div>
@@ -72,7 +74,7 @@
                       @click="go('/address'),placeOrder()"
                     >
                       <div class="align_pickup">
-                        <div><span>Log in For Delivery</span></div>
+                        <div><span>Place Order</span></div>
                       </div>
                     </button>
                   </div>
@@ -91,7 +93,7 @@
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
-const Products = () => import("~/components/Products");
+const CartProduct = () => import("~/components/CartProduct");
 const NavBar = () => import("~/components/NavBar");
 export default {
   props: ["products"],
@@ -100,7 +102,7 @@ export default {
       loading: false
     };
   },
-  components: { Products, NavBar },
+  components: { CartProduct, NavBar },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;
@@ -118,7 +120,6 @@ export default {
   methods: {
     ...mapActions({
       checkout: "cart/checkout",
-      googleSignIn: "auth/googleSignIn",
       addToCart: "cart/addToCart"
     }),
     go(url) {
@@ -130,9 +131,7 @@ export default {
       this.loading = true;
       if (!this.user) {
         try {
-          await this.googleSignIn();
           this.loading = false;
-          this.askAddress();
         } catch (e) {
           this.loading = false;
         }
@@ -140,24 +139,6 @@ export default {
         let address = "Y1, Sector-18";
         this.checkout({ address });
       }
-    },
-    askAddress() {
-      //   this.loading = true;
-      //   let user = this.user;
-      //   this.$dialog.prompt({
-      //     confirmText: "Confirm Order",
-      //     message: `Address:`,
-      //     inputAttrs: {
-      //       value: user.address,
-      //       placeholder: "Y-1, Sector-18"
-      //     },
-      //     onConfirm: address => {
-      //       this.loading = false;
-      //     },
-      //     onCancel: res => {
-      //       this.loading = false;
-      //     }
-      //   });
     }
   }
 };

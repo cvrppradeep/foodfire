@@ -4,7 +4,7 @@
     <center class="title">
       <strong>Order Details</strong>
     </center>
-    <products
+    <product
       :products="cartItems"
       v-if="cartItems!=0"
       :showcart="false"
@@ -14,7 +14,7 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 import CartButtonsVue from "~/components/CartButtons.vue";
-const Products = () => import("~/components/Products");
+const Product = () => import("~/components/Product");
 const NavBar = () => import("~/components/NavBar");
 export default {
   data() {
@@ -22,7 +22,7 @@ export default {
       loading: false
     };
   },
-  components: { Products, NavBar },
+  components: { Product, NavBar },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;
@@ -41,7 +41,6 @@ export default {
   methods: {
     ...mapActions({
       checkout: "cart/checkout",
-      googleSignIn: "auth/googleSignIn",
       addToCart: "cart/addToCart"
     }),
 
@@ -51,34 +50,13 @@ export default {
       this.loading = true;
       if (!this.user) {
         try {
-          await this.googleSignIn();
           this.loading = false;
-          this.askAddress();
         } catch (e) {
           this.loading = false;
         }
       } else {
         this.askAddress();
       }
-    },
-    askAddress() {
-      this.loading = true;
-      let user = this.user;
-      this.$dialog.prompt({
-        confirmText: "Confirm Order",
-        message: `Address:`,
-        inputAttrs: {
-          value: user.address,
-          placeholder: "Y-1, Sector-18"
-        },
-        onConfirm: address => {
-          this.checkout({ address });
-          this.loading = false;
-        },
-        onCancel: res => {
-          this.loading = false;
-        }
-      });
     }
   }
 };

@@ -1,14 +1,16 @@
 <template>
   <div v-if="settings">
     <nav-bar />
-    <hero :closed="settings.closed" />
-    <info />
-    <!-- <products
+    <!-- <hero :closed="settings.closed" /> -->
+    <!-- <info /> -->
+    <nuxt-child
       :products="products"
+      :count="count"
       :showcart="true"
-    /> -->
+    />
     <overlay :closed="settings.closed" />
     <cart-bar />
+    <loading-dots :active="loading" />
   </div>
 </template>
 <script>
@@ -17,19 +19,20 @@ const Info = () => import("~/components/Info");
 const Hero = () => import("~/components/Hero");
 const CartBar = () => import("~/components/CartBar");
 const NavBar = () => import("~/components/NavBar");
+const LoadingDots = () => import("~/components/LoadingDots");
 import {
   recordsPerScroll,
-  currency,
-  sorts,
   priceRange,
   HOST,
   TITLE,
   DESCRIPTION,
   KEYWORDS
 } from "~/config";
+import search from "~/mixins/search.js";
 import { mapMutations, mapActions } from "vuex";
 
 export default {
+  mixins: [search],
   async asyncData({ $axios, params }) {
     const settings = await $axios.$get("settings");
     let products = [],
@@ -79,16 +82,7 @@ export default {
   },
   methods: {
     ...mapMutations(["setErr"]),
-    ...mapActions({ addToCart: "cart/addToCart" }),
-    addToBag(obj) {
-      if (!this.userSelectedVariant) this.setErr("Please select a size");
-      else this.addToCart(obj);
-    },
-    selectVariant(s) {
-      this.selectedVariant = s;
-      this.userSelectedVariant = s;
-      this.selectedImgIndex = 0;
-    },
+
     error(err) {
       this.setError(err.err);
     },
@@ -113,7 +107,7 @@ export default {
     }
   },
   async created() {},
-  components: { Overlay, Info, Hero, CartBar, NavBar },
+  components: { Overlay, Info, Hero, CartBar, NavBar, LoadingDots },
   head() {
     return {
       title: this.title || TITLE,
@@ -161,3 +155,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+.products {
+  margin: 0 1rem;
+}
+</style>

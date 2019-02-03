@@ -1,16 +1,19 @@
 <template>
 
   <body>
-    <img
-      class="blur"
-      src="~/static/hero.jpeg"
-    />
-    <div class="heading">
-      <div
-        class="link link--move"
-        data-letters="Foodfire"
-      >Foodfire</div>
-    </div>
+    <nuxt-link to="/search/">
+      <img
+        class="blur"
+        src="/banners/gro.jpg"
+      />
+      <div class="heading">
+        <div
+          class="link link--move"
+          data-letters="Grocery"
+        >Grocery
+        </div>
+      </div>
+    </nuxt-link>
   </body>
 </template>
 <script>

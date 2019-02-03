@@ -41,16 +41,9 @@ const Orders = () => import("~/components/Orders");
 const Info = () => import("~/components/Info");
 const Hero = () => import("~/components/Hero");
 const NavBar = () => import("~/components/NavBar");
-import { db } from "~/service/firebase";
 export default {
   data() {
     return {};
-  },
-  firestore() {
-    return {
-      settings: db.collection("settings").doc("shop"),
-      orders: db.collection("orders")
-    };
   },
   methods: {
     changeStatus(closed) {

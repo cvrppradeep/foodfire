@@ -1,8 +1,9 @@
 <template>
   <div class="align">
     <div
-      v-if="!checkCart({_id:product._id})"
-      @click="addToCart({_id:product._id,name:product.name,img:product.img,price:product.price,qty:1});"
+      v-if="!checkCart({_id:product._id, vid:variant._id})"
+      :disabled="!variant || variant.price<1 || variant.stock<1 || $store.state.loading"
+      @click="addToBag(1);"
     >
       <button class="button1 buttonrounded1 btnalign">
         <img src="/plus.svg" />
@@ -13,14 +14,15 @@
       <div class="size1">
         <button
           class="button1 buttonrounded1 "
-          @click="addToCart({_id:product._id,name:product.name,img:product.img,price:product.price,qty:-1});"
+          @click="addToBag(-1)"
         >
           <img src="/minus.svg" />
         </button>
-        <span class="size2">{{getQty({_id:product._id})}}</span>
+        <span class="size2">{{getQty({_id:product._id, vid:variant._id})}}</span>
         <button
           class="button1 button.is-danger buttonrounded1 btnplus-clr"
-          @click="addToCart({_id:product._id,name:product.name,img:product.img,price:product.price,qty:1});"
+          :disabled="!variant || variant.price<1 || variant.stock<1 || $store.state.loading"
+          @click="addToBag(1)"
         >
           <img src="/plus.svg" />
         </button>
@@ -31,11 +33,14 @@
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 export default {
-  props: ["product"],
+  props: ["product", "variant"],
   methods: {
-    ...mapActions({
-      addToCart: "cart/addToCart"
-    })
+    ...mapActions({ addToCart: "cart/addToCart" }),
+    addToBag(qty) {
+      if (!this.variant) this.$store.commit("setErr", "Please select a size");
+      else
+        this.addToCart({ pid: this.product._id, vid: this.variant._id, qty });
+    }
   },
   computed: {
     ...mapState({
@@ -132,6 +137,5 @@ export default {
 .addalign {
   padding-top: 4px;
 }
-
 </style>
 

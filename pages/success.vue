@@ -21,16 +21,16 @@
                   <h2>
                     Your order request has been received <small>successfully.</small>
                   </h2>
-                  <p class="font">Transaction ID: <span class="font-weight-bold">{{order[".key"]}}</span></p>
-                  <h4>You will receive a message or call regarding the confirmation of the product.</h4>
-                  <h5><strong>Note: </strong>Your order will be sent to you, usually within 1hr.</h5>
+                  <p class="font">Order No: <span class="font-weight-bold">{{order["orderNo"]}}</span></p>
+                  <p>You will receive a message or call regarding the confirmation of the product.</p>
+                  <h5><strong>Note: </strong>Your order will be sent to you, usually within 1-24hrs.</h5>
                 </div>
                 <div
                   class="address mb-3 "
                   v-if="order.address"
                 >
-                  <span class="name">{{order.name}}</span><br />
-                  <span class="name">{{order.address}}</span><br />
+                  Phone: <span class="">{{order.address.phone}}</span><br />
+                  Adress: <span class="">{{order.address.address}}</span><br />
                 </div>
               </div>
               <div>
@@ -81,15 +81,14 @@
         <router-link
           to="/"
           class="btnclr"
-        >Restaurant Menu</router-link>
+        >Grocery Menu</router-link>
       </a></div>
     <!-- <router-link to="/my/orders" class="button is-dark">Find My Previous Orders</router-link> -->
   </div>
 </template>
 <script>
-import { clearCart } from "@/config";
+import { clearCart } from "~/config";
 const NavBar = () => import("~/components/NavBar");
-import { db } from "~/service/firebase";
 export default {
   components: { NavBar },
   computed: {
@@ -97,30 +96,79 @@ export default {
       return (this.$store.state.auth || {}).user || null;
     }
   },
-  firestore() {
-    if (this.$route.query.id)
-      return {
-        order: db.collection(`orders`).doc(this.$route.query.id)
-      };
-    else return { order: {} };
+  async asyncData({ params, query, route, redirect, $axios, store }) {
+    let order = [],
+      err = null;
+    if (store.getters["cart/getTotal"] <= 0) {
+      redirect("/");
+    }
+    try {
+      order = await $axios.$get(`orders/public/${route.query.id}`);
+      err = null;
+    } catch (e) {
+      order = {};
+      if (e && e.response && e.response.data) {
+        err = e.response.data;
+      } else if (e && e.response) {
+        err = e.response;
+      } else {
+        err = e;
+      }
+      console.log("err...", `${err}`);
+    }
+    try {
+      await $axios.$post("cart", { items: [] });
+    } catch (e) {}
+    if (clearCart) store.commit("cart/clearCart", {});
+
+    return { order };
   },
-  async asyncData({ redirect, store, route }) {
-    store.commit("cart/clearCart", {});
-    return { orderNo: route.query.id };
+  created() {
+    if (!process.server) {
+      this.lastVisit = localStorage.getItem("lastVisit") || "/";
+    }
   },
   methods: {
     cancelOrder() {
       console.log("Cancel order  requested");
     }
   },
+
   head() {
     return {
-      title: "Order Success",
+      title: "Order placed successfully",
       meta: [
         {
           hid: "description",
           name: "description",
+          content: ""
+        },
+        {
+          hid: "og:description",
+          name: "Description",
+          property: "og:description",
+          content: ""
+        },
+        {
+          hid: "keywords",
+          name: "Keywords",
+          property: "keywords",
+          content: ""
+        },
+        {
+          hid: "og:title",
+          name: "og:title",
+          property: "og:title",
           content: "Order placed successfully"
+        },
+        // Twitter
+        {
+          name: "twitter:title",
+          content: "Order placed successfully"
+        },
+        {
+          name: "twitter:description",
+          content: ""
         }
       ]
     };
