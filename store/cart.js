@@ -183,7 +183,7 @@ const actions = {
                     commit('setLoading', true, { root: true })
                     let order = await this.$axios.$post('orders', orderDetails)
                     commit('setLoading', false, { root: true })
-                    // this.$router.push('/success?id=' + order._id + '&amount=' + orderDetails.amount.total)
+                    this.$router.push('/success?id=' + order._id + '&amount=' + orderDetails.amount.total)
                 } catch (err) {
                     // Start: Remove from cart and add to wishlist in case of error (e.g. stock=0 or item has been deleted from databse)
                     commit('setLoading', false, { root: true })
