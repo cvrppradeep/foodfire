@@ -3,8 +3,8 @@ const dotenv = require('dotenv');
 dotenv.load({ path: '.env' });
 
 // Start Config
-const PM2_NAME = 'g'
-const REMOTE_DIR = '/var/www/front'
+const PM2_NAME = 'saisell'
+const REMOTE_DIR = '/var/www/grocery/front'
 const REMOTE_HOST = '139.59.42.129'
 const REMOTE_USER = 'root'
 const PRIVATE_KEY = process.env.LIVE_KEY

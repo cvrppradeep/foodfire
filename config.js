@@ -1,5 +1,5 @@
-const REMOTE_API_URL = 'https://api.hopyshopy.com'
-// const LOCAL_API_URL = 'https://api.hopyshopy.com'
+const REMOTE_API_URL = 'https://api.iotutorials.com'
+// const LOCAL_API_URL = 'https://api.iotutorials.com'
 const LOCAL_API_URL = 'http://localhost:9006'
 const DOMAIN = (process.env.NODE_ENV === 'production') ? REMOTE_API_URL : LOCAL_API_URL
 export const TITLE = "Online Shopping for Fashion in India"
@@ -8,7 +8,7 @@ export const KEYWORDS = "Hopyshopy.com,Hopyshopy Accessories,Affordable Luxury,I
 export const PROXY = DOMAIN
 export const WS_URL = DOMAIN
 export const API = DOMAIN
-export const HOST = 'https://www.hopyshopy.com'
+export const HOST = 'https://www.iotutorials.com'
 export const IMAGEKIT = 'https://ik.imagekit.io/3wzatecz51w3i'
 export const STRIPE_PUBLISHABLE_KEY = 'pk_test_srKHaSHynBIVLX03r33xLszb'
 export const ANALYTICS_TRACKING_ID = 'UA-131207633-1'
