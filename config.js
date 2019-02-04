@@ -1,6 +1,6 @@
 const REMOTE_API_URL = 'https://api.iotutorials.com'
-const LOCAL_API_URL = 'https://api.iotutorials.com'
-// const LOCAL_API_URL = 'http://localhost:9006'
+// const LOCAL_API_URL = 'https://api.iotutorials.com'
+const LOCAL_API_URL = 'http://localhost:9006'
 const DOMAIN = (process.env.NODE_ENV === 'production') ? REMOTE_API_URL : LOCAL_API_URL
 export const TITLE = "Online Shopping for Fashion in India"
 export const DESCRIPTION = "Hopyshopy.com offer Online Women Shopping in India. Huge Collection of Jewellery, Handbags, Clutches, Sunglasses, Clothing, Nightwear & More!"

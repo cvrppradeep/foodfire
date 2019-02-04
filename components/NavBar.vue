@@ -17,13 +17,18 @@
           </router-link>
         </a>
       </div>
-      <div class="">
+      <form
+        class="search"
+        novalidate
+        autocomplete="off"
+        @submit.stop.prevent="submit()"
+      >
         <input
           type="search"
           v-model="search"
-          placeholder="Search for items, brands and inspiration"
+          placeholder="Type here to search for groceries..."
         >
-      </div>
+      </form>
       <div class="iconcenter">
 
         <div class="iconalign2">
@@ -80,6 +85,9 @@ export default {
     };
   },
   methods: {
+    submit() {
+      this.$router.push("/search/" + this.search);
+    },
     closeSidebar() {
       this.sidebar = false;
     },
@@ -132,19 +140,19 @@ export default {
     })
   },
   watch: {
-    search: {
-      immediate: false,
-      handler(value, oldValue) {
-        if (!oldValue) return; // Do not trigger on page load
-        clearTimeout(this.typingTimer);
-        let vm = this;
-        this.typingTimer = setTimeout(function() {
-          if (!value || value == "undefined") value = ""; // When clear button clicked
-          vm.searchString = value;
-          vm.$router.push("/search/" + value);
-        }, vm.typingTimeout);
-      }
-    },
+    // search: {
+    //   immediate: false,
+    //   handler(value, oldValue) {
+    //     if (!oldValue) return; // Do not trigger on page load
+    //     clearTimeout(this.typingTimer);
+    //     let vm = this;
+    //     this.typingTimer = setTimeout(function() {
+    //       if (!value || value == "undefined") value = ""; // When clear button clicked
+    //       vm.searchString = value;
+    //       vm.$router.push("/search/" + value);
+    //     }, vm.typingTimeout);
+    //   }
+    // },
     "$route.params.q": {
       immediate: true,
       handler(value) {
@@ -159,7 +167,10 @@ export default {
   }
 };
 </script>
-    <style>
+<style scoped>
+.search {
+  width: 57%;
+}
 .navbar-item img {
   max-height: 2.3rem;
 }

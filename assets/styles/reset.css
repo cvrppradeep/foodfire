@@ -98,3 +98,24 @@ button {
   padding: 1rem;
   border-bottom: 1px solid #ccc;
 }
+input[type="text"],
+input[type="tel"],
+input[type="search"],
+textarea {
+  width: 100%;
+  padding: 8px 4px 8px 10px;
+  border: 1px solid white;
+  border: 1px solid #f3f3f3;
+  background: white;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 0 #fbb140, inset 0 -2px 10px #e5f1f8;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  font-family: "Raleway", "Lato", Arial, sans-serif;
+  color: #47494e;
+  font-size: 13px;
+  border-radius: 6px;
+  outline: none;
+}

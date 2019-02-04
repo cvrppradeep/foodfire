@@ -8,3 +8,4 @@ prod
 .idea
 static/sw.js
 .vscode
+static/robots.txt

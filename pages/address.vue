@@ -6,9 +6,9 @@
       autocomplete="off"
       @submit.stop.prevent="submit()"
     >
-      <div class="img1">
+      <!-- <div class="img1">
         <img src="/personlogo.png">
-      </div>
+      </div> -->
       <div class="card shadow-lg2 columns">
         <!-- <div class="margin">
         <label for="login"></label>
@@ -40,7 +40,8 @@
             type="text"
             placeholder="Qr No"
             v-model="user.address"
-          /></div>
+          />
+        </div>
       </div>
       <div class="footer">
         <a v-if="!cartItems.length==0">
@@ -67,9 +68,9 @@
                       </button>
                     </div>
                   </div>
-                  <div class="is-mobile">
+                  <!-- <div class="is-mobile">
                     <p class="green">Please allow us 45mins for delivery</p>
-                  </div>
+                  </div> -->
                   <div class="cart-total-after"> </div>
                 </div>
               </div>
@@ -186,6 +187,9 @@ export default {
 };
 </script>
 <style scoped>
+.cart-total-after {
+  margin-bottom: 10px;
+}
 .align {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -316,27 +320,6 @@ img {
   height: 92px;
 }
 
-input[type="text"],
-input[type="tel"],
-textarea {
-  width: 100%;
-  padding: 8px 4px 8px 10px;
-  margin-bottom: 15px;
-  border: 1px solid white;
-  border: 1px solid #f3f3f3;
-  background: white;
-  border-radius: 2px;
-  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 1px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 0 #fbb140, inset 0 -2px 10px #e5f1f8;
-  -webkit-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-  font-family: "Raleway", "Lato", Arial, sans-serif;
-  color: #47494e;
-  font-size: 13px;
-  border-radius: 6px;
-  outline: none;
-}
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0;

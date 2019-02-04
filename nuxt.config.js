@@ -1,7 +1,7 @@
 import { PROXY, ANALYTICS_TRACKING_ID, head, manifest } from "./config";
 import helmet from 'helmet'
 module.exports = {
-  mode: 'spa',
+  mode: 'universal',
   head,
   manifest,
   loading: '~/components/Loading.vue',

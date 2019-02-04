@@ -79,9 +79,9 @@
                     </button>
                   </div>
                 </div>
-                <div class="is-mobile">
+                <!-- <div class="is-mobile">
                   <p class="green">Please allow us 45mins for delivery</p>
-                </div>
+                </div> -->
                 <div class="cart-total-after"> </div>
               </div>
             </div>
@@ -144,6 +144,9 @@ export default {
 };
 </script>
 <style scoped>
+.cart-total-after {
+  margin-bottom: 10px;
+}
 .container {
   position: relative;
   overflow: scroll;

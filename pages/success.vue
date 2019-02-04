@@ -60,11 +60,11 @@
                     </div>
                   </nuxt-link>
                 </div>
-                <h6>
+                <h6 v-if="$store.state.settings">
                   <u>For customer service</u><br> Please contact:<router-link
                     class="cursor"
                     to=""
-                  > care@foodfire.in</router-link>
+                  > {{$store.state.settings.shopEmail}}</router-link>
                 </h6>
               </div>
             </div>
