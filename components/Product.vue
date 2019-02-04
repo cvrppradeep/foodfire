@@ -2,7 +2,7 @@
   <div class="product">
     <div class="image">
       <img
-        v-lazy="selectedVariant.img"
+        v-lazy="selectedVariant.img[0]"
         alt=""
       />
     </div>
