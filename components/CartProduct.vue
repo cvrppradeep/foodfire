@@ -3,7 +3,7 @@
     <div class="image">
 
       <img
-        v-lazy="'/images/product/'+product.category+'/'+product.img"
+        v-lazy="product.img"
         alt=""
       />
     </div>
