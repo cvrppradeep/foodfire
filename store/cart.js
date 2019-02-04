@@ -324,10 +324,10 @@ const mutations = {
                 return;
             }
             let img = ''
-            if (product.img && product.img.length > 0) {
-                img = product.img[0]
-            } else if (variant.img && variant.img.length > 0) {
+            if (variant.img && variant.img.length > 0) {
                 img = variant.img[0]
+            } else if (product.img && product.img.length > 0) {
+                img = product.img[0]
             }
             const item = {
                 _id: product._id, sku: product.sku, name: product.name, slug: product.slug,

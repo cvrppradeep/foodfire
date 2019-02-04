@@ -1,9 +1,8 @@
 <template>
   <div class="product">
     <div class="image">
-
       <img
-        v-lazy="product.img[0]"
+        v-lazy="product.img"
         alt=""
       />
     </div>
