@@ -1,8 +1,11 @@
 <template>
   <div class="product">
-    <div class="image">
+    <div
+      class="image"
+      v-if="selectedVariant.img && selectedVariant.img[0]"
+    >
       <img
-        v-lazy="selectedVariant.img[0]"
+        v-lazy="selectedVariant.img[0].small"
         alt=""
       />
     </div>
