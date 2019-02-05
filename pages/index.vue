@@ -1,12 +1,9 @@
 <template>
   <div v-if="settings">
     <nav-bar />
-    <hero :closed="settings.closed" />
-    <info />
-    <!-- <products
-      :products="products"
-      :showcart="true"
-    /> -->
+    <!-- <hero :closed="settings.closed" /> -->
+    <!-- <info /> -->
+    <featured-categories :categories="categories" />
     <overlay :closed="settings.closed" />
     <cart-bar />
   </div>
@@ -17,6 +14,7 @@ const Info = () => import("~/components/Info");
 const Hero = () => import("~/components/Hero");
 const CartBar = () => import("~/components/CartBar");
 const NavBar = () => import("~/components/NavBar");
+const FeaturedCategories = () => import("~/components/FeaturedCategories");
 import {
   recordsPerScroll,
   currency,
@@ -30,19 +28,13 @@ import {
 import { mapMutations, mapActions } from "vuex";
 
 export default {
-  async asyncData({ $axios, params }) {
-    const settings = await $axios.$get("settings");
-    let products = [],
-      count = 0,
+  async asyncData({ $axios }) {
+    let categories = [],
+      settings = {},
       err = null;
     try {
-      const search = params.q || null,
-        result = await $axios.$get("products/search/" + search, {
-          params: { limit: 4 }
-        });
-      products = result.data;
-      count = result.count;
-      return { settings: settings[0], products, count, err: null };
+      categories = await $axios.$get("categories/featured");
+      settings = await $axios.$get("settings");
     } catch (e) {
       if (e && e.response && e.response.data) {
         err = e.response.data;
@@ -52,68 +44,17 @@ export default {
         err = e;
       }
       console.log("err...", `${err}`);
-      return { settings: settings[0], products: [], count: 0, err };
     }
+    return { categories, settings: settings[0], err };
   },
   data() {
     return {
       closed: true
     };
   },
-  watch: {
-    "$route.query": {
-      handler(value, oldValue) {
-        if (JSON.stringify(value) == JSON.stringify(oldValue)) return;
-        this.flush();
-        this.filter();
-      }
-    },
-    "$route.params.q": {
-      handler(value, oldValue) {
-        if (value == oldValue) return;
-        this.getAllData();
-        this.flush();
-        this.filter();
-      }
-    }
-  },
-  methods: {
-    ...mapMutations(["setErr"]),
-    ...mapActions({ addToCart: "cart/addToCart" }),
-    addToBag(obj) {
-      if (!this.userSelectedVariant) this.setErr("Please select a size");
-      else this.addToCart(obj);
-    },
-    selectVariant(s) {
-      this.selectedVariant = s;
-      this.userSelectedVariant = s;
-      this.selectedImgIndex = 0;
-    },
-    error(err) {
-      this.setError(err.err);
-    },
-    loadMore() {
-      if (!this.q) {
-        // When back button is pressed and landed into this page
-        this.filter();
-      } else {
-        this.getData({ q: this.q, scrolled: true });
-      }
-    },
-    sortNow() {
-      this.flush(); // To allow http get request
-      this.filter();
-    },
-    flush() {
-      // console.log("Flush.............");
-      this.meta.end = false;
-      this.meta.skip = 0;
-      this.meta.limit = recordsPerScroll;
-      this.products = []; // Reset query parameters
-    }
-  },
+
   async created() {},
-  components: { Overlay, Info, Hero, CartBar, NavBar },
+  components: { Overlay, Info, Hero, CartBar, NavBar, FeaturedCategories },
   head() {
     return {
       title: this.title || TITLE,
@@ -161,3 +102,5 @@ export default {
   }
 };
 </script>
+<style>
+</style>
