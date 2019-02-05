@@ -177,6 +177,7 @@ const actions = {
                     items.push({ name: 'Coupon Discount', slug: '-', description: '-', price: -discount, qty: 1, currency: currency_code })
                 let orderDetails = {
                     address, items,
+                    shipping: { qty: getters.getTotalCount },
                     amount: { total: +getters.getTotal, currency: currency_code, exchange_rate, details: { qty: +getters.getTotalCount, discount: +getters.getDiscount, shipping: +getters.getShipping, taxes: getters.getTaxes, subtotal: +getters.getSubtotal } }
                 }
                 try {

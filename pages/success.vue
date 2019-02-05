@@ -47,7 +47,7 @@
                     <div class="flex product_card columns">
                       <div class="image">
                         <img
-                          v-lazy="p.img"
+                          v-lazy="p.img.small"
                           alt=""
                         />
                       </div>
