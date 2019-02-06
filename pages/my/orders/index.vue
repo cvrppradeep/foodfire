@@ -1,29 +1,29 @@
 <template>
   <div>
-    <nav-bar />
+    <Header />
     <center class="title">
       <strong class="font">My Order History</strong>
     </center>
     <div
       v-for="o in orders"
       :key="o._id"
-      :title="`${o.name} => ${o.address}`"
+      :title="`${o.name} => ${o.address.address}`"
       :type="getStyle(o)"
       class="container"
     >
       <div class="card shadow-lg2">
         <div class="border">
           <div class="border">
-            <h5>ORDER ID: {{o[".key"]}}</h5>
+            <h5>ORDER ID: {{o["_id"]}}</h5>
           </div>
 
           <h1>{{user.name}}</h1>
           <div class="add_date_align">
             <div>
-              <h2>{{o.address}}</h2>
+              <h2>{{o.address.address}}</h2>
             </div>
             <div class="date">
-              <h4>Date: **/**/**** </h4>
+              <h4>Date: {{o.createdAt | ago}} </h4>
             </div>
           </div>
         </div>
@@ -51,9 +51,9 @@
             <h3>Total: ₹{{o.amount.total}}</h3>
           </div>
         </div>
-        <router-link to="">
+        <!-- <router-link to="">
           <p> Need Help?</p>
-        </router-link>
+        </router-link> -->
       </div>
     </div>
   </div>
@@ -61,26 +61,34 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 import CartButtonsVue from "~/components/CartButtons.vue";
-const NavBar = () => import("~/components/NavBar");
+const Header = () => import("~/components/Header");
 export default {
+  fetch({ store, redirect }) {
+    if (!(store.state.auth || {}).user) return redirect("/login?return=orders");
+  },
+  async asyncData({ params, $axios }) {
+    let orders = [],
+      err = null;
+    try {
+      orders = await $axios.$get("orders/my");
+      err = null;
+    } catch (e) {
+      orders = [];
+      err = e;
+    }
+    return { orders, err };
+  },
   data() {
     return {};
   },
-  components: { NavBar },
+  components: { Header },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;
     }
   },
   methods: {
-    changeStatus(o) {
-      db.collection("orders")
-        .doc(o[".key"])
-        .update({
-          status: o.status,
-          updatedAt: new Date()
-        });
-    },
+    changeStatus(o) {},
     getStyle(o) {
       let style = "";
       return style;

@@ -1,6 +1,6 @@
 <template>
   <div v-if="settings">
-    <nav-bar />
+    <Header />
     <!-- <hero :closed="settings.closed" /> -->
     <!-- <info /> -->
     <nuxt-child
@@ -18,7 +18,7 @@ const Overlay = () => import("~/components/Overlay");
 const Info = () => import("~/components/Info");
 const Hero = () => import("~/components/Hero");
 const CartBar = () => import("~/components/CartBar");
-const NavBar = () => import("~/components/NavBar");
+const Header = () => import("~/components/Header");
 const LoadingDots = () => import("~/components/LoadingDots");
 import {
   recordsPerScroll,
@@ -107,7 +107,7 @@ export default {
     }
   },
   async created() {},
-  components: { Overlay, Info, Hero, CartBar, NavBar, LoadingDots },
+  components: { Overlay, Info, Hero, CartBar, Header, LoadingDots },
   head() {
     return {
       title: this.title || TITLE,

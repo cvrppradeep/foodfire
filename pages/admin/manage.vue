@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar />
+    <Header />
     <div class="pstn ">
       <img src="/truck.svg" />
       <h4 class="textalgn">
@@ -151,13 +151,13 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 import CartButtonsVue from "~/components/CartButtons.vue";
-const NavBar = () => import("~/components/NavBar");
+const Header = () => import("~/components/Header");
 export default {
   props: ["products", "status", "PENDING", "DELIVERED", "SHIPPED", "CANCELLED"],
   data() {
     return {};
   },
-  components: { NavBar },
+  components: { Header },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;

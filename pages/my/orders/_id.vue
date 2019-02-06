@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar />
+    <Header />
     <center class="title">
       <strong>Order Details</strong>
     </center>
@@ -15,14 +15,14 @@
 import { mapState, mapGetters, mapActions } from "vuex";
 import CartButtonsVue from "~/components/CartButtons.vue";
 const Product = () => import("~/components/Product");
-const NavBar = () => import("~/components/NavBar");
+const Header = () => import("~/components/Header");
 export default {
   data() {
     return {
       loading: false
     };
   },
-  components: { Product, NavBar },
+  components: { Product, Header },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;

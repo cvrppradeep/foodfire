@@ -154,16 +154,22 @@ const actions = {
         commit('applyDiscount', payload)
     },
     async checkout({ commit, state, rootState, getters }, { paymentMethod, address }) {
-        if (address.phone == null || address.phone == "undefined" || address.phone == "" || address.phone == undefined) {
-            commit('setErr', 'Please enter phone no', { root: true })
-            return
-        }
+        const user = (rootState.auth || {}).user || {}
+        let cartItems = state.items;
         const exchange_rate = currency.exchange_rate || 1
         const currency_code = currency.code || '₹'
         paymentMethod = paymentMethod || 'COD'
+        let err = null
+        if (!address.address || address.address == "") {
+            err = "Please enter Qr No"
+            throw err;
+        }
+        if (cartItems.length < 1) {
+            err = "Add some items into cart."
+            throw err;
+        }
         switch (paymentMethod) {
             case "COD":
-                let cartItems = state.items;
                 let items = [];
                 for (let ix in cartItems) {
                     let i = cartItems[ix]

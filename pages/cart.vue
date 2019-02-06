@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar />
+    <Header />
     <div class="head">
       <center class="title">
         <strong>My Cart</strong>
@@ -13,7 +13,7 @@
                 src="/empty1.png"
               /></div>
             <h2 class="h2">
-              Please go back to Restaurant menu and add some food to continue...</h2>
+              Please go back to Grocery menu and add some items to continue...</h2>
             <div class="footer">
               <a>
                 <div class="cart-total footer">
@@ -71,10 +71,10 @@
                     <button
                       class="button"
                       :disabled="getTotal==0 || loading"
-                      @click="go('/address'),placeOrder()"
+                      @click="go('/checkout')"
                     >
                       <div class="align_pickup">
-                        <div><span>Place Order</span></div>
+                        <div><span>Add Address</span></div>
                       </div>
                     </button>
                   </div>
@@ -94,7 +94,7 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 const CartProduct = () => import("~/components/CartProduct");
-const NavBar = () => import("~/components/NavBar");
+const Header = () => import("~/components/Header");
 export default {
   props: ["products"],
   data() {
@@ -102,7 +102,7 @@ export default {
       loading: false
     };
   },
-  components: { CartProduct, NavBar },
+  components: { CartProduct, Header },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;
@@ -124,21 +124,6 @@ export default {
     }),
     go(url) {
       this.$router.push(url);
-    },
-    async placeOrder() {
-      if (this.loading) return;
-      if (this.getTotal == 0) return;
-      this.loading = true;
-      if (!this.user) {
-        try {
-          this.loading = false;
-        } catch (e) {
-          this.loading = false;
-        }
-      } else {
-        let address = "Y1, Sector-18";
-        this.checkout({ address });
-      }
     }
   }
 };
@@ -195,7 +180,7 @@ export default {
   font-family: Karla, Roboto, sans-serif;
   text-transform: initial;
   color: #fff;
-  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
   border-color: #fb6340;
   -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
     0 1px 3px rgba(0, 0, 0, 0.08);

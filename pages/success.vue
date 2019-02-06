@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <nav-bar />
+      <Header />
     </div>
     <div class="container head">
       <div>
@@ -25,12 +25,11 @@
                   <p>You will receive a message or call regarding the confirmation of the product.</p>
                   <h5><strong>Note: </strong>Your order will be sent to you, usually within 1-24hrs.</h5>
                 </div>
-                <div
-                  class="address mb-3 "
-                  v-if="order.address"
-                >
-                  Phone: <span class="">{{order.address.phone}}</span><br />
-                  Adress: <span class="">{{order.address.address}}</span><br />
+                <div class="address mb-3 ">
+                  Adress: <span
+                    class=""
+                    v-if="order.address"
+                  >{{order.address.address}}</span><br />
                 </div>
               </div>
               <div>
@@ -88,9 +87,9 @@
 </template>
 <script>
 import { clearCart } from "~/config";
-const NavBar = () => import("~/components/NavBar");
+const Header = () => import("~/components/Header");
 export default {
-  components: { NavBar },
+  components: { Header },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;
@@ -182,7 +181,7 @@ export default {
 }
 .btn-white1 {
   color: #212529;
-  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
   border-color: #fff;
   -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
     0 1px 3px rgba(0, 0, 0, 0.08);

@@ -4,7 +4,7 @@
       class="footer"
       v-if="getTotalCount!=0"
     >
-      <nav class="navbar header has-shadow is-primary">
+      <nav class="Header header has-shadow is-primary">
         <div
           class="headeralign1 shadow"
           style="color:white;"
@@ -14,9 +14,9 @@
               {{getTotalCount}} item<span v-if="getTotalCount>1">s</span> | {{getTotal | currency}}
             </span>
           </div>
-          <div class="navbar-brand1 ">
+          <div class="Header-brand1 ">
             <router-link
-              class="navbar-item1 a1 "
+              class="Header-item1 a1 "
               style="color:white"
               to="/cart"
             >
@@ -50,35 +50,35 @@ export default {
 };
 </script>
 <style scoped>
-.navbar-item img {
+.Header-item img {
   max-height: 2.3rem;
 }
-.navbar-brand1 {
+.Header-brand1 {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   align-items: stretch;
   display: flex;
   flex-shrink: 0;
   min-height: 3.25rem;
 }
-.navbar.has-shadow {
+.Header.has-shadow {
   box-shadow: 0 2px 0 0 #f5f5f5;
 }
-.navbar.is-primary {
-  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+.Header.is-primary {
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
 }
-.navbar {
+.Header {
   background-color: #fff;
   min-height: 3.25rem;
   z-index: 30;
 }
-.navbar.is-primary .navbar-brand > a.navbar-item:hover {
-  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+.Header.is-primary .Header-brand > a.Header-item:hover {
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
 }
 img {
   height: auto;
   max-width: 100%;
 }
-.navbar-item img {
+.Header-item img {
   max-height: 1.75rem;
 }
 a {
@@ -86,18 +86,18 @@ a {
   cursor: pointer;
   text-decoration: none;
 }
-.navbar-menu {
+.Header-menu {
   background-color: #fff;
   box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
   padding: 0.5rem 0;
   display: none;
 }
-.navbar-link,
-a.navbar-item {
+.Header-link,
+a.Header-item {
   cursor: pointer;
 }
-.navbar-item1,
-.navbar-link {
+.Header-item1,
+.Header-link {
   color: #4a4a4a;
   display: block;
   line-height: 1.5;

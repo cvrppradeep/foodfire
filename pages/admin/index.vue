@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar />
+    <Header />
     <div class="bg-img">
       <div class="pstn ">
         <div>
@@ -22,8 +22,8 @@
                   @input="changeStatus(settings.closed)"
                 >
                   <span class="control-label">
-                    <i v-if="settings.closed">Restaurant Closed</i>
-                    <i v-else>Restaurant Open</i>
+                    <i v-if="settings.closed">Delivery Closed</i>
+                    <i v-else>Delivery Open</i>
                   </span>
                 </div>
               </label>
@@ -40,7 +40,7 @@ const Overlay = () => import("~/components/Overlay");
 const Orders = () => import("~/components/Orders");
 const Info = () => import("~/components/Info");
 const Hero = () => import("~/components/Hero");
-const NavBar = () => import("~/components/NavBar");
+const Header = () => import("~/components/Header");
 export default {
   data() {
     return {};
@@ -55,7 +55,7 @@ export default {
     }
   },
   async created() {},
-  components: { Overlay, Orders, Info, Hero, NavBar }
+  components: { Overlay, Orders, Info, Hero, Header }
 };
 </script>
 <style>

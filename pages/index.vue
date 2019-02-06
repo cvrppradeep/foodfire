@@ -1,6 +1,6 @@
 <template>
   <div v-if="settings">
-    <nav-bar />
+    <Header />
     <!-- <hero :closed="settings.closed" /> -->
     <!-- <info /> -->
     <featured-categories :categories="categories" />
@@ -13,7 +13,7 @@ const Overlay = () => import("~/components/Overlay");
 const Info = () => import("~/components/Info");
 const Hero = () => import("~/components/Hero");
 const CartBar = () => import("~/components/CartBar");
-const NavBar = () => import("~/components/NavBar");
+const Header = () => import("~/components/Header");
 const FeaturedCategories = () => import("~/components/FeaturedCategories");
 import {
   recordsPerScroll,
@@ -54,7 +54,7 @@ export default {
   },
 
   async created() {},
-  components: { Overlay, Info, Hero, CartBar, NavBar, FeaturedCategories },
+  components: { Overlay, Info, Hero, CartBar, Header, FeaturedCategories },
   head() {
     return {
       title: this.title || TITLE,

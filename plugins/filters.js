@@ -22,13 +22,18 @@ Vue.filter('currency', function (value, currency, decimals) {
         _int.slice(i).replace(digitsRE, '$1,') +
         _float
 })
-Vue.filter('ago', function (time) {
-    const between = Date.now() / 1000 - Number(time)
-    if (between < 3600) {
-        return ~~(between / 60) + ' minutes'
-    } else if (between < 86400) {
-        return ~~(between / 3600) + ' hours'
-    } else {
-        return ~~(between / 86400) + ' days'
-    }
+Vue.filter('ago', function (dt) {
+    var created_date = new Date(dt);
+
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var year = created_date.getFullYear();
+    var month = months[created_date.getMonth()];
+    var date = created_date.getDate();
+    var hour = created_date.getHours();
+    var min = created_date.getMinutes();
+    var sec = created_date.getSeconds();
+    var time = date + ',' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;    // final date with time, you can use this according your requirement
+
+    return time
+
 })

@@ -2,11 +2,11 @@
   <nav
     role="navigation"
     aria-label="main navigation"
-    class="navbar header has-shadow is-primary"
+    class="Header header has-shadow is-primary"
   >
     <div class="headeralign">
-      <div class="navbar-brand">
-        <a class="navbar-item a1">
+      <div class="Header-brand">
+        <a class="Header-item a1">
           <router-link to="/">
             <img
               class="logo"
@@ -34,17 +34,24 @@
         <div class="iconalign2">
           <a
             role="button"
-            class="navbaritem boxbtn1"
+            class="Headeritem boxbtn1"
             aria-label="menu"
-            @click="go('')"
+            v-if="user"
+            @click="go('/my')"
           >
             <img
               class="img"
-              v-if="user"
               :src="user.avatar"
             />
+          </a>
+          <a
+            role="button"
+            class="Headeritem boxbtn1"
+            aria-label="menu"
+            v-else
+            @click="go('/login')"
+          >
             <img
-              v-else
               class="img"
               src="/person.svg"
             />
@@ -53,7 +60,7 @@
         <div class="iconalign1">
           <a
             role="button"
-            class="navbaritem boxbtn"
+            class="Headeritem boxbtn"
             aria-label="menu"
             @click="go('/cart')"
           >
@@ -63,7 +70,7 @@
         <div class="iconalign">
           <a
             role="button"
-            class="navbaritem boxbtn"
+            class="Headeritem boxbtn"
             aria-label="menu"
             @click="go('/my/orders')"
           >
@@ -171,22 +178,22 @@ export default {
 .search {
   width: 57%;
 }
-.navbar-item img {
+.Header-item img {
   max-height: 2.3rem;
 }
-.navbar-brand {
+.Header-brand {
   align-items: stretch;
   display: flex;
   flex-shrink: 0;
   min-height: 3.25rem;
 }
-.navbar.has-shadow {
+.Header.has-shadow {
   box-shadow: 0 2px 0 0 #f5f5f5;
 }
-.navbar.is-primary {
-  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+.Header.is-primary {
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
 }
-.navbar {
+.Header {
   background-color: #fff;
   min-height: 3.25rem;
   z-index: 30;
@@ -214,14 +221,14 @@ export default {
   padding-left: 0px;
   padding-top: 1px;
 }
-.navbar.is-primary .navbar-brand > a.navbar-item:hover {
-  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+.Header.is-primary .Header-brand > a.Header-item:hover {
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
 }
 img {
   height: auto;
   max-width: 100%;
 }
-.navbar-item img {
+.Header-item img {
   max-height: 1.75rem;
 }
 a {
@@ -229,18 +236,18 @@ a {
   cursor: pointer;
   text-decoration: none;
 }
-.navbar-menu {
+.Header-menu {
   background-color: #fff;
   box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
   padding: 0.5rem 0;
   display: none;
 }
-.navbar-link,
-a.navbar-item {
+.Header-link,
+a.Header-item {
   cursor: pointer;
 }
-.navbar-item,
-.navbar-link {
+.Header-item,
+.Header-link {
   color: #4a4a4a;
   display: block;
   /* line-height: 1.5; */

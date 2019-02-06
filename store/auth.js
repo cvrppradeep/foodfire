@@ -58,15 +58,13 @@ export const actions = {
     },
     async login({ commit, dispatch }, payload) {
         try {
-            const data = await this.$axios.$post('auth/local', payload)
-            if (data) {
-                // console.log('login............', data.user, data.token);
+            const { status, data } = await this.$axios.post('auth/local', payload)
+            if (status == 200 || status == 201) {
                 this.$axios.setToken(data.token, 'Bearer')
                 commit('setUser', data.user)
-                // setAuthToken(data.token)
                 this.$cookies.set('Authorization', data.token, { path: '/', maxAge: tokenExpiry })
                 dispatch('cart/fetch', {}, { root: true })
-                return data
+                return status
             }
         } catch (err) {
             commit('setErr', err, { root: true })

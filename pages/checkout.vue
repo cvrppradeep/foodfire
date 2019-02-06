@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar />
+    <Header />
     <form
       novalidate
       autocomplete="off"
@@ -10,36 +10,17 @@
         <img src="/personlogo.png">
       </div> -->
       <div class="card shadow-lg2 columns">
-        <!-- <div class="margin">
-        <label for="login"></label>
-        <h5 v-if="user"><u>{{user.name}}</u></h5>
-        <input
-          type="text"
-          name="Email"
-          placeholder="Email Address*"
-          value=required
-          v-if="user"
-          v-model="user.email"
-          disabled
-        >
-      </div> -->
-        <br />
-        <div class="margin_phn">
-          <label for="phone"></label>
-          <input
-            type="tel"
-            name='phone'
-            v-model="user.phone"
-            placeholder="Phone No"
-            required
-          >
-        </div>
+
         <!-- <h1>Qr No: </h1> -->
         <div class="margin">
           <input
             type="text"
-            placeholder="Qr No"
-            v-model="user.address"
+            class="address"
+            name='address'
+            ref="address"
+            v-model="address"
+            placeholder="Qr No."
+            required
           />
         </div>
       </div>
@@ -62,9 +43,8 @@
                       <button
                         type="submit"
                         class="button"
-                        :class="disable"
                         :disabled="getTotal==0 || loading"
-                      ><span :class="fadeIn">{{text}}</span>
+                      ><span :class="{'fadeIn':loading}">{{text}}</span>
                       </button>
                     </div>
                   </div>
@@ -84,26 +64,24 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 const Product = () => import("~/components/Product");
-const NavBar = () => import("~/components/NavBar");
+const Header = () => import("~/components/Header");
 export default {
   props: ["products"],
+  fetch({ store, redirect }) {
+    if (!(store.state.auth || {}).user)
+      return redirect("/login?return=checkout");
+  },
   data() {
     return {
       loading: false,
       text: "Place order",
-      fadeIn: "",
-      disable: "disable"
+      address: null
     };
   },
-  components: { Product, NavBar },
+  components: { Product, Header },
   computed: {
     user() {
-      return (
-        (this.$store.state.auth || {}).user || {
-          phone: "",
-          address: ""
-        }
-      );
+      return (this.$store.state.auth || {}).user || {};
     },
     ...mapState({
       shipping: state => state.shipping || {},
@@ -111,39 +89,48 @@ export default {
       cartItems: state => state.cart.items || []
     }),
     ...mapGetters({
-      checkCart: "cart/checkCart",
       getTotal: "cart/getTotal"
     })
   },
+  async created() {
+    let address = await this.$axios.$get("users/me");
+    this.address = address.address;
+  },
   methods: {
     ...mapActions({
-      checkout: "cart/checkout",
-      addToCart: "cart/addToCart"
+      checkout: "cart/checkout"
     }),
-
     async submit() {
-      let vm = this;
       this.err = null;
-      if (!this.user.phone || this.user.phone == "") {
-        this.$store.commit("setErr", "Please enter your phone no");
-        return;
-      }
-      if (!this.user.address || this.user.address == "") {
-        this.$store.commit("setErr", "Please enter Qr No");
-        return;
-      }
       try {
-        this.text = "Please Wait. . .";
-        this.fadeIn = "fadeIn";
-        this.disable = "";
-        await vm.checkout({
-          address: vm.user,
+        this.loading = true;
+        let c = await this.checkout({
+          address: { address: this.address },
           paymentMethod: "COD"
         });
+        if (c == 401) {
+          // this.$store.commit("setErr", "Enter your phone no"); // Not working with redirect
+          this.$router.push("/login");
+        } else {
+          this.text = "Please Wait. . .";
+        }
       } catch (e) {
-        console.log("place order error...........", e.response.data);
-        this.err = e.response.data._message || e.response.data.msg;
+        this.err = null;
+        this.text = "Place Order";
+        if (e && e.response && e.response.status == 401) {
+          // this.$store.commit("setErr", "Enter your phone no"); // Not working with redirect
+          this.$router.push("/login");
+        } else if (e && e.response && e.response.data) {
+          this.err = e.response.data._message || e.response.data.msg;
+        } else if (e == "Add some items into cart.") {
+          // this.$store.commit("setErr", "Add some items into cart."); // Not working with redirect
+          this.$router.push("/");
+        } else {
+          this.err = e;
+        }
         this.$store.commit("setErr", this.err);
+      } finally {
+        this.loading = false;
       }
     }
   },
@@ -187,6 +174,14 @@ export default {
 };
 </script>
 <style scoped>
+.address {
+  height: 45px;
+  font-size: 20px;
+  border: 1px solid #da1c5f;
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
 .cart-total-after {
   margin-bottom: 10px;
 }
@@ -279,22 +274,25 @@ textarea {
   position: relative;
 }
 .button {
-  font-family: Karla, Roboto, sans-serif;
   text-transform: uppercase;
-  color: black;
-  border-color: lightgray;
-  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
-    0 1px 3px rgba(0, 0, 0, 0.08);
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   width: 100%;
   display: block;
   font-size: 1.25rem;
   line-height: 1.5;
-  border-radius: 0.3rem;
   padding: 7px;
   outline: none;
-  background: lightgray;
+  color: #f6f7fa;
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
   border: none;
+  border-radius: 0.3rem;
+  border-color: #fb6340;
+}
+.button .loading {
+  -webkit-animation: fadeIn 3s infinite;
+  -moz-animation: fadeIn 3s infinite;
+  -o-animation: fadeIn 3s infinite;
+  animation: fadeIn 3s infinite;
 }
 .gray {
   font-size: 23px;
@@ -350,7 +348,7 @@ img {
 }
 .disable {
   color: #f6f7fa;
-  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
   border-color: #fb6340;
 }
 .email {
