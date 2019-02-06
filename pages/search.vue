@@ -3,11 +3,17 @@
     <Header />
     <!-- <hero :closed="settings.closed" /> -->
     <!-- <info /> -->
-    <nuxt-child
-      :products="products"
-      :count="count"
-      :showcart="true"
-    />
+    <div
+      v-infinite-scroll="loadMore"
+      :infinite-scroll-distance="3"
+      :infinite-scroll-immediate-check="true"
+    >
+      <nuxt-child
+        :products="products"
+        :count="count"
+        :showcart="true"
+      />
+    </div>
     <overlay :closed="settings.closed" />
     <cart-bar />
     <loading-dots :active="loading" />
@@ -41,7 +47,7 @@ export default {
     try {
       const search = params.q || null,
         result = await $axios.$get("products/search/" + search, {
-          params: { limit: 4 }
+          params: { limit: recordsPerScroll }
         });
       products = result.data;
       count = result.count;

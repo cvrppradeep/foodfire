@@ -105,7 +105,7 @@ export default {
   components: { Product, Header },
   computed: {
     user() {
-      return (this.$store.state.auth || {}).user || { phone: "8895092508" };
+      return (this.$store.state.auth || {}).user || {};
     },
     ...mapState({
       cartItems: state => state.cart.items || []
