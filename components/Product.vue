@@ -1,7 +1,7 @@
 <template>
   <div class="product">
     <div
-      class="image"
+      class="image pull-up"
       v-if="selectedVariant.img && selectedVariant.img[0]"
     >
       <img
@@ -73,6 +73,15 @@ export default {
 </script>
 
 <style scoped>
+.pull-up {
+  animation-play-state: paused;
+  transition: transform 1s;
+}
+
+.pull-up:hover {
+  animation-play-state: running;
+  transform: translateY(-5px);
+}
 .product {
   align-items: flex-start;
   display: flex;
