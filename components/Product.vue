@@ -2,22 +2,25 @@
   <div class="product">
     <div
       class="image pull-up"
-      v-if="selectedVariant.img && selectedVariant.img[0]"
+      v-if="product.img && product.img[0]"
     >
       <img
-        v-lazy="selectedVariant.img[0].small"
+        v-lazy="product.img[0].small"
         alt=""
       />
     </div>
-    <div class="content">
-      <strong>{{product.name}}</strong>
-      <div
-        class="variants"
-        v-for="(v,ix) in product.variants"
-        :key="ix"
-        @click="selectVariant(v)"
-      >
-        <strong>{{v.size}}</strong>
+    <div class="product-name">
+      <strong>{{product.name}} {{selectedVariant.size}}</strong>
+      <div class="fx">
+        <div
+          class="variants"
+          :class="{'selected':selectedVariant._id==v._id}"
+          v-for="(v,ix) in product.variants"
+          :key="ix"
+          @click="selectVariant(v)"
+        >
+          <strong>{{v.size}}</strong>
+        </div>
       </div>
     </div>
     <div class="price-align">
@@ -73,6 +76,25 @@ export default {
 </script>
 
 <style scoped>
+.fx {
+  display: flex;
+}
+.variants {
+  margin: 5px 5px 5px 0;
+  padding: 5px 10px;
+  display: block;
+  white-space: nowrap;
+  border-radius: 3px;
+  border-width: 1px;
+  text-align: center;
+  border-color: #ccc;
+  border-style: solid;
+  background-color: #fff;
+}
+.variants.selected {
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
+}
 .pull-up {
   animation-play-state: paused;
   transition: transform 1s;
@@ -88,9 +110,10 @@ export default {
   text-align: left;
   padding-top: 1rem;
 }
-.content {
+.product-name {
   flex: 1;
   margin-top: 5px;
+  line-height: 1.2rem;
 }
 strong {
   color: #363636;

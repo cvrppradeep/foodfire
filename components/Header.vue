@@ -24,10 +24,14 @@
         @submit.stop.prevent="submit()"
       >
         <input
-          type="search"
+          type="text"
           v-model="search"
           placeholder="Type here to search for groceries..."
         >
+        <button
+          type="submit"
+          class="searchIcon"
+        ><img src="/search.svg" /></button>
       </form>
       <div class="iconcenter">
 
@@ -41,7 +45,7 @@
           >
             <img
               class="img"
-              :src="user.avatar"
+              src="/person.svg"
             />
           </a>
           <a
@@ -57,7 +61,7 @@
             />
           </a>
         </div>
-        <div class="iconalign1">
+        <div class="iconalign">
           <a
             role="button"
             class="Headeritem boxbtn"
@@ -67,7 +71,7 @@
             <img src="/bag.svg" />
           </a>
         </div>
-        <div class="iconalign">
+        <!-- <div class="iconalign">
           <a
             role="button"
             class="Headeritem boxbtn"
@@ -76,7 +80,7 @@
           >
             <img src="/orderstatus.svg" />
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </nav>
@@ -175,8 +179,27 @@ export default {
 };
 </script>
 <style scoped>
+.searchIcon {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  border: 1px solid #fff;
+  background-color: #fff;
+  width: 44px;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 4px 0 0 0;
+  outline: none;
+}
+.searchIcon img {
+  margin-right: -7px;
+}
 .search {
   width: 57%;
+  position: relative;
 }
 .Header-item img {
   max-height: 2.3rem;

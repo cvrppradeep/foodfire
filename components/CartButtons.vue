@@ -83,7 +83,7 @@ export default {
   text-align: center;
   white-space: nowrap;
   background: #f5f5f5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
 }
 .btnplus-clr {
   background: #ffdd57;

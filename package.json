@@ -48,9 +48,6 @@
     "ssh2shell": "^1.9.1",
     "webpack-node-externals": "^1.7.2"
   },
-  "resolutions": {
-    "terser": "3.14.1"
-  },
   "config": {
     "nuxt": {
       "host": "0.0.0.0",

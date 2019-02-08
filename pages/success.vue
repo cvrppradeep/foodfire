@@ -26,10 +26,10 @@
                   <h5><strong>Note: </strong>Your order will be sent to you, usually within 1-24hrs.</h5>
                 </div>
                 <div class="address mb-3 ">
-                  Adress: <span
+                  Adress: <strong
                     class=""
                     v-if="order.address"
-                  >{{order.address.address}}</span><br />
+                  >{{order.address.address}}</strong><br />
                 </div>
               </div>
               <div>
@@ -217,6 +217,7 @@ export default {
   border: 0.0625rem solid rgba(0, 0, 0, 0.05);
   border-radius: 0.25rem;
   position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
 }
 .product_card {
   position: relative;

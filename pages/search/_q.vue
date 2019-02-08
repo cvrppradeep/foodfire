@@ -12,7 +12,7 @@
         <p
           class="center"
           v-if="count && !loading"
-        >{{count}} product found</p>
+        >{{count}} products found</p>
       </div>
     </section>
 

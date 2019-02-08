@@ -206,11 +206,12 @@ export default {
   padding: 0 1.5rem;
 }
 .head {
-  position: relative;
+  margin-right: 10px;
+  /* position: relative;
   left: 0;
   right: 0;
   text-align: center;
-  margin-bottom: 175px;
+  margin-bottom: 175px; */
 }
 @-webkit-keyframes fadeIn {
   0% {

@@ -13,10 +13,21 @@
         :count="count"
         :showcart="true"
       />
+      <div class="fx">
+        <button
+          class="loadmore fx"
+          @click="loadMore"
+        ><img src="/down-arrow.svg" />Load More ...</button>
+      </div>
     </div>
     <overlay :closed="settings.closed" />
     <cart-bar />
     <loading-dots :active="loading" />
+    <br />
+    <br />
+    <br />
+    <br />
+
   </div>
 </template>
 <script>
@@ -29,7 +40,6 @@ const LoadingDots = () => import("~/components/LoadingDots");
 import {
   recordsPerScroll,
   priceRange,
-  HOST,
   TITLE,
   DESCRIPTION,
   KEYWORDS
@@ -115,6 +125,9 @@ export default {
   async created() {},
   components: { Overlay, Info, Hero, CartBar, Header, LoadingDots },
   head() {
+    const host = process.server
+      ? this.$ssrContext.req.headers.host
+      : window.location.host;
     return {
       title: this.title || TITLE,
       meta: [
@@ -140,12 +153,12 @@ export default {
         {
           name: "og_url",
           property: "og:url",
-          content: HOST + "/search/" + this.params
+          content: host + "/search/" + this.params
         },
         {
           name: "og_image",
           property: "og:image",
-          content: HOST + "/uploads/large/email_logo-742266670944.png"
+          content: host + "/uploads/large/email_logo-742266670944.png"
         },
         // Twitter
         {
@@ -162,6 +175,26 @@ export default {
 };
 </script>
 <style scoped>
+.fx {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.loadmore {
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin: 25px 5px 5px 0;
+  padding: 5px 10px;
+  outline: none;
+  text-align: center;
+  border-radius: 2px;
+  border-width: 1px;
+  border-color: #ccc;
+  border-style: solid;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
+  font-weight: 700;
+}
 .products {
   margin: 0 1rem;
 }

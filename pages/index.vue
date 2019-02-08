@@ -20,7 +20,6 @@ import {
   currency,
   sorts,
   priceRange,
-  HOST,
   TITLE,
   DESCRIPTION,
   KEYWORDS
@@ -56,6 +55,9 @@ export default {
   async created() {},
   components: { Overlay, Info, Hero, CartBar, Header, FeaturedCategories },
   head() {
+    const host = process.server
+      ? this.$ssrContext.req.headers.host
+      : window.location.host;
     return {
       title: this.title || TITLE,
       meta: [
@@ -81,12 +83,12 @@ export default {
         {
           name: "og_url",
           property: "og:url",
-          content: HOST + "/search/" + this.params
+          content: host + "/search/" + this.params
         },
         {
           name: "og_image",
           property: "og:image",
-          content: HOST + "/uploads/large/email_logo-742266670944.png"
+          content: host + "/uploads/large/email_logo-742266670944.png"
         },
         // Twitter
         {
