@@ -37,11 +37,10 @@
                   <div class="margin">
                     <span class="order_header"> ORDER SUMMARY</span>
                   </div>
-                  <nuxt-link
+                  <div
                     class="product"
                     v-for="(p, index) in order.items"
                     :key="index"
-                    :to="'/'+p.slug+'?id='+p.pid"
                   >
                     <div class="flex product_card columns">
                       <div class="image">
@@ -57,7 +56,7 @@
                         <div class="big">{{p.price | currency}}</div>
                       </div>
                     </div>
-                  </nuxt-link>
+                  </div>
                 </div>
                 <h6 v-if="$store.state.settings">
                   <u>For customer service</u><br> Please contact:<router-link
