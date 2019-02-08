@@ -147,19 +147,19 @@ export default {
     })
   },
   watch: {
-    // search: {
-    //   immediate: false,
-    //   handler(value, oldValue) {
-    //     if (!oldValue) return; // Do not trigger on page load
-    //     clearTimeout(this.typingTimer);
-    //     let vm = this;
-    //     this.typingTimer = setTimeout(function() {
-    //       if (!value || value == "undefined") value = ""; // When clear button clicked
-    //       vm.searchString = value;
-    //       vm.$router.push("/search/" + value);
-    //     }, vm.typingTimeout);
-    //   }
-    // },
+    search: {
+      immediate: false,
+      handler(value, oldValue) {
+        if (!oldValue) return; // Do not trigger on page load
+        clearTimeout(this.typingTimer);
+        let vm = this;
+        this.typingTimer = setTimeout(function() {
+          if (!value || value == "undefined") value = ""; // When clear button clicked
+          vm.searchString = value;
+          vm.$router.push("/search/" + value);
+        }, vm.typingTimeout);
+      }
+    },
     "$route.params.q": {
       immediate: true,
       handler(value) {

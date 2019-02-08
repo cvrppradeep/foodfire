@@ -4,7 +4,7 @@ module.exports = {
   mode: 'universal',
   head,
   manifest,
-  loading: '~/components/Loading.vue',
+  // loading: '~/components/Loading.vue',
   css: ['~assets/styles/reset.css', '~assets/styles/transitions.css'],
   plugins: [
     '~/plugins/filters.js',
