@@ -5,6 +5,7 @@
       novalidate
       autocomplete="off"
       @submit.stop.prevent="submit()"
+      class="container center"
     >
       <!-- <div class="img1">
         <img src="/personlogo.png">
@@ -13,6 +14,7 @@
 
         <!-- <h1>Qr No: </h1> -->
         <div class="margin">
+          <label>Address:</label>
           <input
             type="text"
             class="address"

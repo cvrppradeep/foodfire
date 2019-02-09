@@ -22,7 +22,6 @@ export default {
       loadingWishlist: false,
       initialSpin: false,
       loadmoreSpin: false,
-      loadingPrice: true,
       sub_filter: false,
       filterSidebar: false,
       meta: {

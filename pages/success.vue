@@ -37,7 +37,14 @@
                   <div class="margin">
                     <span class="order_header"> ORDER SUMMARY</span>
                   </div>
-                  <div
+                  <product
+                    v-for="(p,ix) in order.items"
+                    :key="ix"
+                    :class="{'border':ix!=0}"
+                    :product="{_id:p.pid,name:p.name,img:[p.img],slug:p.slug,variants:[{_id:p.vid,size:p.size,mrp:p.mrp,price:p.price}]}"
+                    :showcart="true"
+                  />
+                  <!-- <div
                     class="product"
                     v-for="(p, index) in order.items"
                     :key="index"
@@ -56,7 +63,7 @@
                         <div class="big">{{p.price | currency}}</div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <h6 v-if="$store.state.settings">
                   <u>For customer service</u><br> Please contact:<router-link
@@ -86,9 +93,10 @@
 </template>
 <script>
 import { clearCart } from "~/config";
+const Product = () => import("~/components/Product");
 const Header = () => import("~/components/Header");
 export default {
-  components: { Header },
+  components: { Header, Product },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;
@@ -386,7 +394,7 @@ br {
   color: aliceblue;
 }
 .products {
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
 }
 .product {
   align-items: flex-start;

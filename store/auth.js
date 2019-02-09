@@ -127,7 +127,7 @@ export const actions = {
             commit('setErr', err, { root: true })
         }
     },
-    async updateProfile({ commit, rootState }, { firstName, lastName, city, zip, avatar, gender, dob, language }) {
+    async updateProfile({ commit, rootState }, { firstName, lastName, email, city, zip, avatar, gender, dob, language }) {
         if (rootState.settings.demo) {
             commit('info', 'Demo mode: Unable to update profile info', { root: true })
             return
@@ -135,7 +135,7 @@ export const actions = {
         try {
             const data = await this.$axios.$put('/users/profile', { firstName, lastName, email, city, zip, avatar, gender, dob, language })
             if (data) {
-                commit('setUser', { email: data.email, firstName: data.firstName, lastName: data.lastName, avatar: data.avatar, dob: data.dob, gender: data.gender, language: data.language })
+                commit('setUser', { email: data.email, firstName: data.firstName, lastName: data.lastName, email: data.email, avatar: data.avatar, dob: data.dob, gender: data.gender, language: data.language })
                 // setAuthToken(data.token)
                 this.$cookies.set('Authorization', data.token, { path: '/', maxAge: tokenExpiry })
                 commit('info', 'Profile updated.', { root: true })

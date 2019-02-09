@@ -5,52 +5,60 @@
       <center class="title">
         <strong>My Cart</strong>
       </center>
-      <center v-if="cartItems.length==0">
-        <div class="container">
-          <div class="card shadow-lg2">
-            <div> <img
-                class="image"
-                src="/empty1.png"
-              /></div>
-            <h2 class="h2">
-              Please go back to Grocery menu and add some items to continue...</h2>
-            <div class="footer">
-              <a>
-                <div class="cart-total footer">
-                  <div class="container2 ">
-                    <div class="card shadow-lg2 w100">
-                      <div>
-                        <div class="is-mobile">
-                          <div class="back-arrw">
-                            <button
-                              class="button"
-                              @click="go('/')"
-                            >
-                              <div class="align_pickup">
-                                <div class="back_btn">
+    </div>
+    <div class="products">
+      <div v-if="cartItems.length==0">
+        <center>
+          <div class="container">
+            <div class="card">
+              <div> <img
+                  class="image"
+                  src="/empty1.png"
+                /></div>
+              <h4>
+                Please go back to Grocery menu and add some items to continue...</h4>
+              <div class="footer">
+                <a>
+                  <div class="cart-total footer">
+                    <div class="container2 ">
+                      <div class="card shadow-lg2 w100">
+                        <div>
+                          <div class="is-mobile">
+                            <div class="back-arrw">
+                              <button
+                                class="button"
+                                @click="go('/')"
+                              >
+                                <div class="align_pickup">
+                                  <div class="back_btn">
+                                  </div>
+                                  <img src="/backarrow.svg" />
+                                  <div><span>Back to Menu</span></div>
                                 </div>
-                                <img src="/backarrow.svg" />
-                                <div><span>Back to Menu</span></div>
-                              </div>
-                            </button>
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </center>
-      <cart-product
+        </center>
+      </div>
+      <div
+        class=""
         v-else
-        v-for="(p,ix) in cartItems"
-        :key="ix"
-        :product="p"
-        :showcart="true"
-      />
+      >
+        <cart-product
+          v-for="(p,ix) in cartItems"
+          :key="ix"
+          :product="p"
+          :showcart="true"
+        />
+      </div>
     </div>
     <div class="footer">
       <a v-if="!cartItems.length==0">
@@ -129,6 +137,10 @@ export default {
 };
 </script>
 <style scoped>
+.products {
+  margin: 10px auto;
+  max-width: 450px;
+}
 .cart-total-after {
   margin-bottom: 10px;
 }

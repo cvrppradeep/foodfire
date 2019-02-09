@@ -5,11 +5,12 @@
       novalidate
       autocomplete="off"
       @submit.stop.prevent="submit()"
+      class="container center"
     >
       <div class="card shadow-lg2 columns">
         <br />
         <div class="margin_phn">
-          <label for="phone"></label>
+          <label for="phone">Phone:</label>
           <input
             type="text"
             class="phone"
@@ -20,7 +21,7 @@
             @keyup="onPhoneChange"
             required
           >
-          <span class="msg">{{msg}}</span>
+          <div class="msg">{{msg}}</div>
         </div>
         <br />
         <div
@@ -250,7 +251,7 @@ export default {
   height: 45px;
   font-size: 20px;
   border: 1px solid #da1c5f;
-  width: 100%;
+  width: 300px;
   padding: 5px 10px;
   border-radius: 3px;
 }
@@ -325,14 +326,7 @@ textarea {
 .padding {
   padding-top: 25px;
 }
-.footer {
-  background: #fff;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-}
+
 .columns {
   margin-left: 0.25rem;
   margin-right: 0.25rem;

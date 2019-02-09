@@ -1,5 +1,5 @@
 <template>
-  <div class="product">
+  <section>
     <div
       class="image pull-up"
       v-if="product.img && product.img[0]"
@@ -9,30 +9,31 @@
         alt=""
       />
     </div>
-    <div class="product-name">
-      <strong>{{product.name}} {{selectedVariant.size}}</strong>
-      <div class="fx">
-        <div
-          class="variants"
-          :class="{'selected':selectedVariant._id==v._id}"
-          v-for="(v,ix) in product.variants"
-          :key="ix"
-          @click="selectVariant(v)"
-        >
-          <strong>{{v.size}}</strong>
-        </div>
+    <h2>{{product.name}} {{selectedVariant.size}}</h2>
+    <div class="fx">
+      <div
+        class="variants"
+        :class="{'selected':selectedVariant._id==v._id}"
+        v-for="(v,ix) in product.variants"
+        :key="ix"
+        @click="selectVariant(v)"
+      >
+        <strong>{{v.size}}</strong>
       </div>
     </div>
-    <div class="price-align">
-      <div class="big">{{selectedVariant.price | currency}}</div>
+    <aside>
+      <div>
+        <strong>{{selectedVariant.price | currency}}</strong>
+        <del>{{selectedVariant.mrp | currency}}</del>
+      </div>
       <cart-buttons
         :product="{_id:product._id}"
         :variant="selectedVariant"
         :userSelectedVariant="userSelectedVariant"
         v-if="showcart"
       />
-    </div>
-  </div>
+    </aside>
+  </section>
 </template>
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
@@ -74,59 +75,10 @@ export default {
   }
 };
 </script>
-
 <style scoped>
-.fx {
-  display: flex;
-}
-.pull-up {
-  animation-play-state: paused;
-  transition: transform 1s;
-}
-
-.pull-up:hover {
-  animation-play-state: running;
-  transform: translateY(-5px);
-}
-.product {
-  align-items: flex-start;
-  display: flex;
-  text-align: left;
-  padding-top: 1rem;
-}
-.product-name {
-  flex: 1;
-  margin-top: 5px;
-  line-height: 1.2rem;
-}
-strong {
-  color: #363636;
-  font-weight: 700;
-}
-.image {
-  width: 104px;
-}
-.image img {
-  border-radius: 50px;
-}
-.border {
-  border-top: 1px solid hsla(0, 0%, 85.9%, 0.5);
-}
-.price-align {
-  text-align: right;
-  margin-top: 5px;
-}
-.big {
-  font-size: 1.5em;
-  font-weight: 700;
-}
-.head {
-  position: relative;
-  left: 0;
-  right: 0;
-  text-align: center;
-  margin-bottom: 50px;
+@media screen and (min-width: 450px) {
+  h2 {
+    font-size: 1rem;
+  }
 }
 </style>
-
-

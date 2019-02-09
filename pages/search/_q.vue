@@ -29,8 +29,18 @@
       v-else
       class="products"
     >
-      <div class="container">
-        <div class="products head">
+      <div class="products-container only-desktop">
+        <product-desktop
+          v-for="(p,ix) in products"
+          :key="ix"
+          :class="{'border':ix!=0}"
+          :product="p"
+          :showcart="true"
+        />
+      </div>
+
+      <div class="container only-mobile">
+        <div class="productsfx head">
           <product
             v-for="(p,ix) in products"
             :key="ix"
@@ -54,11 +64,12 @@
 </template>
 <script>
 const Product = () => import("~/components/Product");
+const ProductDesktop = () => import("~/components/ProductDesktop");
 const Skeleton = () => import("~/components/Skeleton");
 
 export default {
   props: ["products", "count", "loading"],
-  components: { Product, Skeleton },
+  components: { Product, ProductDesktop, Skeleton },
   data() {
     return {
       skeletonCount: 12
@@ -66,3 +77,31 @@ export default {
   }
 };
 </script>
+<style scoped>
+@media screen and (min-width: 450px) {
+  .products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .products-container > section {
+    align-items: center;
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    min-width: 200px;
+    margin: 10px 20px;
+    padding: 20px;
+  }
+  .products-container > section:hover {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
+    cursor: pointer;
+  }
+  .variants.selected {
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
+  }
+}
+</style>

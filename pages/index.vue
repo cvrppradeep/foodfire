@@ -3,7 +3,14 @@
     <Header />
     <!-- <hero :closed="settings.closed" /> -->
     <!-- <info /> -->
-    <featured-categories :categories="categories" />
+    <featured-categories
+      :categories="categories"
+      class="only-mobile"
+    />
+    <featured-categories-desktop
+      :categories="categories"
+      class="only-desktop"
+    />
     <overlay :closed="settings.closed" />
     <cart-bar />
   </div>
@@ -15,6 +22,8 @@ const Hero = () => import("~/components/Hero");
 const CartBar = () => import("~/components/CartBar");
 const Header = () => import("~/components/Header");
 const FeaturedCategories = () => import("~/components/FeaturedCategories");
+const FeaturedCategoriesDesktop = () =>
+  import("~/components/FeaturedCategoriesDesktop");
 import {
   recordsPerScroll,
   currency,
@@ -53,7 +62,15 @@ export default {
   },
 
   async created() {},
-  components: { Overlay, Info, Hero, CartBar, Header, FeaturedCategories },
+  components: {
+    Overlay,
+    Info,
+    Hero,
+    CartBar,
+    Header,
+    FeaturedCategories,
+    FeaturedCategoriesDesktop
+  },
   head() {
     const host = process.server
       ? this.$ssrContext.req.headers.host

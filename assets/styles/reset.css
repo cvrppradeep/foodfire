@@ -18,6 +18,85 @@ body {
   line-height: 1;
   color: #2d2d2d;
 }
+.fx{
+  display: flex;
+}
+.center{
+  justify-content: center;
+}
+.footer {
+  background: #fff;
+  box-shadow: 0 -1rem 3rem rgba(0, 0, 0, 0.175) !important;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+.footer button{
+  padding: 0 1.5rem;
+  width:100%;
+  text-transform: initial;
+  color: #fff;
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
+  border-color: #fb6340;
+  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  display: block;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  padding: 7px;
+  outline: none;
+}
+.form-element{
+  display: flex;
+  align-items: center;
+  margin:20px;
+}
+.form-element label{
+  width:200px;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.loadmore {
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin: 25px 5px 5px 0;
+  padding: 5px 10px;
+  outline: none;
+  text-align: center;
+  border-radius: 2px;
+  border-width: 1px;
+  border-color: #ccc;
+  border-style: solid;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
+  font-weight: 700;
+}
+.button{
+  margin-top:20px;
+  width:100%;
+  text-transform: initial;
+  color: #fff;
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
+  border-color: #fb6340;
+  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  display: block;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  padding: 7px;
+  outline: none;
+}
 img {
   max-width: 100%;
 }
@@ -114,4 +193,26 @@ textarea {
   color: #47494e;
   font-size: 1rem;
   outline: none;
+}
+.variants {
+  margin: 5px 5px 5px 0;
+  padding: 5px 10px;
+  display: block;
+  white-space: nowrap;
+  border-radius: 3px;
+  border-width: 1px;
+  text-align: center;
+  border-color: #ccc;
+  border-style: solid;
+  background-color: #fff;
+}
+@media screen and (min-width: 450px) {
+  .only-mobile {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 450px){
+  .only-desktop {
+    display: none !important;
+  }
 }

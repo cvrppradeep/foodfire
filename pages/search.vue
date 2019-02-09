@@ -13,8 +13,9 @@
         :count="count"
         :showcart="true"
       />
-      <div class="fx">
+      <div class="center">
         <button
+          v-if="!meta.end"
           class="loadmore fx"
           @click="loadMore"
         ><img src="/down-arrow.svg" />Load More ...</button>
@@ -175,26 +176,6 @@ export default {
 };
 </script>
 <style scoped>
-.fx {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-.loadmore {
-  font-size: 1.1rem;
-  cursor: pointer;
-  margin: 25px 5px 5px 0;
-  padding: 5px 10px;
-  outline: none;
-  text-align: center;
-  border-radius: 2px;
-  border-width: 1px;
-  border-color: #ccc;
-  border-style: solid;
-  background-color: #f5f5f5;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
-  font-weight: 700;
-}
 .products {
   margin: 0 1rem;
 }

@@ -5,63 +5,77 @@
       <strong class="font">My Order History</strong>
     </center>
     <div
-      v-for="o in orders"
-      :key="o._id"
-      :title="`${o.name} => ${o.address.address}`"
-      :type="getStyle(o)"
-      class="container"
+      v-infinite-scroll="loadMore"
+      :infinite-scroll-distance="3"
+      :infinite-scroll-immediate-check="true"
+      class="products"
     >
-      <div class="card shadow-lg2">
-        <div class="border">
+      <div
+        v-for="o in orders"
+        :key="o._id"
+        :title="`${o.firstName} ${o.lastName} => ${o.address.address}`"
+        class="container"
+      >
+        <div class="card shadow-lg2">
           <div class="border">
-            <h5>ORDER ID: {{o["_id"]}}</h5>
-          </div>
-
-          <h1>{{user.name}}</h1>
-          <div class="add_date_align">
-            <div>
-              <h2>{{o.address.address}}</h2>
-            </div>
-            <div class="date">
-              <h4>Date: {{o.createdAt | ago}} </h4>
-            </div>
-          </div>
-        </div>
-        <div class="columns is-mobile border ">
-          <div
-            class="is-mobile"
-            v-for="(i,ix) in o.items"
-            :key="ix"
-          >
-            <div class="media-content">
-              <div class="align">
-                <div class="item_namealign">{{ix+1}}.</div>
-                <div> <img v-lazy="i.img" /> </div>
-                <div class="item_namealign"><strong>{{i.name}} </strong></div>
-                <div class="item_namealign"><strong>{{i.price | currency}}</strong> x <strong>{{i.qty}}</strong></div>
+            <div class="add_date_align mt10">
+              <div>
+                <h2>ORDER No: {{o.orderNo}}</h2>
+              </div>
+              <div class="date">
+                <h4>Date: {{o.createdAt | ago}} </h4>
               </div>
             </div>
+            <div class="fx center">
+              <div class="address">Address: {{o.address.address}}, {{o.address.city}}</div>
+            </div>
+          </div>
+          <div class="columns is-mobile border ">
+
+            <!-- <div
+              class="is-mobile"
+              v-for="(i,ix) in o.items"
+              :key="ix"
+            > -->
+            <div class="container">
+              <div class="products head">
+                <product
+                  v-for="(p,ix) in o.items"
+                  :key="ix"
+                  :class="{'border':ix!=0}"
+                  :product="{_id:p.pid,name:p.name,img:[p.img],slug:p.slug,variants:[{_id:p.vid,size:p.size,mrp:p.mrp,price:p.price}]}"
+                  :showcart="true"
+                />
+              </div>
+            </div>
+            <!-- </div> -->
           </div>
         </div>
-        <div class="add_date_align">
-          <div>
-            <h6>Order Status: {{o.status}}</h6>
-          </div>
-          <div>
-            <h3>Total: ₹{{o.amount.total}}</h3>
-          </div>
-        </div>
-        <!-- <router-link to="">
-          <p> Need Help?</p>
-        </router-link> -->
       </div>
     </div>
+    <div class="center">
+      <button
+        v-if="!meta.end"
+        class="loadmore fx"
+        @click="loadMore"
+      ><img src="/down-arrow.svg" />Load More ...</button>
+    </div>
+    <cart-bar />
+    <loading-dots />
+    <br />
+    <br />
+    <br />
+    <br />
   </div>
 </template>
 <script>
+import { currency, sorts } from "~/config";
 import { mapState, mapGetters, mapActions } from "vuex";
-import CartButtonsVue from "~/components/CartButtons.vue";
+const Product = () => import("~/components/Product");
 const Header = () => import("~/components/Header");
+const CartBar = () => import("~/components/CartBar");
+const LoadingDots = () => import("~/components/LoadingDots");
+const recordsPerScroll = 5;
 export default {
   fetch({ store, redirect }) {
     if (!(store.state.auth || {}).user) return redirect("/login?return=orders");
@@ -70,7 +84,9 @@ export default {
     let orders = [],
       err = null;
     try {
-      orders = await $axios.$get("orders/my");
+      orders = await $axios.$get("orders/my", {
+        params: { limit: 5, skip: 0 }
+      });
       err = null;
     } catch (e) {
       orders = [];
@@ -79,24 +95,80 @@ export default {
     return { orders, err };
   },
   data() {
-    return {};
+    return {
+      q: "",
+      busy: false,
+      meta: {
+        skip: recordsPerScroll,
+        limit: recordsPerScroll,
+        sort: null, // null will honour the search result weight
+        search: "",
+        end: false
+      }
+    };
   },
-  components: { Header },
+  components: { Header, Product, LoadingDots, CartBar },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;
     }
   },
   methods: {
-    changeStatus(o) {},
-    getStyle(o) {
-      let style = "";
-      return style;
+    async getData({ q, scrolled }) {
+      q = q || {};
+      if (this.meta.busy || this.meta.end) return;
+      q.limit = this.meta.limit || recordsPerScroll || 0;
+      q.skip = this.meta.skip || 0;
+      let search = this.$route.params.q || null;
+      if (scrolled) {
+        this.loadmoreSpin = true;
+        this.meta.skip = parseInt(q.skip) + parseInt(q.limit);
+      }
+      this.loading = true;
+      try {
+        this.meta.busy = true;
+        if (search === "") search = null;
+        let result = await this.$axios.$get("orders/my", {
+          params: q
+        });
+        let data = result;
+        this.meta.busy = false;
+        this.loadmoreSpin = false;
+        if (data) {
+          this.meta.filtered = parseInt(data.length) + parseInt(q.skip);
+          this.orders = scrolled ? this.orders.concat(data) : data;
+          if (data.length >= q.limit) {
+            this.meta.skip = this.meta.filtered;
+            this.meta.end = false;
+          } else {
+            this.meta.end = true;
+          }
+        }
+        this.loading = false;
+      } catch (e) {
+        this.loading = false;
+      } finally {
+        this.loading = false;
+      }
+    },
+    async loadMore() {
+      this.getData({ q: this.q, scrolled: true });
     }
   }
 };
 </script>
 <style scoped>
+.products {
+  margin: 10px auto;
+  max-width: 450px;
+}
+.address {
+  font-weight: 700;
+  margin-left: 15px;
+}
+.mt10 {
+  margin-top: 14px;
+}
 center {
   font-size: 23px;
   font-weight: 700;
@@ -145,7 +217,7 @@ h5 {
   text-align: -webkit-center;
   color: gray;
   padding-top: 0px;
-  height: 0px;
+  /* height: 0px; */
   margin-top: 7px;
 }
 h6 {
@@ -156,7 +228,7 @@ h6 {
 .is-mobile.columns.is-mobile {
   display: flex;
   flex-direction: column;
-  line-height: 1px;
+  /* line-height: 1px; */
 }
 .media-content {
   flex-basis: auto;
@@ -177,7 +249,7 @@ h6 {
   max-width: 1366px;
   margin: 0 auto;
   padding: 0 1px;
-  width: 100%;
+  width: 97%;
   padding-top: 10px;
 }
 .date {
@@ -185,6 +257,7 @@ h6 {
   color: black;
 }
 .border {
+  padding-bottom: 10px;
   border-bottom: 1px solid hsla(0, 0%, 85.9%, 0.5);
 }
 img {

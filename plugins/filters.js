@@ -5,7 +5,7 @@ Vue.filter('currency', function (value, currency, decimals) {
     value = parseFloat(value)
     if (!isFinite(value) || (!value && value !== 0)) return ''
     currency = currency != null ? currency : currencyConfig.symbol
-    decimals = decimals != null ? decimals : 2
+    decimals = decimals != null ? decimals : 0
     let stringified = Math.abs(value).toFixed(decimals)
     let _int = decimals
         ? stringified.slice(0, -1 - decimals)
