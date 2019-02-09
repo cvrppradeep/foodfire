@@ -1,7 +1,7 @@
 <template>
-  <section>
+  <section class="pull-up">
     <div
-      class="image pull-up"
+      class="image"
       v-if="product.img && product.img[0]"
     >
       <img
@@ -79,6 +79,15 @@ export default {
 @media screen and (min-width: 450px) {
   h2 {
     font-size: 1rem;
+  }
+  .pull-up img {
+    animation-play-state: paused;
+    transition: transform 1s;
+  }
+
+  .pull-up:hover img {
+    animation-play-state: running;
+    transform: translateY(-10px);
   }
 }
 </style>

@@ -200,6 +200,12 @@ export default {
 .search {
   position: relative;
 }
+@media screen and (min-width: 600px) {
+  .search {
+    position: relative;
+    width: 550px;
+  }
+}
 .Header-item img {
   max-height: 2.3rem;
 }

@@ -79,15 +79,6 @@ export default {
 .fx {
   display: flex;
 }
-.pull-up {
-  animation-play-state: paused;
-  transition: transform 1s;
-}
-
-.pull-up:hover {
-  animation-play-state: running;
-  transform: translateY(-5px);
-}
 .product {
   align-items: flex-start;
   display: flex;
