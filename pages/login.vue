@@ -12,7 +12,7 @@
         <div class="margin_phn">
           <label for="phone">Phone:</label>
           <input
-            type="text"
+            type="tel"
             class="phone"
             name='phone'
             ref="phone"
@@ -31,6 +31,7 @@
           <label for="OTP"></label>
           <div class="otp-container">
             <input
+              type="tel"
               class="otp"
               id="otp1"
               name="otp1"
@@ -40,6 +41,7 @@
               @keyup="onKeyUpEvent(1,$event)"
             />
             <input
+              type="tel"
               class="otp"
               id="otp2"
               v-model="p.i2"
@@ -47,6 +49,7 @@
               @keyup="onKeyUpEvent(2, $event)"
             />
             <input
+              type="tel"
               class="otp"
               id="otp3"
               v-model="p.i3"
@@ -54,6 +57,7 @@
               @keyup="onKeyUpEvent(3, $event)"
             />
             <input
+              type="tel"
               class="otp"
               id="otp4"
               v-model="p.i4"

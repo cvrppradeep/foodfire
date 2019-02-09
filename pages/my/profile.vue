@@ -6,7 +6,7 @@
     </center>
     <form
       novalidate
-      @submit.stop.prevent="updateProfile(profile)"
+      @submit.stop.prevent="save(profile)"
       v-if="profile"
     >
       <div class="form">
@@ -81,7 +81,11 @@ export default {
   methods: {
     ...mapActions({
       updateProfile: "auth/updateProfile"
-    })
+    }),
+    save(profile) {
+      this.updateProfile(profile);
+      this.$router.push("/my");
+    }
   },
   watch: {
     // userAvatar: function(avatar) {

@@ -198,7 +198,6 @@ export default {
   margin-right: -7px;
 }
 .search {
-  width: 57%;
   position: relative;
 }
 .Header-item img {
@@ -298,6 +297,7 @@ a.Header-item {
   color: #fff;
 }
 .iconcenter {
+  margin-left: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;

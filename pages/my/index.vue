@@ -46,9 +46,6 @@
 <script>
 const Header = () => import("~/components/Header");
 export default {
-  components: {
-    Header
-  },
   fetch({ store, redirect }) {
     if (!(store.state.auth || {}).user) return redirect("/login?return=my");
   },
@@ -61,8 +58,10 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("auth/logout");
+      this.$router.push("/");
     }
   },
+  components: { Header },
   head() {
     const host = process.server
       ? this.$ssrContext.req.headers.host
