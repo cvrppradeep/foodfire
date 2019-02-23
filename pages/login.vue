@@ -7,9 +7,9 @@
       @submit.stop.prevent="submit()"
       class="container center"
     >
-      <div class="card shadow-lg2 columns">
+      <div class="card shadow columns">
         <br />
-        <div class="margin_phn">
+        <div class="margin-phn">
           <label for="phone">Phone:</label>
           <input
             type="tel"
@@ -25,7 +25,7 @@
         </div>
         <br />
         <div
-          class="margin_phn"
+          class="margin-phn"
           v-show="showOTP"
         >
           <label for="OTP"></label>
@@ -73,14 +73,14 @@
             <button
               v-if="!showOTP"
               type="submit"
-              class="button"
+              class="big-button"
               :disabled="loading"
             ><span :class="{'loading':loading}">Verify Phone</span>
             </button>
             <button
               v-else
               type="submit"
-              class="button"
+              class="big-button"
               :disabled="loading"
             ><span :class="{'loading':loading}">Verify OTP</span>
             </button>
@@ -319,7 +319,7 @@ h4 {
   margin-top: 0;
   padding-top: 10px;
 }
-.margin_phn {
+.margin-phn {
   padding-left: 28px;
   padding-right: 28px;
 }
@@ -356,22 +356,8 @@ textarea {
   border-radius: 0.25rem;
   position: relative;
 }
-.button {
-  text-transform: uppercase;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  width: 100%;
-  display: block;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  padding: 7px;
-  outline: none;
-  color: #f6f7fa;
-  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
-  border: none;
-  border-radius: 0.3rem;
-  border-color: #fb6340;
-}
-.button .loading {
+
+.big-button .loading {
   -webkit-animation: fadeIn 3s infinite;
   -moz-animation: fadeIn 3s infinite;
   -o-animation: fadeIn 3s infinite;
@@ -382,14 +368,14 @@ textarea {
   font-size: 23px;
   color: gray;
 }
-.shadow-lg2 {
+.shadow {
   box-shadow: 0 -1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
 .w100 {
   width: 100%;
   padding: 0.7rem 0.7rem 0;
 }
-.top_padding {
+.top-padding {
   padding-top: 50px;
   font-size: 17px;
 }
@@ -402,17 +388,6 @@ img {
   height: 92px;
 }
 
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 @keyframes fadeIn {
   0% {
     opacity: 0;

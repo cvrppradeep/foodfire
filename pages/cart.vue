@@ -13,31 +13,25 @@
             <div class="card">
               <div> <img
                   class="image"
-                  src="/empty1.png"
+                  src="/empty_cart_teaser.jpg"
                 /></div>
-              <h4>
+              <h4 class="empty-cart-msg">
                 Please go back to Grocery menu and add some items to continue...</h4>
               <div class="footer">
                 <a>
                   <div class="cart-total footer">
-                    <div class="container2 ">
-                      <div class="card shadow-lg2 w100">
-                        <div>
-                          <div class="is-mobile">
-                            <div class="back-arrw">
-                              <button
-                                class="button"
-                                @click="go('/')"
-                              >
-                                <div class="align_pickup">
-                                  <div class="back_btn">
-                                  </div>
-                                  <img src="/backarrow.svg" />
-                                  <div><span>Back to Menu</span></div>
-                                </div>
-                              </button>
+                    <div class="card shadow w100">
+                      <div class="is-mobile">
+                        <div class="empty-cart">
+                          <button
+                            class="big-button "
+                            @click="go('/')"
+                          >
+                            <div class="center">
+                              <img src="/backarrow.svg" />
+                              Back to Menu
                             </div>
-                          </div>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -63,13 +57,13 @@
     <div class="footer">
       <a v-if="!cartItems.length==0">
         <div class="cart-total footer">
-          <div class="container2 ">
-            <div class="card shadow-lg2 w100">
+          <div>
+            <div class="card shadow w100">
               <div>
                 <div class="is-mobile">
-                  <div class="align">
-                    <div class="amount_align">
-                      <p class="grey">Total Amount</p>
+                  <div class="flex-row-nocenter flex-space-between  ">
+                    <div class="amount-align">
+                      <p class="gray">Total Amount</p>
                     </div>
                     <div>
                       <h2 class="big">{{getTotal | currency}}</h2>
@@ -77,13 +71,10 @@
                   </div>
                   <div>
                     <button
-                      class="button"
+                      class="big-button "
                       :disabled="getTotal==0 || loading"
                       @click="go('/checkout')"
-                    >
-                      <div class="align_pickup">
-                        <div><span>Add Address</span></div>
-                      </div>
+                    >Add Address
                     </button>
                   </div>
                 </div>
@@ -157,13 +148,24 @@ export default {
   width: 100%;
   text-align: center;
 }
-.back-arrw {
+.amount-align {
+  padding-top: 9px;
+}
+.empty-cart {
   padding-bottom: 10px;
   padding-top: 10px;
 }
 .image {
   padding-left: 0%;
-  height: 53px;
+  width: 80%;
+  margin-top: -0.8rem;
+}
+.empty-cart-msg {
+  text-transform: initial;
+  font-style: oblique;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bolder;
+  margin-top: -2.8rem;
 }
 .card {
   position: relative;
@@ -183,34 +185,13 @@ export default {
   position: relative;
   padding-top: 20px;
 }
-.align {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.button {
-  font-family: Karla, Roboto, sans-serif;
-  text-transform: initial;
-  color: #fff;
-  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
-  border-color: #fb6340;
-  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
-    0 1px 3px rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  width: 100%;
-  display: block;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  border-radius: 0.3rem;
-  padding: 7px;
-  outline: none;
-}
+
 .h2 {
   font-size: 23px;
   color: #8a6224;
   font-family: monospace;
 }
-.shadow-lg2 {
+.shadow {
   box-shadow: 0 -1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
 .w100 {
@@ -253,18 +234,9 @@ export default {
   -o-animation: fadeIn 3s infinite;
   animation: fadeIn 3s infinite;
 }
-.gps_svg {
+.gps-svg {
   padding-top: 3px;
   padding-left: 6px;
-}
-.back_btn {
-  padding-top: 3px;
-  padding-right: 6px;
-}
-.align_pickup {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
 }
 </style>
 

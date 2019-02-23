@@ -1,37 +1,37 @@
 <template>
   <div>
     <Header />
-    <div class="bg-img">
-      <div class="pstn ">
-        <div>
-          <section v-if="settings">
-            <center>
-              <label
-                tabindex="0"
-                class="switch"
-              >
-                <input
-                  type="checkbox"
-                  true-value="true"
-                  value="false"
-                  v-model="settings.closed"
-                >
-                <span class="check is-danger"></span>
-                <div
-                  type="is-danger"
-                  @input="changeStatus(settings.closed)"
-                >
-                  <span class="control-label">
-                    <i v-if="settings.closed">Delivery Closed</i>
-                    <i v-else>Delivery Open</i>
-                  </span>
-                </div>
-              </label>
-            </center>
-          </section>
-        </div>
-      </div>
+
+    <div class="position">
+
+      <section v-if="settings">
+        <center>
+          <label
+            tabindex="0"
+            class="switch"
+          >
+            <input
+              type="checkbox"
+              true-value="true"
+              value="false"
+              v-model="settings.closed"
+            >
+            <span class="check is-danger"></span>
+            <div
+              type="is-danger"
+              @input="changeStatus(settings.closed)"
+            >
+              <span class="control-label">
+                <i v-if="settings.closed">Delivery Closed</i>
+                <i v-else>Delivery Open</i>
+              </span>
+            </div>
+          </label>
+        </center>
+      </section>
+
     </div>
+
     <orders />
   </div>
 </template>
@@ -39,7 +39,7 @@
 const Overlay = () => import("~/components/Overlay");
 const Orders = () => import("~/components/Orders");
 const Info = () => import("~/components/Info");
-const Hero = () => import("~/components/Hero");
+
 const Header = () => import("~/components/Header");
 export default {
   data() {
@@ -55,7 +55,7 @@ export default {
     }
   },
   async created() {},
-  components: { Overlay, Orders, Info, Hero, Header }
+  components: { Overlay, Orders, Info, Header }
 };
 </script>
 <style>
@@ -124,7 +124,7 @@ input {
 .switch input[type="checkbox"]:checked + .check:before {
   transform: translate3d(100%, 0, 0);
 }
-.pstn {
+.position {
   padding-bottom: 20px;
   text-align: center;
 }

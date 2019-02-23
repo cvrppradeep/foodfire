@@ -18,7 +18,6 @@
 <script>
 const Overlay = () => import("~/components/Overlay");
 const Info = () => import("~/components/Info");
-const Hero = () => import("~/components/Hero");
 const CartBar = () => import("~/components/CartBar");
 const Header = () => import("~/components/Header");
 const FeaturedCategories = () => import("~/components/FeaturedCategories");
@@ -65,7 +64,6 @@ export default {
   components: {
     Overlay,
     Info,
-    Hero,
     CartBar,
     Header,
     FeaturedCategories,

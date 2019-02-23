@@ -4,33 +4,33 @@
       <div class="row align-items-center">
         <div>
           <h1
-            class="card border-0 shadow-lg bg"
+            class="card border-0 shadow bg"
             v-for="o in orders"
             :key="o._id"
             :title="`${o.name} => ${o.address}`"
             :type="getStyle(o)"
           >
             <div class="columns is-mobile ">
-              <div class="breadcrumb-pagination">
+              <div class="order-status">
                 <h2>Name : {{o.name}}</h2>
                 <h3>Address:{{o.address}}</h3>
                 <h4>Total Amount:{{o.amount.total}}</h4>
                 <div
                   class="circle"
-                  v-bind:class="{active1: o.status=='PENDING',Pending:o.status=='Pending'}"
+                  v-bind:class="{active1: o.status=='PENDING',pending:o.status=='Pending'}"
                   native-value="Pending"
                   @input="changeStatus()"
                   @click="update('Pending')"
                 >
                   <span>1</span>
                   <p
-                    class="fntclr"
-                    v-bind:class="{Pending:o.status=='Pending'}"
+                    class="black-color spacing2px"
+                    v-bind:class="{pending:o.status=='Pending'}"
                   >Pending</p>
                 </div>
                 <div
                   class="circle "
-                  v-bind:class="{active2: o.status=='SHIPPED',Shipped:o.status=='Shipped'}"
+                  v-bind:class="{active2: o.status=='SHIPPED',shipped:o.status=='Shipped'}"
                   native-value="Shipped"
                   type="is-warning"
                   @input="changeStatus(o)"
@@ -38,13 +38,13 @@
                 >
                   <span>2</span>
                   <p
-                    class="fntclr"
-                    v-bind:class="{Shipped:o.status=='Shipped'}"
+                    class="black-color spacing2px"
+                    v-bind:class="{shipped:o.status=='Shipped'}"
                   >Shipped</p>
                 </div>
                 <div
                   class="circle"
-                  v-bind:class="{active3: o.status=='DELIVERED',Delivered:o.status=='Delivered'}"
+                  v-bind:class="{active3: o.status=='DELIVERED',delivered:o.status=='Delivered'}"
                   native-value="Delivered"
                   type="is-success"
                   @input="changeStatus(o)"
@@ -52,13 +52,13 @@
                 >
                   <span class="margin">3</span>
                   <p
-                    class="fntclr2"
-                    v-bind:class="{Delivered:o.status=='Delivered'}"
+                    class="black-color font-deliver"
+                    v-bind:class="{delivered:o.status=='Delivered'}"
                   >Delivered</p>
                 </div>
                 <div
                   class="circle"
-                  v-bind:class="{active4: o.status=='CANCELLED',Cancelled:o.status=='Cancelled'}"
+                  v-bind:class="{active4: o.status=='CANCELLED',cancelled:o.status=='Cancelled'}"
                   native-value="Cancelled"
                   type="is-danger"
                   @input="changeStatus(o)"
@@ -66,8 +66,8 @@
                 >
                   <span class="margin">4</span>
                   <p
-                    class="fntclr3"
-                    v-bind:class="{Cancelled:o.status=='Cancelled'}"
+                    class="black-color font-cancel"
+                    v-bind:class="{cancelled:o.status=='Cancelled'}"
                   > Cancelled</p>
                 </div>
               </div>
@@ -81,8 +81,8 @@
                 >
                   <div class="media-content">
                     <div class="content">
-                      <strong class="front">{{ix+1}} - {{i.name}}</strong>
-                      <small class="front">{{i.price | currency}} (<strong>{{i.qty}}</strong>)</small>
+                      <strong class="font15">{{ix+1}} - {{i.name}}</strong>
+                      <small class="font15">{{i.price | currency}} (<strong>{{i.qty}}</strong>)</small>
                     </div>
                   </div>
                 </div>
@@ -147,7 +147,7 @@ h4 {
 .border-0 {
   border: 0 !important;
 }
-.shadow-lg {
+.shadow {
   -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
@@ -166,12 +166,6 @@ h4 {
   margin-right: -15px;
   margin-left: -15px;
 }
-.small {
-  font-size: 12px;
-}
-.columns.is-mobile {
-  display: flex;
-}
 .columns {
   margin-left: 1.25rem;
   margin-right: 1.25rem;
@@ -189,21 +183,10 @@ h4 {
   flex-shrink: 1;
   text-align: left;
 }
-.front {
+.font15 {
   font-size: 15px;
 }
-.breadcrumb-pagination {
-  width: 100%;
-  border-bottom: 1px solid #e1e6eb;
-  text-align: center;
-  float: left;
-}
-.breadcrumb-pagination div {
-  display: inline-block;
-  padding-right: 0px;
-  padding-left: 0px;
-}
-.breadcrumb-pagination div span {
+.order-status div span {
   margin: 0 auto;
   display: block;
   border-radius: 100%;
@@ -212,84 +195,22 @@ h4 {
   padding: 6px 0 0 0px;
   font-size: 20px;
 }
-.fntclr {
-  color: black;
+.spacing2px {
   letter-spacing: 2px;
 }
-.fntclr2 {
-  color: black;
+.font-deliver {
   letter-spacing: 1px;
   padding-left: 3px;
 }
-.fntclr3 {
-  color: black;
+.font-cancel {
   letter-spacing: 1px;
   padding-left: 7px;
 }
-.Pending {
-  color: blue;
-}
-.Shipped {
-  color: skyblue;
-}
-.Delivered {
-  color: green;
-}
-.Cancelled {
-  color: red;
-}
-.circle span {
-  background-color: gray;
-  color: #fff;
-}
-.Pending span {
-  background-color: blue;
-  color: #fff;
-}
-.Shipped span {
-  background-color: skyblue;
-  color: #fff;
-}
-.Delivered span {
-  background-color: green;
-  color: #fff;
-}
-.Cancelled span {
-  background-color: red;
-  color: #fff;
-}
-.breadcrumb-pagination div p {
+.order-status div p {
   text-align: center;
   line-height: 0;
   margin: 30px auto 25px;
   font-size: 11px;
-}
-.active1 p {
-  border-bottom: 2px solid blue;
-  padding-bottom: 27px;
-  margin-bottom: 0px !important;
-  font-weight: 700;
-}
-.active2 p {
-  border-bottom: 2px solid skyblue;
-  padding-bottom: 27px;
-  margin-bottom: 0px !important;
-  font-weight: 700;
-}
-.active3 p {
-  border-bottom: 2px solid green;
-  padding-bottom: 27px;
-  margin-bottom: 0px !important;
-  font-weight: 700;
-}
-.active4 p {
-  border-bottom: 2px solid red;
-  padding-bottom: 27px;
-  margin-bottom: 0px !important;
-  font-weight: 700;
-}
-.active span::before {
-  content: "\2713";
 }
 h1 {
   font-family: Karla, Roboto, sans-serif;

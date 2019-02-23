@@ -1,12 +1,12 @@
-<template>
+ <template>
   <nav
     role="navigation"
     aria-label="main navigation"
-    class="Header header has-shadow is-primary"
+    class="header has-shadow is-primary"
   >
-    <div class="headeralign">
-      <div class="Header-brand">
-        <a class="Header-item a1">
+    <div class="flex-space-between-header">
+      <div class="header-logo">
+        <a class="header-item flex-center">
           <router-link to="/">
             <img
               class="logo"
@@ -31,26 +31,26 @@
         <button
           type="submit"
           class="searchIcon"
-        ><img src="/search.svg" /></button>
+        >
+          <img src="/search.svg" />
+        </button>
       </form>
-      <div class="iconcenter">
-
-        <div class="iconalign2">
+      <div class="flex-center icon-margin">
+        <div class="flex-center person-logo">
           <a
             role="button"
-            class="Headeritem boxbtn1"
+            class="flex-center logo-size"
             aria-label="menu"
             v-if="user"
             @click="go('/my')"
-          >
-            <img
+          ><img
               class="img"
               src="/person.svg"
             />
           </a>
           <a
             role="button"
-            class="Headeritem boxbtn1"
+            class="flex-center logo-size"
             aria-label="menu"
             v-else
             @click="go('/login')"
@@ -61,10 +61,10 @@
             />
           </a>
         </div>
-        <div class="iconalign">
+        <div class="flex-center cartbag-logo">
           <a
             role="button"
-            class="Headeritem boxbtn"
+            class="flex-center "
             aria-label="menu"
             @click="go('/cart')"
           >
@@ -168,8 +168,8 @@ export default {
       immediate: true,
       handler(value) {
         let pathName = null;
-        if (this.$route.name) pathName = this.$route.name.substr(0, 8);
-        if (pathName === "category") return;
+        // if (this.$route.name) pathName = this.$route.name.substr(0, 8);
+        // if (pathName === "category") return;
         if (!value || value == "undefined") value = "";
         if (value == "") return;
         if (this.search == "") this.search = value;
@@ -206,57 +206,46 @@ export default {
     width: 550px;
   }
 }
-.Header-item img {
+.header-item img {
   max-height: 2.3rem;
 }
-.Header-brand {
+.header-logo {
   align-items: stretch;
   display: flex;
   flex-shrink: 0;
   min-height: 3.25rem;
 }
-.Header.has-shadow {
+.header.has-shadow {
   box-shadow: 0 2px 0 0 #f5f5f5;
 }
-.Header.is-primary {
+.header.is-primary {
   background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
 }
-.Header {
+.header {
   background-color: #fff;
   min-height: 3.25rem;
   z-index: 30;
 }
-.iconalign {
-  display: flex;
-  align-items: center;
+.cartbag-logo {
   width: 92%;
   height: 100%;
-  padding-left: 7px;
-  padding-right: 14px;
+  padding-left: 3px;
+  padding-right: 10px;
 }
-.iconalign1 {
-  display: flex;
-  align-items: center;
-  width: 78%;
-  height: 100%;
-  padding-left: 0px;
-}
-.iconalign2 {
-  display: flex;
-  align-items: center;
+.person-logo {
   width: 100%;
   height: 100%;
   padding-left: 0px;
   padding-top: 1px;
 }
-.Header.is-primary .Header-brand > a.Header-item:hover {
+.Header.is-primary .Header-logo > a.header-item:hover {
   background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
 }
 img {
   height: auto;
   max-width: 100%;
 }
-.Header-item img {
+.header-item img {
   max-height: 1.75rem;
 }
 a {
@@ -264,18 +253,10 @@ a {
   cursor: pointer;
   text-decoration: none;
 }
-.Header-menu {
-  background-color: #fff;
-  box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
-  padding: 0.5rem 0;
-  display: none;
-}
-.Header-link,
-a.Header-item {
+a.header-item {
   cursor: pointer;
 }
-.Header-item,
-.Header-link {
+.header-item {
   color: #4a4a4a;
   display: block;
   /* line-height: 1.5; */
@@ -283,14 +264,6 @@ a.Header-item {
   position: relative;
   flex-grow: 0;
   flex-shrink: 0;
-}
-.a1 {
-  display: flex;
-  align-items: center;
-}
-.icon {
-  width: 7rem;
-  height: 7rem;
 }
 .shadow,
 .profile-page .card-profile .card-profile-image img {
@@ -302,25 +275,15 @@ a.Header-item {
   border-color: transparent;
   color: #fff;
 }
-.iconcenter {
+.icon-margin {
   margin-left: 10px;
-  display: flex;
   flex-direction: row;
-  align-items: center;
 }
-.boxbtn {
+.logo-size {
   width: 82%;
   height: 100%;
-  display: flex;
-  align-items: center;
 }
-.boxbtn1 {
-  width: 67%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-.headeralign {
+.flex-space-between-header {
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,9 +1,9 @@
 <template>
   <div>
     <Header />
-    <div class="pstn ">
+    <div class="img_position">
       <img src="/truck.svg" />
-      <h4 class="textalgn">
+      <h4 class="Order_History">
         Order History
       </h4>
       <br />
@@ -21,10 +21,10 @@
         </div>
         <div class="border">
           <div class="column is-mobile ">
-            <div class="breadcrumb-pagination">
+            <div class="order-status">
               <div
                 class="circle"
-                v-bind:class="{active1: o.status=='PENDING',Pending:o.status=='Pending'}"
+                v-bind:class="{active1: o.status=='PENDING',pending:o.status=='Pending'}"
                 native-value="Pending"
                 @input="changeStatus(o)"
                 @click="update('Pending')"
@@ -35,14 +35,14 @@
                   /></span>
                 <div>
                   <p
-                    class="fntclr"
-                    v-bind:class="{Pending:o.status=='Pending'}"
+                    class="black-color"
+                    v-bind:class="{pending:o.status=='Pending'}"
                   >Pending</p>
                 </div>
               </div>
               <div
                 class="circle "
-                v-bind:class="{active2: o.status=='SHIPPED',Shipped:o.status=='Shipped'}"
+                v-bind:class="{active2: o.status=='SHIPPED',shipped:o.status=='Shipped'}"
                 native-value="Shipped"
                 type="is-warning"
                 @input="changeStatus(o)"
@@ -54,14 +54,14 @@
                   /></span>
                 <div>
                   <p
-                    class="fntclr"
-                    v-bind:class="{Shipped:o.status=='Shipped'}"
+                    class="black-color"
+                    v-bind:class="{shipped:o.status=='Shipped'}"
                   >Shipped</p>
                 </div>
               </div>
               <div
                 class="circle"
-                v-bind:class="{active3: o.status=='DELIVERED',Delivered:o.status=='Delivered'}"
+                v-bind:class="{active3: o.status=='DELIVERED',delivered:o.status=='Delivered'}"
                 native-value="Delivered"
                 type="is-success"
                 @input="changeStatus(o)"
@@ -73,8 +73,8 @@
                   /></span>
                 <div>
                   <p
-                    class="fntclr2"
-                    v-bind:class="{Delivered:o.status=='Delivered'}"
+                    class="padding1px black-color"
+                    v-bind:class="{delivered:o.status=='Delivered'}"
                   >Delivered</p>
                 </div>
               </div>
@@ -92,7 +92,7 @@
                   /></span>
                 <div>
                   <p
-                    class="fntclr3"
+                    class="padding3px black-color"
                     v-bind:class="{Cancelled:o.status=='Cancelled'}"
                   > Cancelled</p>
                 </div>
@@ -103,15 +103,15 @@
           <div class="border ">
             <h5>ORDER ID: {{o[".key"]}}</h5>
           </div>
-          <div class="add_flex_align">
+          <div class="flex-row flex-space-between">
             <div>
               <h1>{{o.name}}</h1>
             </div>
-            <div class="payment">
+            <div class="payment-align">
               <span class="payment_color">Payment:<strong>COD</strong></span>
             </div>
           </div>
-          <div class="add_flex_align">
+          <div class="flex-row flex-space-between">
             <div>
               <h2>{{o.address}}</h2>
             </div>
@@ -127,7 +127,7 @@
             :key="ix"
           >
             <div class="media-content">
-              <div class="align">
+              <div class="flex-row">
                 <div class="item_namealign">{{ix+1}}.</div>
                 <div> <img v-lazy="i.img" /> </div>
                 <div class="item_namealign"><strong>{{i.name}} </strong></div>
@@ -136,7 +136,7 @@
             </div>
           </div>
         </div>
-        <div class="add_flex_align">
+        <div class="flex-row flex-space-between">
           <div>
           </div>
           <div>
@@ -209,14 +209,14 @@ center {
   border-radius: 0.25rem;
   position: relative;
 }
-.pstn {
+.img_position {
   text-align: center;
 }
 .shadow {
   -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
-.textalgn {
+.Order_History {
   color: #212529 !important;
   padding-top: 0px;
   font-size: 14px;
@@ -298,29 +298,11 @@ img {
   height: auto;
   max-width: 59px;
 }
-.align {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
 .font {
   font-family: sans-serif;
 }
-.add_flex_align {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
 .item_namealign {
   padding-left: 8px;
-}
-.p {
-  margin-top: -19px;
-  /* padding-left: 10px; */
-  font-size: 13px;
-}
-.column.is-mobile {
-  display: flex;
 }
 .column {
   margin-left: 0px;
@@ -333,18 +315,8 @@ img {
   padding-left: 0px;
   padding-right: 0px;
 }
-.breadcrumb-pagination {
-  width: 100%;
-  border-bottom: 1px solid #e1e6eb;
-  text-align: center;
-  float: left;
-}
-.breadcrumb-pagination div {
-  display: inline-block;
-  padding-right: 0px;
-  padding-left: 0px;
-}
-.breadcrumb-pagination div span {
+
+.order-status div span {
   /* margin: 0 auto; */
   display: block;
   border-radius: 5px;
@@ -354,88 +326,23 @@ img {
   font-size: 22px;
   width: 69px;
 }
-.fntclr {
-  color: black;
-}
-.fntclr2 {
-  color: black;
+.padding1px {
   padding-left: 1px;
 }
-.fntclr3 {
-  color: black;
+.padding3px {
   padding-left: 3px;
 }
-.Pending {
-  color: blue;
-}
-.Shipped {
-  color: skyblue;
-}
-.Delivered {
-  color: green;
-}
-.Cancelled {
-  color: red;
-}
-.circle span {
-  background-color: gray;
-  color: #fff;
-}
-.Pending span {
-  background-color: blue;
-  color: #fff;
-}
-.Shipped span {
-  background-color: skyblue;
-  color: #fff;
-}
-.Delivered span {
-  background-color: green;
-  color: #fff;
-}
-.Cancelled span {
-  background-color: red;
-  color: #fff;
-}
-.breadcrumb-pagination div p {
+.order-status div p {
   text-align: center;
   line-height: 0;
   margin: 16px auto 25px;
   font-size: 13px;
 }
-.active1 {
-  border-bottom: 2px solid blue;
-  padding-bottom: 27px;
-  margin-bottom: 0px !important;
-  font-weight: 700;
-}
-
-.payment {
+.payment-align {
   padding-right: 10px;
   margin-top: 10px;
   font-size: 14px;
   letter-spacing: 0;
-}
-.active2 {
-  border-bottom: 2px solid skyblue;
-  padding-bottom: 27px;
-  margin-bottom: 0px !important;
-  font-weight: 700;
-}
-.active3 {
-  border-bottom: 2px solid green;
-  padding-bottom: 27px;
-  margin-bottom: 0px !important;
-  font-weight: 700;
-}
-.active4 {
-  border-bottom: 2px solid red;
-  padding-bottom: 27px;
-  margin-bottom: 0px !important;
-  font-weight: 700;
-}
-.active span::before {
-  content: "\2713";
 }
 p {
   padding-left: 0px;

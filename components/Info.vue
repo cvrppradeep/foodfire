@@ -2,35 +2,34 @@
   <div>
     <article class="message">
       <section class="message-body">
-        <div>
-          <div class="media-content">
-            <div class="columns is-mobile">
-              <div class="column">
-                <p class="grey">Delivery time</p>
-                <div>45 minutes</div>
-              </div>
-              <div class="column">
-                <p class="grey">Delivery free</p>
-                <div>above {{300 | currency}}</div>
-              </div>
+        <div class="media-content">
+          <div class="columns is-mobile">
+            <div class="column">
+              <p class="gray">Delivery time</p>
+              <div>45 minutes</div>
             </div>
-            <div class="columns is-mobile">
-              <div class="column">
-                <p class="grey">Delivery hours</p>
-                <div>11:30AM - 10:30PM</div>
-              </div>
-              <div class="column">
-                <p class="grey">Minimum order</p>
-                <div>{{100 | currency}}</div>
-              </div>
-            </div>
-            <div class="green">
-              <center>
-                <b>Delivery is now open</b>
-              </center>
+            <div class="column">
+              <p class="gray">Delivery free</p>
+              <div>above {{300 | currency}}</div>
             </div>
           </div>
+          <div class="columns is-mobile">
+            <div class="column">
+              <p class="gray">Delivery hours</p>
+              <div>11:30AM - 10:30PM</div>
+            </div>
+            <div class="column">
+              <p class="gray">Minimum order</p>
+              <div>{{100 | currency}}</div>
+            </div>
+          </div>
+          <div class="green">
+            <center>
+              <b>Delivery is now open</b>
+            </center>
+          </div>
         </div>
+
       </section>
     </article>
   </div>
@@ -67,9 +66,7 @@ export default {};
   flex-grow: 1;
   flex-shrink: 1;
 }
-.grey {
-  color: grey;
-}
+
 .green {
   color: green;
   margin-top: 1.5rem;

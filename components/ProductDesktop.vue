@@ -1,16 +1,13 @@
 <template>
   <section class="pull-up">
-    <div
-      class="image"
-      v-if="product.img && product.img[0]"
-    >
+    <div v-if="product.img && product.img[0]">
       <img
         v-lazy="product.img[0].small"
         alt=""
       />
     </div>
     <h2>{{product.name}} {{selectedVariant.size}}</h2>
-    <div class="fx">
+    <div>
       <div
         class="variants"
         :class="{'selected':selectedVariant._id==v._id}"

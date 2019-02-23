@@ -34,7 +34,6 @@
 <script>
 const Overlay = () => import("~/components/Overlay");
 const Info = () => import("~/components/Info");
-const Hero = () => import("~/components/Hero");
 const CartBar = () => import("~/components/CartBar");
 const Header = () => import("~/components/Header");
 const LoadingDots = () => import("~/components/LoadingDots");
@@ -124,7 +123,7 @@ export default {
     }
   },
   async created() {},
-  components: { Overlay, Info, Hero, CartBar, Header, LoadingDots },
+  components: { Overlay, Info, CartBar, Header, LoadingDots },
   head() {
     const host = process.server
       ? this.$ssrContext.req.headers.host

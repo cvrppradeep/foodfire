@@ -23,8 +23,8 @@
         </div>
       </div>
     </div>
-    <div class="price-align">
-      <div class="big">{{selectedVariant.price | currency}}</div>
+    <div class="price">
+      <div class="font-bold">{{selectedVariant.price | currency}}</div>
       <cart-buttons
         :product="{_id:product._id}"
         :variant="selectedVariant"
@@ -76,9 +76,6 @@ export default {
 </script>
 
 <style scoped>
-.fx {
-  display: flex;
-}
 .product {
   align-items: flex-start;
   display: flex;
@@ -103,11 +100,11 @@ strong {
 .border {
   border-top: 1px solid hsla(0, 0%, 85.9%, 0.5);
 }
-.price-align {
+.price {
   text-align: right;
   margin-top: 5px;
 }
-.big {
+.font-bold {
   font-size: 1.5em;
   font-weight: 700;
 }

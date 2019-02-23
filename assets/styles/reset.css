@@ -216,3 +216,121 @@ textarea {
     display: none !important;
   }
 }
+.pending {
+  color: blue;
+}
+.shipped {
+  color: skyblue;
+}
+.delivered {
+  color: green;
+}
+.cancelled {
+  color: red;
+}
+.circle span {
+  background-color: gray;
+  color: #fff;
+}
+.pending span {
+  background-color: blue;
+  color: #fff;
+}
+.shipped span {
+  background-color: skyblue;
+  color: #fff;
+}
+.delivered span {
+  background-color: green;
+  color: #fff;
+}
+.cancelled span {
+  background-color: red;
+  color: #fff;
+}
+.active1 p {
+  border-bottom: 2px solid blue;
+  padding-bottom: 27px;
+  margin-bottom: 0px !important;
+  font-weight: 700;
+}
+.active2 p {
+  border-bottom: 2px solid skyblue;
+  padding-bottom: 27px;
+  margin-bottom: 0px !important;
+  font-weight: 700;
+}
+.active3 p {
+  border-bottom: 2px solid green;
+  padding-bottom: 27px;
+  margin-bottom: 0px !important;
+  font-weight: 700;
+}
+.active4 p {
+  border-bottom: 2px solid red;
+  padding-bottom: 27px;
+  margin-bottom: 0px !important;
+  font-weight: 700;
+}
+.active span::before {
+  content: "\2713";
+}
+.order-status div {
+  display: inline-block;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.order-status {
+  width: 100%;
+  border-bottom: 1px solid #e1e6eb;
+  text-align: center;
+  float: left;
+}
+.columns.is-mobile {
+  display: flex;
+}
+.flex-row-nocenter {
+  display: flex;
+  flex-direction: row;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+}
+.flex-space-between {
+  justify-content: space-between;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+.black-color {
+  color: black;
+}
+.gray {
+  color: gray;
+}
+.big-button {
+  text-transform: initial;
+  color: #fff;
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
+  border-color: #fb6340;
+  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  display: block;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  padding: 7px;
+  outline: none;
+   font-family: Karla, Roboto, sans-serif;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

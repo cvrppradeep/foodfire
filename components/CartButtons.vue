@@ -1,26 +1,25 @@
 <template>
-  <div class="align">
+  <div class="flex-column align-top">
     <div
       v-if="!checkCart({_id:product._id, vid:variant._id})"
       :disabled="!variant || variant.price<1 || variant.stock<1 || $store.state.loading"
       @click="addToBag(1);"
     >
-      <button class="button1 buttonrounded1 btnalign">
+      <button class="cart-button buttonrounded">
         <img src="/plus.svg" />
       </button>
-
     </div>
     <div v-else>
-      <div class="size1">
+      <div class="flex-row-nocenter">
         <button
-          class="button1 buttonrounded1 "
+          class="cart-button buttonrounded "
           @click="addToBag(-1)"
         >
           <img src="/minus.svg" />
         </button>
-        <span class="size2">{{getQty({_id:product._id, vid:variant._id})}}</span>
+        <span class="product-id">{{getQty({_id:product._id, vid:variant._id})}}</span>
         <button
-          class="button1 button.is-danger buttonrounded1 btnplus-clr"
+          class="cart-button button.is-danger buttonrounded btnplus-clr"
           :disabled="!variant || variant.price<1 || variant.stock<1 || $store.state.loading"
           @click="addToBag(1)"
         >
@@ -57,24 +56,16 @@ export default {
 };
 </script>
 <style>
-.size1 {
-  display: flex;
-  flex-direction: row;
-}
-.size2 {
+.product-id {
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 5px;
 }
-.buttonrounded1 {
+.buttonrounded {
   border-radius: 50px;
   width: 33px;
 }
-.button.is-danger {
-  border-color: transparent;
-  color: #fff;
-}
-.button1 {
+.cart-button {
   border: 1px solid transparent;
   border-width: 1px;
   color: #32325d;
@@ -85,55 +76,28 @@ export default {
   background: #f5f5f5;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
 }
+.cart-button.is-danger {
+  border-color: transparent;
+  color: #fff;
+}
+.cart-button:hover {
+  background: #ffdd57;
+}
 .btnplus-clr {
   background: #ffdd57;
 }
-.button1:hover {
-  background: #ffdd57;
-}
-.button {
-  border: 1px solid transparent;
-  border-width: 1px;
-  color: #32325d;
-  background-color: white;
-  cursor: pointer;
-  justify-content: center;
-  padding: calc(0.375em - 1px) 0.75em;
-  padding-bottom: 0px;
-  text-align: center;
-  white-space: nowrap;
-  display: flex;
-  flex-direction: row;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-.button:hover {
-  background: #ff3860;
-  color: #fff;
-}
-.buttonrounded {
-  border-radius: 15px;
-  height: 34px;
-  border-left-width: 2px;
-}
-.align {
+.flex-column {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.align-top {
   padding-top: 10px;
 }
-/* .plus {
-  font-size: 25px;
-  margin-top: -3px;
-} */
 .cart-icon {
   padding-bottom: 3px;
   padding-left: 5px;
 }
-/* .center {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-} */
 .addalign {
   padding-top: 4px;
 }

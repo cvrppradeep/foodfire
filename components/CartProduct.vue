@@ -10,10 +10,10 @@
       <strong>{{product.name}}</strong>
       <strong>{{product.size}}</strong>
     </div>
-
-    <div class="price-align">
-      <div class="big">{{product.price | currency}}</div>
+    <div class="price">
+      <div class="font-bold align-right">{{product.price | currency}}</div>
       <cart-buttons
+        class="cart-button-right"
         :product="{_id:product._id}"
         :variant="{_id:product.vid}"
       />
@@ -62,14 +62,20 @@ strong {
 .image img {
   border-radius: 50px;
 }
+.align-right {
+  padding-right: 35px;
+}
+.cart-button-right {
+  padding-right: 6px;
+}
 .border {
   border-top: 1px solid hsla(0, 0%, 85.9%, 0.5);
 }
-.price-align {
+.price {
   text-align: right;
   margin-top: 5px;
 }
-.big {
+.font-bold {
   font-size: 1.5em;
   font-weight: 700;
 }

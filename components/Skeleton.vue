@@ -1,6 +1,6 @@
 <template>
   <a class="product">
-    <div class="image">
+    <div>
       <img
         v-lazy="'/800x800.svg'"
         alt="..."
@@ -50,12 +50,12 @@ a {
   -webkit-box-shadow: 0 2px 7px rgba(0, 0, 0, 0.48);
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.48);
 }
-.flex {
+/* .flex {
   display: flex;
   justify-content: center;
   text-align: center;
-  /* font-size: 10px; */
-}
+  font-size: 10px; 
+} */
 .variants {
   display: none;
   /* position: absolute;

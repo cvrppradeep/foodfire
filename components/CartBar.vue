@@ -4,24 +4,20 @@
       class="footer"
       v-if="getTotalCount!=0"
     >
-      <nav class="Header header has-shadow is-primary">
-        <div
-          class="headeralign1 shadow"
-          style="color:white;"
-        >
+      <nav class="header has-shadow is-primary">
+        <div class="flex-center flex-space-between color shadow">
           <div style="padding-left: 13px;">
             <span>
               {{getTotalCount}} item<span v-if="getTotalCount>1">s</span> | {{getTotal | currency}}
             </span>
           </div>
-          <div class="Header-brand1 ">
+          <div class="header-viewcart">
             <router-link
-              class="Header-item1 a1 "
-              style="color:white"
+              class="items flex-center color "
               to="/cart"
             >
-              <div class="center">
-                <div class="cart-icon1">
+              <div class="flex-center">
+                <div class="cart-icon">
                   <img src="/carticon.svg" />
                 </div>
                 <div>
@@ -50,54 +46,37 @@ export default {
 };
 </script>
 <style scoped>
-.Header-item img {
-  max-height: 2.3rem;
-}
-.Header-brand1 {
+.header-viewcart {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   align-items: stretch;
   display: flex;
   flex-shrink: 0;
   min-height: 3.25rem;
 }
-.Header.has-shadow {
+.header.has-shadow {
   box-shadow: 0 2px 0 0 #f5f5f5;
 }
-.Header.is-primary {
+.header.is-primary {
   background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
 }
-.Header {
+.header {
   background-color: #fff;
   min-height: 3.25rem;
   z-index: 30;
 }
-.Header.is-primary .Header-brand > a.Header-item:hover {
+.header.is-primary .header-viewcart > a.items:hover {
   background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
 }
 img {
   height: auto;
   max-width: 100%;
 }
-.Header-item img {
-  max-height: 1.75rem;
-}
 a {
-  color: #3273dc;
+  /* color: #3273dc; */
   cursor: pointer;
   text-decoration: none;
 }
-.Header-menu {
-  background-color: #fff;
-  box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
-  padding: 0.5rem 0;
-  display: none;
-}
-.Header-link,
-a.Header-item {
-  cursor: pointer;
-}
-.Header-item1,
-.Header-link {
+.items {
   color: #4a4a4a;
   display: block;
   line-height: 1.5;
@@ -105,9 +84,6 @@ a.Header-item {
   flex-grow: 0;
   flex-shrink: 0;
 }
-/* .section {
-  padding: 3rem 1.5rem;
-} */
 .hero.is-primary .subtitle {
   color: hsla(0, 0%, 100%, 0.9);
 }
@@ -138,14 +114,8 @@ profile .card-profile-image img {
     0 5px 15px rgba(0, 0, 0, 0.07) !important;
   box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07) !important;
 }
-.a1 {
-  display: flex;
-  align-items: center;
-}
-.headeralign1 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.color {
+  color: white;
 }
 .footer {
   position: fixed;
@@ -154,13 +124,8 @@ profile .card-profile-image img {
   width: 100%;
   text-align: center;
 }
-.cart-icon1 {
+.cart-icon {
   padding-right: 6px;
   margin-top: 5px;
-}
-.center {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
 }
 </style>

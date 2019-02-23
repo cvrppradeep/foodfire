@@ -7,7 +7,7 @@
       <div>
         <div v-if="order">
           <div class="row align-items-center">
-            <div class="align">
+            <div class="card-align">
               <div>
                 <div class="card svgcard">
                   <img
@@ -21,11 +21,11 @@
                   <h2>
                     Your order request has been received <small>successfully.</small>
                   </h2>
-                  <p class="font">Order No: <span class="font-weight-bold">{{order["orderNo"]}}</span></p>
+                  <p class="font13">Order No: <span class="font-weight-bold">{{order["orderNo"]}}</span></p>
                   <p>You will receive a message or call regarding the confirmation of the product.</p>
                   <h5><strong>Note: </strong>Your order will be sent to you, usually within 1-24hrs.</h5>
                 </div>
-                <div class="address mb-3 ">
+                <div>
                   Adress: <strong
                     class=""
                     v-if="order.address"
@@ -34,8 +34,8 @@
               </div>
               <div>
                 <div class="products ">
-                  <div class="margin">
-                    <span class="order_header"> ORDER SUMMARY</span>
+                  <div class="order-margin">
+                    <span class="order-header"> ORDER SUMMARY</span>
                   </div>
                   <product
                     v-for="(p,ix) in order.items"
@@ -49,7 +49,7 @@
                     v-for="(p, index) in order.items"
                     :key="index"
                   >
-                    <div class="flex product_card columns">
+                    <div class="flex-row flex-space-between border-radius product-card columns">
                       <div class="image">
                         <img
                           v-lazy="p.img.small"
@@ -77,17 +77,22 @@
         </div>
       </div>
     </div>
-    <div class="btn_align1 footer">
-      <a
-        type
-        class="btn btn-block btn-white1 btn-lg btncontent"
-      >
-        <img src="/backarrow.svg" />
-        <router-link
-          to="/"
-          class="btnclr"
-        >Grocery Menu</router-link>
-      </a></div>
+    <div class="btn-align footer">
+      <div class="btn btn-block btn-white back-to-menu-btn">
+        <div>
+          <img
+            class="height35"
+            src="/backarrow.svg"
+          />
+        </div>
+        <div>
+          <router-link
+            to="/"
+            class="btnclr"
+          >Grocery Menu</router-link>
+        </div>
+      </div>
+    </div>
     <!-- <router-link to="/my/orders" class="button is-dark">Find My Previous Orders</router-link> -->
   </div>
 </template>
@@ -185,9 +190,9 @@ export default {
 .btnclr {
   color: white;
   text-decoration: none;
+  padding-left: 1px;
 }
-.btn-white1 {
-  color: #212529;
+.btn-white {
   background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
   border-color: #fff;
   -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
@@ -227,7 +232,7 @@ export default {
   position: relative;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
 }
-.product_card {
+.product-card {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -263,7 +268,7 @@ export default {
   line-height: 1.7;
   margin-top: 1.5rem;
 }
-.margin {
+.order-margin {
   margin-top: 1rem !important;
 }
 .btn {
@@ -283,44 +288,33 @@ export default {
   display: block;
   width: 100%;
 }
-.btn-white {
-  color: #212529;
-  background-color: #fff;
-  border-color: #fff;
-  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
-    0 1px 3px rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-.btn-lg {
+
+.btn {
   padding: 7px;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem;
 }
-.btn_align {
+/* .btn-align {
   position: relative;
   width: 100%;
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
-}
-.btn_align1 {
+} */
+.btn-align {
   min-height: 0;
   padding-top: 9px;
   padding-bottom: 0px;
 }
-.align {
+.card-align {
   position: relative;
   width: 100%;
   min-height: 1px;
   padding: 10px;
   text-align: center;
 }
-.btncontent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 a {
   color: black;
   cursor: pointer;
@@ -379,7 +373,7 @@ h5 {
 br {
   line-height: 19px;
 }
-.font {
+.font13 {
   font-weight: bold;
   font-size: 13px;
 }
@@ -393,9 +387,9 @@ br {
 .color {
   color: aliceblue;
 }
-.products {
-  /* margin: 0 1rem; */
-}
+/* .products {
+   margin: 0 1rem; 
+} */
 .product {
   align-items: flex-start;
   display: flex;
@@ -406,35 +400,16 @@ strong {
   color: red;
   font-weight: 700;
 }
-.image {
+/* .image {
   width: 104px;
 }
 .image img {
   border-radius: 50px;
-}
+} */
 .border {
   border-top: 1px solid hsla(0, 0%, 85.9%, 0.5);
 }
-.price-align {
-  padding-right: 10px;
-}
-.big {
-  font-size: 1.5em;
-  font-weight: 700;
-}
-.columns {
-  margin-top: -0.75rem;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-.flex {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: center;
-  border-radius: 10px;
-}
-.order_header {
+.order-header {
   font-weight: 700;
   font-family: sans-serif;
 }
@@ -451,5 +426,15 @@ strong {
   width: 100%;
   text-align: center;
   margin-bottom: 18px;
+}
+.back-to-menu-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.height35 {
+  height: 35px;
+  padding-top: 7px;
 }
 </style>

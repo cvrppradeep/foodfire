@@ -10,7 +10,7 @@
       <!-- <div class="img1">
         <img src="/personlogo.png">
       </div> -->
-      <div class="card shadow-lg2 columns">
+      <div class="card shadow columns">
 
         <!-- <h1>Qr No: </h1> -->
         <div class="margin">
@@ -29,35 +29,33 @@
       <div class="footer">
         <a v-if="!cartItems.length==0">
           <div class="cart-total footer">
-            <div class="container2 ">
-              <div class="card shadow-lg2 w100">
-                <div>
-                  <div class="is-mobile">
-                    <div class="align">
-                      <div class="amount_align">
-                        <p class="gray">Total Amount</p>
-                      </div>
-                      <div>
-                        <h2>{{getTotal | currency}}</h2>
-                      </div>
-                    </div>
-                    <div>
-                      <button
-                        type="submit"
-                        class="button"
-                        :disabled="getTotal==0 || loading"
-                      ><span :class="{'fadeIn':loading}">{{text}}</span>
-                      </button>
-                    </div>
+            <div class="card shadow w100">
+              <div class="is-mobile">
+                <div class="flex-row-checkout">
+                  <div class="amount-align">
+                    <p class="gray">Total Amount</p>
                   </div>
-                  <!-- <div class="is-mobile">
-                    <p class="green">Please allow us 45mins for delivery</p>
-                  </div> -->
-                  <div class="cart-total-after"> </div>
+                  <div>
+                    <h2>{{getTotal | currency}}</h2>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="button"
+                    :disabled="getTotal==0 || loading"
+                  ><span :class="{'fadeIn':loading}">{{text}}</span>
+                  </button>
                 </div>
               </div>
+              <!-- <div class="is-mobile">
+                    <p class="green">Please allow us 45mins for delivery</p>
+                  </div> -->
+              <div class="cart-total-after"></div>
+
             </div>
           </div>
+
         </a>
       </div>
     </form>
@@ -187,16 +185,9 @@ export default {
 .cart-total-after {
   margin-bottom: 10px;
 }
-.align {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.flex-row-checkout {
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 h1 {
@@ -231,7 +222,7 @@ h4 {
   margin-top: 0;
   padding-top: 10px;
 }
-.margin_phn {
+.margin-phn {
   padding-left: 28px;
   padding-right: 28px;
 }
@@ -239,9 +230,9 @@ textarea {
   height: 60px;
   margin-top: -11px;
 }
-.padding {
+/* .padding {
   padding-top: 25px;
-}
+} */
 .footer {
   background: #fff;
   position: fixed;
@@ -260,12 +251,7 @@ textarea {
 }
 .card {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
@@ -307,7 +293,7 @@ textarea {
   width: 100%;
   padding: 0 1.5rem;
 }
-.top_padding {
+.top-padding {
   padding-top: 50px;
   font-size: 17px;
 }

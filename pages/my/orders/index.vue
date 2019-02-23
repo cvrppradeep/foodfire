@@ -18,7 +18,7 @@
       >
         <div class="card shadow-lg2">
           <div class="border">
-            <div class="add_date_align mt10">
+            <div class="flex-row-nocenter flex-space-between  orderno-margin">
               <div>
                 <h2>ORDER No: {{o.orderNo}}</h2>
               </div>
@@ -166,7 +166,7 @@ export default {
   font-weight: 700;
   margin-left: 15px;
 }
-.mt10 {
+.orderno-margin {
   margin-top: 14px;
 }
 center {
@@ -264,22 +264,17 @@ img {
   height: auto;
   max-width: 59px;
 }
-.align {
+/* .align {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
+} */
 .font {
   font-family: sans-serif;
 }
-.add_date_align {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.item_namealign {
+/* .item-namealign {
   padding-left: 8px;
-}
+} */
 p {
   margin-top: -19px;
   padding-left: 10px;
