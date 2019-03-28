@@ -1,94 +1,102 @@
 <template>
   <div>
     <Header />
-    <form
-      novalidate
-      autocomplete="off"
-      @submit.stop.prevent="submit()"
-      class="container center"
-    >
-      <div class="card shadow columns">
-        <br />
-        <div class="margin-phn">
-          <label for="phone">Phone:</label>
-          <input
-            type="tel"
-            class="phone"
-            name='phone'
-            ref="phone"
-            v-model="user.phone"
-            placeholder="Phone No"
-            @keyup="onPhoneChange"
-            required
+    <div class="head">
+      <center class="title">
+        <strong>Login</strong>
+      </center>
+    </div>
+    <!-- <h2 class="center">Login</h2> -->
+    <div class="container">
+      <form
+        novalidate
+        autocomplete="off"
+        @submit.stop.prevent="submit()"
+        class="container center"
+      >
+        <div class="card shadow columns">
+          <br />
+          <div class="margin-phn">
+            <label for="phone">Phone:</label>
+            <input
+              type="tel"
+              class="phone"
+              name='phone'
+              ref="phone"
+              v-model="user.phone"
+              placeholder="Phone No"
+              @keyup="onPhoneChange"
+              required
+            >
+            <div class="msg">{{msg}}</div>
+          </div>
+          <br />
+          <div
+            class="margin-phn"
+            v-show="showOTP"
           >
-          <div class="msg">{{msg}}</div>
-        </div>
-        <br />
-        <div
-          class="margin-phn"
-          v-show="showOTP"
-        >
-          <label for="OTP"></label>
-          <div class="otp-container">
-            <input
-              type="tel"
-              class="otp"
-              id="otp1"
-              name="otp1"
-              ref="otp1"
-              v-model="p.i1"
-              maxlength="1"
-              @keyup="onKeyUpEvent(1,$event)"
-            />
-            <input
-              type="tel"
-              class="otp"
-              id="otp2"
-              v-model="p.i2"
-              maxlength="1"
-              @keyup="onKeyUpEvent(2, $event)"
-            />
-            <input
-              type="tel"
-              class="otp"
-              id="otp3"
-              v-model="p.i3"
-              maxlength="1"
-              @keyup="onKeyUpEvent(3, $event)"
-            />
-            <input
-              type="tel"
-              class="otp"
-              id="otp4"
-              v-model="p.i4"
-              maxlength="1"
-              @keyup="onKeyUpEvent(4, $event)"
-            />
+            <label for="OTP"></label>
+            <div class="otp-container">
+              <input
+                type="tel"
+                class="otp"
+                id="otp1"
+                name="otp1"
+                ref="otp1"
+                v-model="p.i1"
+                maxlength="1"
+                @keyup="onKeyUpEvent(1,$event)"
+              />
+              <input
+                type="tel"
+                class="otp"
+                id="otp2"
+                v-model="p.i2"
+                maxlength="1"
+                @keyup="onKeyUpEvent(2, $event)"
+              />
+              <input
+                type="tel"
+                class="otp"
+                id="otp3"
+                v-model="p.i3"
+                maxlength="1"
+                @keyup="onKeyUpEvent(3, $event)"
+              />
+              <input
+                type="tel"
+                class="otp"
+                id="otp4"
+                v-model="p.i4"
+                maxlength="1"
+                @keyup="onKeyUpEvent(4, $event)"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="footer">
-        <div class="cart-total footer">
-          <div class="card shadow-lg2 w100">
-            <button
-              v-if="!showOTP"
-              type="submit"
-              class="big-button"
-              :disabled="loading"
-            ><span :class="{'loading':loading}">Verify Phone</span>
-            </button>
-            <button
-              v-else
-              type="submit"
-              class="big-button"
-              :disabled="loading"
-            ><span :class="{'loading':loading}">Verify OTP</span>
-            </button>
-            <div class="cart-total-after"> </div>
+        <div class="footer">
+          <div class="cart-total footer">
+            <div class="card shadow-lg2 w100">
+              <button
+                v-if="!showOTP"
+                type="submit"
+                class="big-button"
+                :disabled="loading"
+              ><span :class="{'loading':loading}">Verify Phone</span>
+              </button>
+              <button
+                v-else
+                type="submit"
+                class="big-button"
+                :disabled="loading"
+              ><span :class="{'loading':loading}">Verify OTP</span>
+              </button>
+              <div class="cart-total-after"> </div>
+            </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </template>
 <script>
@@ -253,9 +261,7 @@ export default {
 }
 .phone {
   height: 45px;
-  font-size: 20px;
   border: 1px solid #da1c5f;
-  width: 300px;
   padding: 5px 10px;
   border-radius: 3px;
 }

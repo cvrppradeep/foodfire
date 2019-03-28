@@ -50,6 +50,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  justify-content: center;
 }
 .store-categories-list__item .category-name__description {
   font-size: 10px;

@@ -15,8 +15,8 @@
                   class="image"
                   src="/empty_cart_teaser.jpg"
                 /></div>
-              <h4 class="empty-cart-msg">
-                Please go back to Grocery menu and add some items to continue...</h4>
+              <h2> There's nothing in here </h2>
+              <h5>You have not added any items to your cart yet.</h5>
               <div class="footer">
                 <a>
                   <div class="cart-total footer">
@@ -135,11 +135,7 @@ export default {
 .cart-total-after {
   margin-bottom: 10px;
 }
-.container {
-  position: relative;
-  overflow: scroll;
-  padding-top: 19px;
-}
+
 .footer {
   background: #fff;
   position: fixed;
@@ -155,34 +151,25 @@ export default {
   padding-bottom: 10px;
   padding-top: 10px;
 }
-.image {
+/* .image {
   padding-left: 0%;
   width: 80%;
   margin-top: -0.8rem;
-}
-.empty-cart-msg {
-  text-transform: initial;
+} */
+/* .empty-cart-msg { */
+/* text-transform: initial;
   font-style: oblique;
-  font-family: Helvetica, Arial, sans-serif;
   font-weight: bolder;
-  margin-top: -2.8rem;
-}
+  margin-top: -2.8rem; */
+/* } */
 .card {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 0.0625rem solid rgba(0, 0, 0, 0.05);
-  border-radius: 0.25rem;
-  position: relative;
   padding-top: 20px;
 }
 
@@ -199,7 +186,7 @@ export default {
   padding: 0 1.5rem;
 }
 .head {
-  margin-right: 10px;
+  /* margin-right: 10px; */
   /* position: relative;
   left: 0;
   right: 0;

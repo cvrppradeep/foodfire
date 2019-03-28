@@ -202,8 +202,7 @@ export default {
 }
 @media screen and (min-width: 600px) {
   .search {
-    position: relative;
-    width: 550px;
+    width: 70%;
   }
 }
 .header-item img {
