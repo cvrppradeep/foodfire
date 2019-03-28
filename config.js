@@ -1,6 +1,6 @@
 const REMOTE_API_URL = 'https://api.iotutorials.com'
-const LOCAL_API_URL = 'https://api.iotutorials.com'
-// const LOCAL_API_URL = 'http://localhost:9006'
+// const LOCAL_API_URL = 'https://api.iotutorials.com'
+const LOCAL_API_URL = 'http://localhost:9006'
 const DOMAIN = (process.env.NODE_ENV === 'production') ? REMOTE_API_URL : LOCAL_API_URL
 export const TITLE = "Online Shopping for Groceries at Sunabeda"
 export const DESCRIPTION = "Saisell.com offer Online Shopping in Sunabeda. Huge Collection of Grocery & More!"

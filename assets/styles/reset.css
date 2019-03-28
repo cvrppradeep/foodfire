@@ -327,7 +327,7 @@ textarea {
   border-radius: 0.3rem;
   padding: 7px;
   outline: none;
-   font-family: Karla, Roboto, sans-serif;
+  font-family: Karla, Roboto, sans-serif;
 }
 .center {
   display: flex;

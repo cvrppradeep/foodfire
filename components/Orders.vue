@@ -213,7 +213,6 @@ h4 {
   font-size: 11px;
 }
 h1 {
-  font-family: Karla, Roboto, sans-serif;
   letter-spacing: 0px;
 }
 </style>
