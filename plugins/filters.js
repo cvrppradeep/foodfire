@@ -24,7 +24,6 @@ Vue.filter('currency', function (value, currency, decimals) {
 })
 Vue.filter('ago', function (dt) {
     var created_date = new Date(dt);
-
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var year = created_date.getFullYear();
     var month = months[created_date.getMonth()];
@@ -33,7 +32,15 @@ Vue.filter('ago', function (dt) {
     var min = created_date.getMinutes();
     var sec = created_date.getSeconds();
     var time = date + ',' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;    // final date with time, you can use this according your requirement
-
     return time
-
+})
+Vue.filter('date', function (value) {
+    const date = new Date(value)
+    return date.toLocaleString(['en-US'], { month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+})
+Vue.filter('datedm', function (value) {
+    return moment(value).format('ddd, Do MMM')
+})
+Vue.filter('time', function (value) {
+    return moment(value).format('hA')
 })
