@@ -18,9 +18,15 @@
 <script>
 export default {
   async asyncData({ $axios, route }) {
+    let address = "";
     const food = await $axios.$get("foods/" + route.params.id);
-    let user = await $axios.$get("users/me");
-    return { qty: 1, food, address: user.address.qrno };
+    try {
+      let user = await $axios.$get("users/me");
+      if (user && user.address) {
+        address = user.address.qrno;
+      }
+    } catch (e) {}
+    return { qty: 1, food, address };
   },
   methods: {
     go(url) {
@@ -35,6 +41,8 @@ export default {
         });
       } catch (e) {
         if (e.response.status == 401) this.$router.push("/food/login");
+        // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", e.response);
+        this.$store.commit("setErr", e.response.data);
       }
     }
   },
