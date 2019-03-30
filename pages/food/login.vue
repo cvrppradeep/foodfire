@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <div class="heading">Login</div>
     <!-- <h2 class="center">Login</h2> -->
     <div class="container">
@@ -97,7 +98,7 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 const Product = () => import("~/components/Product");
-const Header = () => import("~/components/Header");
+const Header = () => import("~/components/HeaderFood");
 export default {
   props: ["products"],
   data() {

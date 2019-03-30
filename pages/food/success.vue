@@ -1,47 +1,45 @@
 <template>
   <div>
+    <Header />
     <div class="container head">
-      <div>
-        <div v-if="order">
-          <div class="row align-items-center">
-            <div class="card-align">
-              <div>
-                <div class="card svgcard">
-                  <img
-                    class="svgheight"
-                    src="/circleright.svg"
-                  />
-                  <h3 class="text-primary-light font-weight-bold">Thank You!!!</h3>
-                </div>
-                <br>
-                <div>
-                  <h2>
-                    Your order request has been received <small>successfully.</small>
-                  </h2>
-                  <p class="font13">Order No: <span class="font-weight-bold">{{order["orderNo"]}}</span></p>
-                  <p>Delivery will start 06-Apr-2019 6:00PM - 8:00PM</p>
-                  <h5><strong>Note: </strong>Order once booked can not be cancelled.</h5>
-                </div>
-                <div>
-                  Adress: <strong
-                    class=""
-                    v-if="order.address"
-                  >{{order.address.qrno}}</strong><br />
-                </div>
-              </div>
-              <div>
-                <div class="products ">
-                  <!-- <div class="order-margin">
+      <div v-if="order">
+        <div class="row align-items-center">
+          <div class="card-align">
+            <div class="card svgcard">
+              <img
+                class="svgheight"
+                src="/circleright.svg"
+              />
+              <h3 class="text-primary-light font-weight-bold">Thank You!!!</h3>
+            </div>
+            <br>
+            <div>
+              <h2>
+                Your order request has been received <small>successfully.</small>
+              </h2>
+              <p class="font13">Order No: <span class="font-weight-bold">{{order["orderNo"]}}</span></p>
+              <p>Delivery will start 06-Apr-2019 6:00PM - 8:00PM</p>
+              <h5><strong>Note: </strong>Order once booked can not be cancelled.</h5>
+            </div>
+            <div>
+              Adress: <strong
+                class=""
+                v-if="order.address"
+              >{{order.address.qrno}}</strong><br />
+            </div>
+            <div>
+              <div class="products ">
+                <!-- <div class="order-margin">
                     <span class="order-header"> ORDER SUMMARY</span>
                   </div> -->
-                  <!-- <product
+                <!-- <product
                     v-for="(p,ix) in order.items"
                     :key="ix"
                     :class="{'border':ix!=0}"
                     :product="{_id:p.pid,name:p.name,img:[p.img],slug:p.slug,variants:[{_id:p.vid,size:p.size,mrp:p.mrp,price:p.price}]}"
                     :showcart="true"
                   /> -->
-                  <!-- <div
+                <!-- <div
                     class="product"
                     v-for="(p, index) in order.items"
                     :key="index"
@@ -61,14 +59,13 @@
                       </div>
                     </div>
                   </div> -->
-                </div>
-                <!-- <h6 v-if="$store.state.settings">
+              </div>
+              <!-- <h6 v-if="$store.state.settings">
                   <u>For customer service</u><br> Please contact:<router-link
                     class="cursor"
                     to=""
                   > {{$store.state.settings.shopEmail}}</router-link>
                 </h6> -->
-              </div>
             </div>
           </div>
         </div>
@@ -96,7 +93,7 @@
 <script>
 import { clearCart } from "~/config";
 const Product = () => import("~/components/Product");
-const Header = () => import("~/components/Header");
+const Header = () => import("~/components/HeaderFood");
 export default {
   components: { Header, Product },
   computed: {
@@ -133,7 +130,7 @@ export default {
       console.log("Cancel order  requested");
     }
   },
-
+  middleware: "back",
   head() {
     return {
       title: "Order placed successfully",
@@ -318,7 +315,8 @@ h1 {
   font-size: 20px;
 }
 h2 {
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 300;
   margin-top: -10px;
 }
 small {

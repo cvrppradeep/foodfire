@@ -1,30 +1,27 @@
 <template>
   <div>
-    <div>
-      <!-- <label>{{f._id.deliveryDate}}</label> -->
-      <div>
+    <!-- <Header /> -->
+    <!-- <label>{{f._id.deliveryDate}}</label> -->
+    <div
+      class="img-height backgroundimg"
+      v-lazy:background-image="'/images'+food.img"
+      alt=""
+    >
+    </div>
 
-        <div
-          class="img-height backgroundimg"
-          v-lazy:background-image="'/images'+food.img"
-          alt=""
-        >
-
+    <div class="border container">
+      <div class="a-row s-b">
+        <div>
+          <a class="pink">{{food.deliveryDate | date}}</a>
         </div>
-
-        <div class="border container">
-          <div class="a-row s-b">
-            <div>
-              <a class="pink">{{food.deliveryDate | date}}</a>
-            </div>
-            <div>
-              <span class="pink small">Only {{food.stock}} left</span>
-            </div>
-          </div>
-          <div class="fontbold">
-            {{food.name}}
-          </div>
-          <!-- <div class="address">
+        <div>
+          <span class="pink small">Only {{food.stock}} left</span>
+        </div>
+      </div>
+      <div class="fontbold">
+        {{food.name}}
+      </div>
+      <!-- <div class="address">
             <div class="p-6">
               <span> {{food.description}}</span>
             </div>
@@ -35,86 +32,85 @@
            <span> 3.4 kms away</span>
          </div>
         </div>-->
+      <div>
+        <div class="review">
           <div>
-            <div class="review">
-              <div>
-                <Ratingcircle rating="2.5" />
-                <span
-                  class="p-1"
-                  v-if="reviews.length>0"
-                >0 reviews</span>
-              </div>
-              <div
-                v-if="food.type=='V'"
-                class="fx"
-              >
-                <img
-                  src="/veg.png"
-                  style="width:20px;height:20px;"
-                /> Veg
-              </div>
-              <div
-                v-else
-                class="fx"
-              >
-                <img
-                  src="/non-veg.png"
-                  style="width:20px;height:20px;"
-                /> Non-Veg
-              </div>
-            </div>
+            <Ratingcircle rating="2.5" />
+            <span
+              class="p-1"
+              v-if="reviews.length>0"
+            >0 reviews</span>
           </div>
-        </div>
-        <div class="amount border">
-          <div>
-            <span class="price">{{food.rate * qty | currency}}</span>
+          <div
+            v-if="food.type=='V'"
+            class="fx"
+          >
+            <img
+              src="/veg.png"
+              style="width:20px;height:20px;"
+            /> Veg
           </div>
-          <div>
-            <Foodcartbutton
-              :qty="qty"
-              @add="add"
-            />
-          </div>
-        </div>
-        <div>
-          <div class="button-container">
-            <div
-              class="center"
-              v-if="user.phone"
-            >
-              QrNo: &nbsp; <input
-                class="input"
-                style="max-width:100px;margin-bottom:0.5rem"
-                v-model="address"
-                placeholder="Your QrNo"
-              />
-            </div>
-            <button
-              class="button-lg blue"
-              v-if="user.phone"
-              @click="order(food)"
-            >
-              <span>Pre Order</span>
-              <span><img
-                  class="img-style"
-                  src='/backarrow.svg'
-                /></span>
-            </button>
-            <button
-              v-else
-              class="button-lg blue"
-              @click="go('/food/login?returnUrl=/food/'+$route.params.id)"
-            >
-              <span>Login to Order</span>
-              <span><img
-                  class="img-style"
-                  src='/backarrow.svg'
-                /></span>
-            </button>
+          <div
+            v-else
+            class="fx"
+          >
+            <img
+              src="/non-veg.png"
+              style="width:20px;height:20px;"
+            /> Non-Veg
           </div>
         </div>
       </div>
-      <!-- <div class="card" >
+    </div>
+    <div class="amount border">
+      <div>
+        <span class="price">{{food.rate * qty | currency}}</span>
+      </div>
+      <div>
+        <Foodcartbutton
+          :qty="qty"
+          @add="add"
+        />
+      </div>
+    </div>
+    <div>
+      <div class="button-container">
+        <div
+          class="center"
+          v-if="user.phone"
+        >
+         <span style="margin-top:-10px"> QrNo: &nbsp; </span><input
+            class="input"
+            style="max-width:100px;margin-bottom:0.5rem"
+            v-model="address"
+            placeholder="Your QrNo"
+          />
+        </div>
+        <button
+          class="button-lg blue"
+          v-if="user.phone"
+          @click="order(food)"
+        >
+          <span>Pre Order</span>
+          <span><img
+              class="img-style"
+              src='/backarrow.svg'
+            /></span>
+        </button>
+        <button
+          v-else
+          class="button-lg blue"
+          @click="go('/food/login?returnUrl=/food/'+$route.params.id)"
+        >
+          <span>Login to Order</span>
+          <span><img
+              class="img-style"
+              src='/backarrow.svg'
+            /></span>
+        </button>
+      </div>
+    </div>
+    <!-- <div class="card" >
       <div class="a-row">
       <div>
 <img class="img-size" src='/eagle.png'/>
@@ -130,7 +126,7 @@
    <img class="" src='/rightarrow-1.svg'/>
 </div>
 </div> -->
-      <!-- <div class="card">
+    <!-- <div class="card">
         <div class="a-row">
           <div>
             <img
@@ -150,7 +146,7 @@
    <img class="" src='/rightarrow-1.svg'/>
 </div>
       </div> -->
-      <!-- <div style="padding: 1rem;">
+    <!-- <div style="padding: 1rem;">
         <div class="a-column">
           <div style="padding-bottom: 1rem;"> <input class="input"/></div>
           <button
@@ -161,15 +157,15 @@
         </div>
       </div> -->
 
-    </div>
   </div>
 </template>
 <script>
 const Ratingcircle = () => import("~/components/Ratingcircle");
 const Foodcartbutton = () => import("~/components/Foodcartbutton");
+const Header = () => import("~/components/HeaderFood");
 
 export default {
-  components: { Ratingcircle, Foodcartbutton },
+  components: { Ratingcircle, Foodcartbutton, Header },
   async asyncData({ $axios, route }) {
     let address = "";
     const food = await $axios.$get("foods/" + route.params.id);
