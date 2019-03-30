@@ -11,6 +11,7 @@
       :categories="categories"
       class="only-desktop"
     />
+    
     <overlay :closed="settings.closed" />
     <cart-bar />
   </div>
