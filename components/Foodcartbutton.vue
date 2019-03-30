@@ -55,6 +55,7 @@ export default {
   white-space: nowrap;
   background: #f5f5f5;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
+      outline: none;
 }
 .cart-button.is-danger {
   border-color: transparent;

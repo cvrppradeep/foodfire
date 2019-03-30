@@ -3,18 +3,15 @@
   <div>
        <!-- <label>{{f._id.deliveryDate}}</label> -->
 <div>
-
-    <div class="img-height backgroundimg" v-lazy:background-image="'/images'+food.img"           alt="">
-     
-</div>
-
+<div class="img-height backgroundimg" v-lazy:background-image="'/images'+food.img" alt="">
+     </div>
 <div class="border container">
   <div class="a-row s-b">
   <div>
     <a class="pink">{{food.deliveryDate}}</a>
   </div>
   <div>
-    <span class="pink">trterte</span>
+    <span class="pink">avl:</span>
   </div>
   </div>
   <div class="fontbold">
@@ -22,7 +19,7 @@
   </div>
    <div class="address">
     <div class="p-6">
-      <span> {{food.description}}</span>
+      <span>{{food.description}}</span>
       </div> 
       <!-- <div class="p-6 m-1">
         <strong>.</strong>
@@ -55,7 +52,7 @@
     </div>
     </div>
     </div>
-    <div class="card" >
+    <!-- <div class="card" >
       <div class="a-row">
       <div>
 <img class="img-size" src='/eagle.png'/>
@@ -70,7 +67,36 @@
       <div>
    <img class="" src='/rightarrow-1.svg'/>
 </div>
+</div> -->
+<div class="card" >
+      <div class="a-row">
+      <div>
+<img class="img-size" src='/eagle.png'/>
+      </div>
+      <div class="p-1">
+        <div class="instagold">
+  <span><Ratingcircle/></span>
+        </div>
+        <div class="f-weightforcode">{{food.vendor_name}}</div>
+      </div>
+      </div>
+      <!-- <div>
+   <img class="" src='/rightarrow-1.svg'/>
+</div> -->
 </div>
+<div style="padding: 1rem;" >
+  <div class="a-column">
+  <div style="padding-bottom: 1rem;">  <input class="input" ></div>
+    <button type="submit"
+                class="big-button blue"><span>Submit</span>
+              </button>
+  <!-- <button class="button"  >
+    <span>Submit</span>
+  </button> -->
+  
+</div>
+</div>
+
   </div>
 </div>
   <!-- <div>
@@ -193,6 +219,13 @@ border-radius: 5px;
   display: flex;
   flex-direction: row;
 }
+.a-column{
+ display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+    box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
+}
 .p-1{
   padding-left: 1rem;
   margin-top: 0.1rem;
@@ -264,5 +297,35 @@ height:3rem;
 }
 .s-b{
   justify-content:space-between;
+}
+.input{
+  height: 45px;
+   border: 1px solid #187de0;
+   padding: 5px 4px 3px 6px;
+    border-radius: 3px;
+}
+.big-button {
+    text-transform: none;
+    text-transform: initial;
+    color: #fff;
+    -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    display: block;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+    padding: 7px;
+    outline: none;
+    font-family: Karla, Roboto, sans-serif;
+}
+.blue{
+   background: linear-gradient(87deg, #40c8fb 0, #1c45da 100%) !important;
+    border-color: #69beda;
+
+}
+.red{
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
+    border-color: #fb6340;
 }
 </style>
