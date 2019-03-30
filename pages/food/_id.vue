@@ -79,6 +79,7 @@
     {{food.description}}
     {{food.vendor_name}}
     {{food.deliveryDate | date}}
+    {{food.rate}}
     {{food.qty}}
     <button @click="order(food)">Order Now</button>
   </div> -->
@@ -90,8 +91,15 @@ const Ratingcircle = () => import("~/components/Ratingcircle");
 export default {
   components:{Ratingcircle,Foodcartbutton},
   async asyncData({ $axios, route }) {
+    let address = "";
     const food = await $axios.$get("foods/" + route.params.id);
-    return { food };
+    try {
+      let user = await $axios.$get("users/me");
+      if (user && user.address) {
+        address = user.address.qrno;
+      }
+    } catch (e) {}
+    return { qty: 1, food, address };
   },
   methods: {
     go(url) {
@@ -100,18 +108,20 @@ export default {
     async order(food) {
       try {
         let order = await this.$axios.$post("food-orders", {
-          img: food.img[0],
-          name: food.name,
-          description: food.description,
-          vendor_name: food.vendor_name,
-          vendor_email: food.vendor_email,
-          vendor_phone: food.vendor_phone,
-          vendor_id: food.vendor_id,
-          deliveryDate: food.deliveryDate,
-          qty: food.qty
+          pid: food._id,
+          qty: this.qty,
+          address: { qrno: this.address }
         });
-        console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzz", order);
-      } catch (e) {}
+      } catch (e) {
+        if (e.response.status == 401) this.$router.push("/food/login");
+        // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", e.response);
+        this.$store.commit("setErr", e.response.data);
+      }
+    }
+  },
+  computed: {
+    user() {
+      return (this.$store.state.auth || {}).user || {};
     }
   }
 };
