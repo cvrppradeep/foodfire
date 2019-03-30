@@ -122,9 +122,6 @@ export default {
       getTotal: "cart/getTotal"
     })
   },
-  created() {
-    console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzz", this.$route.query.returnUrl);
-  },
   methods: {
     onPhoneChange(e) {
       if (e.keyCode != 13) {

@@ -65,7 +65,8 @@ export const manifest = {
 export const head = {
   link: [
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-    { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' }
+    { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Karla' }
   ],
   meta: [
     { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
