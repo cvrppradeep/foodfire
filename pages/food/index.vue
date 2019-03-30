@@ -59,9 +59,6 @@ export default {
 </script>
 
 <style scoped>
-body {
-  font-family: Karla, Roboto, sans-serif;
-}
 .listingcard {
   /* height: 29vh;  */
   border-radius: 0.2rem;

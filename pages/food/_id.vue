@@ -22,23 +22,23 @@
             </div>
           </div>
           <div class="fontbold">
-            <a>{{food.name}}</a>
+            {{food.name}}
           </div>
-          <div class="address">
+          <!-- <div class="address">
             <div class="p-6">
               <span> {{food.description}}</span>
             </div>
-            <!-- <div class="p-6 m-1">
+            <div class="p-6 m-1">
         <strong>.</strong>
         </div>
          <div>
            <span> 3.4 kms away</span>
-         </div> -->
-          </div>
+         </div>
+        </div>-->
           <div>
             <div class="review">
               <div>
-                <Ratingcircle rating="3.5" />
+                <Ratingcircle rating="2.5" />
                 <span
                   class="p-1"
                   v-if="reviews.length>0"
@@ -78,11 +78,13 @@
         </div>
         <div>
           <div class="button-container">
-            <div class="center">
+            <div
+              class="center"
+              v-if="user.phone"
+            >
               QrNo: &nbsp; <input
                 class="input"
                 style="max-width:100px;margin-bottom:0.5rem"
-                v-if="user.phone"
                 v-model="address"
                 placeholder="Your QrNo"
               />
@@ -227,9 +229,6 @@ export default {
 .small {
   font-size: 0.6rem;
 }
-body {
-  font-family: Karla, Roboto, sans-serif;
-}
 .container {
   padding: 1rem;
   display: flex;
@@ -254,10 +253,8 @@ body {
   letter-spacing: 1px;
 }
 .fontbold {
-  font-weight: bolder;
+  font-weight: 700;
   font-size: 2rem;
-  letter-spacing: -1px;
-  /* margin-left: -0.1rem; */
   padding-top: 9px;
 }
 .address {
@@ -321,8 +318,8 @@ body {
   text-transform: none;
   color: #fff;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  font-family: Karla, Roboto, sans-serif;
   font-size: 1.5rem;
+  font-weight: 700;
   border-radius: 2.3rem;
   border: none;
   padding: 0.5rem 2rem;
@@ -392,7 +389,6 @@ body {
   border-radius: 0.3rem;
   padding: 7px;
   outline: none;
-  font-family: Karla, Roboto, sans-serif;
 }
 .blue {
   background: linear-gradient(87deg, #40c8fb 0, #1c45da 100%) !important;
