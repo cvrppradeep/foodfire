@@ -1,27 +1,18 @@
 <template>
-    <div class="flex-column ">
-    <!-- <div
-      v-if="!checkCart({_id:product._id, vid:variant._id})"
-      :disabled="!variant || variant.price<1 || variant.stock<1 || $store.state.loading"
-      @click="addToBag(1);"
-    >
-      <button class="cart-button buttonrounded">
-        <img src="/plus.svg" />
-      </button>
-    </div> <div v-else></div> -->
+  <div class="flex-column ">
     <div>
       <div class="flex-row-nocenter">
         <button
           class="cart-button buttonrounded "
-          
+          @click="add(-1)"
+          v-if="qty>1"
         >
           <img src="/minus.svg" />
         </button>
-        <span class="product-id">1</span>
+        <span class="product-id">{{qty}}</span>
         <button
           class="cart-button button.is-danger buttonrounded btnplus-clr"
-          
-        
+          @click="add(1)"
         >
           <img src="/plus.svg" />
         </button>
@@ -31,8 +22,13 @@
 </template>
 <script>
 export default {
-    
-}
+  props: ["qty"],
+  methods: {
+    add(qty) {
+      this.$emit("add", qty);
+    }
+  }
+};
 </script>
 
 <style>
@@ -55,7 +51,7 @@ export default {
   white-space: nowrap;
   background: #f5f5f5;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
-      outline: none;
+  outline: none;
 }
 .cart-button.is-danger {
   border-color: transparent;

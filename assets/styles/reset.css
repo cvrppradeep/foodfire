@@ -334,3 +334,21 @@ textarea {
   justify-content: center;
   align-items: center;
 }
+
+img[lazy="loaded"] {
+    animation: fadein 1s
+}
+
+@keyframes fadein {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+.heading {
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.175) !important;
+  margin-bottom: 0.5rem;
+  padding: 1rem 0;
+  font-size: 2rem;
+}

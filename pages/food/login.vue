@@ -1,11 +1,6 @@
 <template>
   <div>
-    <Header />
-    <div class="head">
-      <center class="title">
-        <strong>Login</strong>
-      </center>
-    </div>
+    <div class="heading">Login</div>
     <!-- <h2 class="center">Login</h2> -->
     <div class="container">
       <form
@@ -127,6 +122,9 @@ export default {
       getTotal: "cart/getTotal"
     })
   },
+  created() {
+    console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzz", this.$route.query.returnUrl);
+  },
   methods: {
     onPhoneChange(e) {
       if (e.keyCode != 13) {
@@ -176,7 +174,8 @@ export default {
           });
           if (status == 200 || status == 201) {
             this.$store.commit("success", "Verified! Thank You.");
-            this.$router.push("/food");
+            let returnUrl = this.$route.query.returnUrl || "/food";
+            this.$router.push(returnUrl);
           }
           // this.showOTP = false;
         } catch (e) {
