@@ -1,124 +1,81 @@
 <template>
-  <div v-if="settings">
+  <div>
     <Header />
-    <!-- <hero :closed="settings.closed" /> -->
-    <!-- <info /> -->
-    <featured-categories
-      :categories="categories"
-      class="only-mobile"
-    />
-    <featured-categories-desktop
-      :categories="categories"
-      class="only-desktop"
-    />
-    
-    <overlay :closed="settings.closed" />
-    <cart-bar />
+    <div class="fx hero">
+      <div
+        class="section banner food blue"
+        @click="go('/food')"
+      >
+        <img src="/food-tray.svg" />
+        <h1>Food Order</h1>
+        <div>Misiki Food Mela</div>
+      </div>
+      <div
+        class="section banner travel red"
+        @click="go('/travel')"
+      >
+        <img src="/cab.svg" />
+        <h1>Book a Taxi</h1>
+        <div>Misiki Taxi</div>
+      </div>
+    </div>
+    <div
+      class="fx banner yellow"
+      @click="go('/food/login')"
+    >
+      <img
+        src="/paper-plane.svg"
+        style="width:20px"
+      />
+      <div class="abs">Join Misiki Food Mela</div>
+      <div>13th April' 2019</div>
+    </div>
+    <div
+      class="fx hero-banner"
+      @click="go('/food')"
+    >
+      <img
+        v-lazy="'food-festival.png'"
+        class="backgroundimg"
+      />
+    </div>
   </div>
 </template>
 <script>
-const Overlay = () => import("~/components/Overlay");
-const Info = () => import("~/components/Info");
-const CartBar = () => import("~/components/CartBar");
-const Header = () => import("~/components/Header");
-const FeaturedCategories = () => import("~/components/FeaturedCategories");
-const FeaturedCategoriesDesktop = () =>
-  import("~/components/FeaturedCategoriesDesktop");
-import {
-  recordsPerScroll,
-  currency,
-  sorts,
-  priceRange,
-  TITLE,
-  DESCRIPTION,
-  KEYWORDS
-} from "~/config";
-import { mapMutations, mapActions } from "vuex";
-
+const Header = () => import("~/components/HeaderFood");
 export default {
-  async asyncData({ $axios }) {
-    let categories = [],
-      settings = {},
-      err = null;
-    try {
-      categories = await $axios.$get("categories/featured");
-      settings = await $axios.$get("settings");
-    } catch (e) {
-      if (e && e.response && e.response.data) {
-        err = e.response.data;
-      } else if (e && e.response) {
-        err = e.response;
-      } else {
-        err = e;
-      }
-      console.log("err...", `${err}`);
+  components: { Header },
+  layout: "none",
+  methods: {
+    go(url) {
+      this.$router.push(url);
     }
-    return { categories, settings: settings[0], err };
-  },
-  data() {
-    return {
-      closed: true
-    };
-  },
-
-  async created() {},
-  components: {
-    Overlay,
-    Info,
-    CartBar,
-    Header,
-    FeaturedCategories,
-    FeaturedCategoriesDesktop
-  },
-  head() {
-    const host = process.server
-      ? this.$ssrContext.req.headers.host
-      : window.location.host;
-    return {
-      title: this.title || TITLE,
-      meta: [
-        {
-          hid: "og:description",
-          name: "Description",
-          property: "og:description",
-          content: this.description || DESCRIPTION
-        },
-        {
-          hid: "keywords",
-          name: "Keywords",
-          property: "keywords",
-          content: this.keywords || KEYWORDS
-        },
-        {
-          hid: "og:title",
-          name: "og:title",
-          property: "og:title",
-          content: this.title || TITLE
-        },
-        // Google+ / Schema.org
-        {
-          name: "og_url",
-          property: "og:url",
-          content: host + "/search/" + this.params
-        },
-        {
-          name: "og_image",
-          property: "og:image",
-          content: host + "/uploads/large/email_logo-742266670944.png"
-        },
-        // Twitter
-        {
-          name: "twitter:title",
-          content: this.title || TITLE
-        },
-        {
-          name: "twitter:description",
-          content: this.description || DESCRIPTION
-        }
-      ]
-    };
   }
 };
 </script>
-<style>
+<style scoped lang="scss">
+.section {
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  h1 {
+    margin-top: 5px;
+  }
+  img {
+    width: 30px;
+  }
+  div {
+    margin-top: 5px;
+    margin-left: 0px;
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+}
+.hero-banner {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 3px;
+  width: 100%;
+}
 </style>
+

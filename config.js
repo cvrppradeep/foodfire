@@ -1,10 +1,10 @@
 const REMOTE_API_URL = 'https://api.iotutorials.com'
-// const LOCAL_API_URL = 'https://api.iotutorials.com'
-const LOCAL_API_URL = 'http://localhost:9006'
+const LOCAL_API_URL = 'https://api.iotutorials.com'
+// const LOCAL_API_URL = 'http://localhost:9006'
 const DOMAIN = (process.env.NODE_ENV === 'production') ? REMOTE_API_URL : LOCAL_API_URL
-export const TITLE = "Online Shopping for Groceries at Sunabeda"
-export const DESCRIPTION = "Foodfire.com offer Online Shopping in Sunabeda. Huge Collection of Grocery & More!"
-export const KEYWORDS = "Foodfire.com,Foodfire Accessories,Affordable Luxury,Sunabeda's Best Grocery Online Shopping,Online Grocery, Foodfire, online shopping, online jewelry, jewellery, handbags, clutches, sunglasses, ethnic jewellery, nightwear, lingrie, clothing, bracelets, rings, sets, necklace, pendants, earrings, online jewellery in lahore, online shopping in Sunabeda, Foodfire online shopping"
+export const TITLE = "Misiki - The joy of sharing"
+export const DESCRIPTION = "Wanna showcase your cooking skills? Earn while others relish the taste...Misiki Food...a new online platform for food lovers. Join as chef!"
+export const KEYWORDS = "Be the Master Chef of Sunabeda and earn from home! Coming soon..Misiki Food / Eats..join as Chef!"
 export const PROXY = DOMAIN
 export const WS_URL = DOMAIN
 export const API = DOMAIN
@@ -55,8 +55,8 @@ export const menuItems = [
   { text: 'Change Password', url: '/account/change-password', authenticate: 'user', icon: 'lock', color: 'brown' }
 ]
 export const manifest = {
-  name: 'Foodfire',
-  short_name: 'Foodfire',
+  name: 'Misiki',
+  short_name: 'Misiki',
   start_url: '/',
   display: 'standalone',
   background_color: '#fff',
@@ -66,7 +66,7 @@ export const head = {
   link: [
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
-    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto' }
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Karla' }
   ],
   meta: [
     { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
@@ -74,20 +74,20 @@ export const head = {
     { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=2.0' },
     { name: "robots", content: "noodp" },
     { hid: "author", name: "author", content: "Swadesh" },
-    { name: "og_site_name", properly: "og:site:name", content: "FoodFire" },
+    { name: "og_site_name", properly: "og:site:name", content: "Misiki" },
     { name: "twitter:creator", content: "@2lessons" },
     { name: "twitter:app:country", content: "pk" },
-    { name: "al:ios:app_name", content: "FoodFire" },
+    { name: "al:ios:app_name", content: "Misiki" },
     { name: "twitter:card", content: "app" },
-    { name: "twitter:site", content: "@foodfire" },
-    { name: "twitter:app:name:iphone", content: "Foodfire" },
-    { name: "twitter:app:name:ipad", content: "Foodfire" },
-    { name: "twitter:app:name:googleplay", content: "Foodfire" },
-    { name: "twitter:app:id:googleplay", content: "com.foodfire.android" },
-    { name: "application-name", content: "Foodfire" },
+    { name: "twitter:site", content: "@misiki" },
+    { name: "twitter:app:name:iphone", content: "Misiki" },
+    { name: "twitter:app:name:ipad", content: "Misiki" },
+    { name: "twitter:app:name:googleplay", content: "Misiki" },
+    { name: "twitter:app:id:googleplay", content: "com.misiki.android" },
+    { name: "application-name", content: "Misiki" },
     { name: "og_type", property: "og:type", content: "website" },
   ],
-  noscript: [{ innerHTML: `We're sorry but Foodfire.com doesn't work properly without JavaScript enabled. Please enable it to continue.` }],
+  noscript: [{ innerHTML: `We're sorry but Misiki.in doesn't work properly without JavaScript enabled. Please enable it to continue.` }],
   htmlAttrs: { lang: 'en' },
   __dangerouslyDisableSanitizers: ['script']
 }

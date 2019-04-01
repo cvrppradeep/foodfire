@@ -21,6 +21,8 @@ body {
 }
 .fx{
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .center{
   justify-content: center;
@@ -152,21 +154,6 @@ img {
   .only-mobile.block {
     display: block !important;
   }
-}
-h3 {
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-top: 0;
-  font-size: 1.125rem;
-}
-h4 {
-  text-transform: uppercase;
-  font-size: 1.01rem;
-  letter-spacing: 2px;
-}
-h1 {
-  text-transform: uppercase;
-  letter-spacing: 2px;
 }
 button {
   cursor: pointer;
@@ -351,4 +338,26 @@ img[lazy="loaded"] {
   margin-bottom: 0.5rem;
   padding: 1rem 0;
   font-size: 2rem;
+}
+ .banner {
+              flex: 1;
+              margin: 10px;
+              padding: 1rem;
+              border-radius: 3px;
+              color: #fff;
+            }
+.yellow {
+  box-shadow: 10px 10px 30px -15px #c7581d;
+  background: linear-gradient(87deg, #e48c3a 0, #eb6e2b 100%);
+  border-color: #69beda;
+}
+.blue {
+  box-shadow: 10px 10px 30px -15px #1c45da;
+  background: linear-gradient(87deg, #40c8fb 0, #1c45da 100%);
+  border-color: #69beda;
+}
+.red {
+  box-shadow: 10px 10px 30px -15px #da1c5f;
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%);
+  border-color: #fb6340;
 }

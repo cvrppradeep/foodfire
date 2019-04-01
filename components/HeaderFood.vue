@@ -10,7 +10,7 @@
           <router-link to="/food">
             <img
               class="logo"
-              src="~/static/logo.png"
+              src="/logo.png"
               alt="FoodFire"
               height="28"
             >
