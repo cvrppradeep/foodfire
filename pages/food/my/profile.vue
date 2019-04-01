@@ -10,7 +10,7 @@
       v-if="profile"
     >
       <div class="form">
-        <div class="form-element">
+        <!-- <div class="form-element">
           <label>Restaurant:</label>
           <input
             type="text"
@@ -19,7 +19,7 @@
             v-model="profile.restaurant"
             placeholder="Restaurant Name"
           />
-        </div>
+        </div> -->
         <div class="form-element">
           <label>First Name:</label>
           <input
