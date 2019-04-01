@@ -7,11 +7,11 @@
     <div class="flex-space-between-header">
       <div class="header-logo">
         <a class="header-item flex-center">
-          <router-link to="/food">
+          <router-link to="/">
             <img
               class="logo"
               src="/logo.png"
-              alt="FoodFire"
+              alt="Misiki"
               height="28"
             >
           </router-link>

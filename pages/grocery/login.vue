@@ -19,6 +19,7 @@
           <div class="margin-phn">
             <label for="phone">Phone:</label>
             <input
+              v-focus
               type="tel"
               class="phone"
               name='phone'

@@ -1,5 +1,12 @@
 import Vue from 'vue'
 import { currency as currencyConfig } from '~/config'
+Vue.directive('focus', {
+    // When the bound element is inserted into the DOM...
+    inserted: function (el) {
+        // Focus the element
+        el.focus()
+    }
+})
 Vue.filter('currency', function (value, currency, decimals) {
     const digitsRE = /(\d{3})(?=\d)/g
     value = parseFloat(value)
