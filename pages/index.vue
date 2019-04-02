@@ -27,7 +27,7 @@
         src="/paper-plane.svg"
         style="width:20px"
       />
-      <div class="abs">Join Misiki Food Mela</div>
+      <div class="abs">Join as Chef</div>
       <div>13th April' 2019</div>
     </div>
     <div
