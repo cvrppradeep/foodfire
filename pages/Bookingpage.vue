@@ -5,9 +5,9 @@
     <div>
         <img class="arrow" src="rightarrow-1.svg"/>
     </div>
-    <div>
+    <div class="column">
         <span class="span-1">Cuisine of Antebellum Amrica
-        </span> <br>
+        </span> 
          <span class="span-2">Cuisine of Antebellum Amrica
         </span>
         
@@ -21,14 +21,14 @@
             <img class="dining-img" src="table.png"/>
         </div>
          <div class="tick-align">
-            <img class="checkmark-img"  src="checkmark.png"/> <br>
+            <img class="checkmark-img"  src="tick.png"/> <br>
                 <span class="confirmtext"> Confirmed Booking</span>
         </div>
     </div>
     <div class="contain-c box">
         
-            <span class="span-name">full name</span>
-    <div class="contain pt-1">
+            <span class="span-name">Advit j. singh</span>
+    <div class="contain">
         <div>
             <img src="watch.svg"/>
              </div>
@@ -44,8 +44,8 @@
         </div>
         <span class=" pl-1"> 4 guest </span>
          </div>
-         <div class="contain border">
-        <span class="pl-1 bluetext"> Edit </span>
+         <div class="contain border pb-1 pt-1">
+        <span class=" bluetext"> Edit </span>
         
         <span class=" pl-1 f-w">Cancel Booking</span>
          </div>
@@ -67,16 +67,30 @@ export default {
 }
 </script>
 <style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .bgclr{
     background-color: #d5f7ff;
     height: 46vh;
-    border-radius:0 0 6rem 6rem;
+    border-radius:0 0 85% 85% / 19%;
 width: 100%;
+background-size: cover;
+background-attachment: fixed;
+position: relative;
+
+}
+.column{
+    display: flex;
+    flex-direction: column;
 }
 .arrow{
    transform: rotate(90deg);
    height: 2,5rem;
-   width: 2.5rem;
+  width: 2.1rem;
+    margin-top: -0.9rem;
   
 }
 .contain{
@@ -88,7 +102,7 @@ width: 100%;
    {
     justify-content: space-around;
     padding-top: 1rem;
-    border-bottom: 1px solid #d0c7c7;
+    /* border-bottom: 1px solid #d0c7c7; */
 }
 .span-1{
     font-size: 1rem;
@@ -97,6 +111,7 @@ width: 100%;
 .span-2{
     font-size: 0.9rem;
     color: grey;
+    margin-top: 0.3rem;
 }
 .dining-img{
     width: 15rem;
@@ -110,6 +125,7 @@ width: 100%;
 }
 .checkmark-img{
     width: 2.3rem;
+    border-radius: 0.9rem;
 }
 .confirmtext{
     font-size: 0.7rem;
@@ -118,7 +134,7 @@ width: 100%;
 }
 .tick-align{
     text-align: center;
-   padding-top: 2.5rem;
+   padding-top: 3rem;
 }
 .contain-c{
     display: flex;
@@ -135,7 +151,7 @@ width: 100%;
      color: black;
 }
 .span-name{
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bolder;
     letter-spacing: -0.1rem;
 }
@@ -154,7 +170,7 @@ width: 100%;
 }
 .border{
  border-top: 1px solid #f1f1f1;
- padding: 1rem;
+ 
 }
 .pb-1{
     padding-bottom: 1rem;
