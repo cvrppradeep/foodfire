@@ -79,7 +79,7 @@
           class="center"
           v-if="user.phone"
         >
-         <span style="margin-top:-10px"> QrNo: &nbsp; </span><input
+          <span style="margin-top:-10px"> QrNo: &nbsp; </span><input
             class="input"
             style="max-width:100px;margin-bottom:0.5rem"
             v-model="address"
@@ -100,7 +100,7 @@
         <button
           v-else
           class="button-lg blue"
-          @click="go('/food/login?returnUrl=/food/'+$route.params.id)"
+          @click="go('/login?return=/food/'+$route.params.id)"
         >
           <span>Login to Order</span>
           <span><img
@@ -208,7 +208,7 @@ export default {
         });
         this.$router.push("/food/success?id=" + order._id);
       } catch (e) {
-        if (e.response.status == 401) this.$router.push("/food/login");
+        if (e.response.status == 401) this.$router.push("/login");
         this.$store.commit("setErr", e.response.data);
       }
     }

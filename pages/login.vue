@@ -173,7 +173,7 @@ export default {
           });
           if (status == 200 || status == 201) {
             this.$store.commit("success", "Verified! Thank You.");
-            let returnUrl = this.$route.query.returnUrl || "/food";
+            let returnUrl = this.$route.query.return || "/";
             this.$router.push(returnUrl);
           }
           // this.showOTP = false;

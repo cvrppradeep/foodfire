@@ -14,7 +14,7 @@
           <div class="header-viewcart">
             <router-link
               class="items flex-center color "
-              to="/cart"
+              to="/grocery/cart"
             >
               <div class="flex-center">
                 <div class="cart-icon">

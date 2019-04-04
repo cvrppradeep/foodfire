@@ -3,7 +3,7 @@
     <Header />
     <div
       class="hero"
-      @click="go('/food')"
+      @click="go('/')"
     >
       <center>
         <div class="circle">
@@ -24,11 +24,15 @@
       <ul>
         <li>
           <img src="/profile.svg" />
-          <nuxt-link to="/food/my/profile"> My Profile</nuxt-link>
+          <nuxt-link to="/my/profile"> My Profile</nuxt-link>
         </li>
         <li>
           <img src="/orders.svg" />
-          <nuxt-link to="/food/my/orders"> My Orders</nuxt-link>
+          <nuxt-link to="/my/food/orders"> Food Orders</nuxt-link>
+        </li>
+        <li>
+          <img src="/orders.svg" />
+          <nuxt-link to="/my/grocery/orders"> Grocery Orders</nuxt-link>
         </li>
         <!-- <li>
           <img src="/contact.svg" />
@@ -50,7 +54,7 @@
 const Header = () => import("~/components/HeaderFood");
 export default {
   fetch({ store, redirect }) {
-    if (!(store.state.auth || {}).user) return redirect("/login?return=my");
+    if (!(store.state.auth || {}).user) return redirect("/login?return=/my");
   },
   async asyncData({ store }) {
     let profile = {};

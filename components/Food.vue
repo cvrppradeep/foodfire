@@ -5,7 +5,7 @@
       v-if="'/images'+product.img"
     >
       <img
-        v-lazy="product.img"
+        v-lazy="'/images'+product.img"
         alt=""
       />
     </div>

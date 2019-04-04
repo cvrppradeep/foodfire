@@ -177,7 +177,7 @@ export default {
           });
           if (status == 200 || status == 201) {
             this.$store.commit("success", "Verified! Thank You.");
-            this.$router.push("/checkout");
+            this.$router.push("/grocery/checkout");
           }
           // this.showOTP = false;
         } catch (e) {

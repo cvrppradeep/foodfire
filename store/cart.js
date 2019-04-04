@@ -160,7 +160,7 @@ const actions = {
         const currency_code = currency.code || '₹'
         paymentMethod = paymentMethod || 'COD'
         let err = null
-        if (!address.address || address.address == "") {
+        if (!address || address == "") {
             err = "Please enter Qr No"
             throw err;
         }
@@ -190,7 +190,7 @@ const actions = {
                     commit('setLoading', true, { root: true })
                     let order = await this.$axios.$post('orders', orderDetails)
                     commit('setLoading', false, { root: true })
-                    this.$router.push('/success?id=' + order._id + '&amount=' + orderDetails.amount.total)
+                    this.$router.push('/grocery/success?id=' + order._id + '&amount=' + orderDetails.amount.total)
                 } catch (err) {
                     // Start: Remove from cart and add to wishlist in case of error (e.g. stock=0 or item has been deleted from databse)
                     commit('setLoading', false, { root: true })
