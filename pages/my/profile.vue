@@ -68,7 +68,7 @@ export default {
   },
   fetch({ store, redirect }) {
     if (!(store.state.auth || {}).user)
-      return redirect("/food/login?return=my/profile");
+      return redirect("/food/login?return=/my/profile");
   },
   async asyncData({ store }) {
     let profile = {};
@@ -94,7 +94,7 @@ export default {
     }),
     save(profile) {
       this.updateProfile(profile);
-      this.$router.push("/food/my");
+      this.$router.push("/my");
     }
   },
   watch: {

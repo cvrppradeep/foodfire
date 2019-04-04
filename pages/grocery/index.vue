@@ -11,7 +11,7 @@
       :categories="categories"
       class="only-desktop"
     />
-    
+
     <overlay :closed="settings.closed" />
     <cart-bar />
   </div>
@@ -99,7 +99,7 @@ export default {
         {
           name: "og_url",
           property: "og:url",
-          content: host + "/search/" + this.params
+          content: host + "/grocery/search/" + this.params
         },
         {
           name: "og_image",

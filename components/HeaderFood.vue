@@ -24,7 +24,7 @@
             class="flex-center logo-size"
             aria-label="menu"
             v-if="user"
-            @click="go('/food/my')"
+            @click="go('/my')"
           ><img
               class="img"
               src="/person.svg"
@@ -35,7 +35,7 @@
             class="flex-center logo-size"
             aria-label="menu"
             v-else
-            @click="go('/food/login')"
+            @click="go('/login?return=/grocery')"
           >
             <img
               class="img"
@@ -51,91 +51,17 @@
 import { mapGetters, mapActions } from "vuex";
 import { typingTimeout } from "~/config";
 export default {
-  data() {
-    return {
-      search: "",
-      typingTimeout
-    };
-  },
   methods: {
-    submit() {
-      this.$router.push("/search/" + this.search);
-    },
-    closeSidebar() {
-      this.sidebar = false;
-    },
     logout() {
       this.$store.dispatch("auth/logout").then(() => {});
     },
     go(url) {
       this.$router.push(url);
-    },
-    ...mapActions({
-      addToCart: "cart/addToCart",
-      fetch: "cart/fetch"
-    }),
-    async checkAndAddToCart(item) {
-      try {
-        this.adding = true;
-        await this.addToCart(item);
-        this.adding = false;
-      } catch (e) {
-        console.log("err...", e.response.data);
-      }
-      this.refreshStock(); // Not required, because stock is being queried from database through addToCart... On page load stock need to be refreshed and added to items variable. Hence this is also required
-    },
-    async refreshStock() {
-      // Each items stock is checked on page load
-      try {
-        this.items = await this.$axios.$post(
-          `products/refresh`,
-          this.cartItems
-        );
-      } catch (e) {
-        this.items = [];
-      }
     }
   },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;
-    },
-    ...mapGetters({
-      cartItems: "cart/getItems",
-      getQty: "cart/getQty",
-      getSubtotal: "cart/getSubtotal",
-      getTaxes: "cart/getTaxes",
-      getShipping: "cart/getShipping",
-      getTotal: "cart/getTotal",
-      checkCart: "cart/checkCart",
-      getTotalCount: "cart/getTotalCount",
-      showCart: "cart/showCart"
-    })
-  },
-  watch: {
-    search: {
-      immediate: false,
-      handler(value, oldValue) {
-        if (!oldValue) return; // Do not trigger on page load
-        clearTimeout(this.typingTimer);
-        let vm = this;
-        this.typingTimer = setTimeout(function() {
-          if (!value || value == "undefined") value = ""; // When clear button clicked
-          vm.searchString = value;
-          vm.$router.push("/search/" + value);
-        }, vm.typingTimeout);
-      }
-    },
-    "$route.params.q": {
-      immediate: true,
-      handler(value) {
-        let pathName = null;
-        // if (this.$route.name) pathName = this.$route.name.substr(0, 8);
-        // if (pathName === "category") return;
-        if (!value || value == "undefined") value = "";
-        if (value == "") return;
-        if (this.search == "") this.search = value;
-      }
     }
   }
 };

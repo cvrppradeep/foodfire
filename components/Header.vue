@@ -53,7 +53,7 @@
             class="flex-center logo-size"
             aria-label="menu"
             v-else
-            @click="go('/login')"
+            @click="go('/login?return=/grocery')"
           >
             <img
               class="img"
@@ -66,7 +66,7 @@
             role="button"
             class="flex-center "
             aria-label="menu"
-            @click="go('/cart')"
+            @click="go('/grocery/cart')"
           >
             <img src="/bag.svg" />
           </a>

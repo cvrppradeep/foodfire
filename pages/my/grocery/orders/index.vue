@@ -78,7 +78,8 @@ const LoadingDots = () => import("~/components/LoadingDots");
 const recordsPerScroll = 5;
 export default {
   fetch({ store, redirect }) {
-    if (!(store.state.auth || {}).user) return redirect("/login?return=orders");
+    if (!(store.state.auth || {}).user)
+      return redirect("/login?return=/orders");
   },
   async asyncData({ params, $axios }) {
     let orders = [],

@@ -3,7 +3,7 @@ export default function ({ store, redirect, route }) {
     const urlRequiresAuth = /^\/admin(\/|$)/.test(route.fullPath)
     const urlRequiresNonAuth = /^\/login(\/|$)/.test(route.fullPath)
     if (!userIsLoggedIn && urlRequiresAuth) {
-        return redirect('/account/login')
+        return redirect('/login')
     }
     if (userIsLoggedIn && urlRequiresNonAuth) {
         return redirect('/my')

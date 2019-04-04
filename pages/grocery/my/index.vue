@@ -47,7 +47,7 @@
 const Header = () => import("~/components/Header");
 export default {
   fetch({ store, redirect }) {
-    if (!(store.state.auth || {}).user) return redirect("/login?return=my");
+    if (!(store.state.auth || {}).user) return redirect("/login?return=/my");
   },
   async asyncData({ store }) {
     let profile = {};

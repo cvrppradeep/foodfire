@@ -73,7 +73,7 @@
                     <button
                       class="big-button "
                       :disabled="getTotal==0 || loading"
-                      @click="go('/checkout')"
+                      @click="go('/grocery/checkout')"
                     >Add Address
                     </button>
                   </div>

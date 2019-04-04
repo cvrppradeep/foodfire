@@ -87,7 +87,7 @@
         </div>
         <div>
           <router-link
-            to="/"
+            to="/grocery"
             class="btnclr"
           >Grocery Menu</router-link>
         </div>

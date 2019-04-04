@@ -10,13 +10,21 @@
         <h1>Food Order</h1>
         <div>Misiki Food Mela</div>
       </div>
-      <div
+      <a
         class="section banner travel red"
-        @click="go('/travel')"
+        href="https://www.misiki.in"
       >
         <img src="/cab.svg" />
         <h1>Book a Taxi</h1>
         <div>Misiki Taxi</div>
+      </a>
+      <div
+        class="section banner groceries blue"
+        @click="go('/grocery')"
+      >
+        <img src="/cab.svg" />
+        <h1>Groceries</h1>
+        <div>Get Delivered at home</div>
       </div>
     </div>
     <div

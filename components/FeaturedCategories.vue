@@ -5,7 +5,7 @@
       data-test-id="l0-category"
       v-for="(c,ix) in categories"
       :key="ix"
-      @click="go(`/search/${c.slug}`)"
+      @click="go(`/grocery/search/${c.slug}`)"
     >
       <div class="category-image">
         <div class="img-loader__wrapper__wrapper">

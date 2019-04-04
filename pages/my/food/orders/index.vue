@@ -44,11 +44,11 @@
       </div>
     </div>
     <div class="center">
-      <button
+      <!-- <button
         v-if="!meta.end"
         class="loadmore fx"
         @click="loadMore"
-      ><img src="/down-arrow.svg" />Load More ...</button>
+      ><img src="/down-arrow.svg" />Load More ...</button> -->
     </div>
     <cart-bar />
     <loading-dots />
@@ -68,7 +68,8 @@ const LoadingDots = () => import("~/components/LoadingDots");
 const recordsPerScroll = 5;
 export default {
   fetch({ store, redirect }) {
-    if (!(store.state.auth || {}).user) return redirect("/login?return=orders");
+    if (!(store.state.auth || {}).user)
+      return redirect("/login?return=/my/orders");
   },
   async asyncData({ params, $axios }) {
     let orders = [],

@@ -69,13 +69,22 @@ export default {
   props: ["products"],
   fetch({ store, redirect }) {
     if (!(store.state.auth || {}).user)
-      return redirect("/login?return=checkout");
+      return redirect("/login?return=/grocery/checkout");
+  },
+  async asyncData({ $axios, route }) {
+    let address = "";
+    try {
+      let user = await $axios.$get("users/me");
+      if (user && user.address) {
+        address = user.address.qrno;
+      }
+    } catch (e) {}
+    return { address };
   },
   data() {
     return {
       loading: false,
-      text: "Place order",
-      address: null
+      text: "Place order"
     };
   },
   components: { Product, Header },
@@ -93,8 +102,8 @@ export default {
     })
   },
   async created() {
-    let address = await this.$axios.$get("users/me");
-    this.address = address.address;
+    // let address = await this.$axios.$get("users/me");
+    // this.address = address.address;
   },
   methods: {
     ...mapActions({
@@ -105,12 +114,12 @@ export default {
       try {
         this.loading = true;
         let c = await this.checkout({
-          address: { address: this.address },
+          address: { qrno: this.address },
           paymentMethod: "COD"
         });
         if (c == 401) {
           // this.$store.commit("setErr", "Enter your phone no"); // Not working with redirect
-          this.$router.push("/login");
+          this.$router.push("/login?return=/grocery/checkout");
         } else {
           this.text = "Please Wait. . .";
         }
@@ -119,7 +128,7 @@ export default {
         this.text = "Place Order";
         if (e && e.response && e.response.status == 401) {
           // this.$store.commit("setErr", "Enter your phone no"); // Not working with redirect
-          this.$router.push("/login");
+          this.$router.push("/login?return=/grocery/checkout");
         } else if (e && e.response && e.response.data) {
           this.err = e.response.data._message || e.response.data.msg;
         } else if (e == "Add some items into cart.") {
