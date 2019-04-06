@@ -5,6 +5,11 @@
 }
 body{
   font-family: Karla, Roboto, sans-serif;
+  line-height: 1;
+  color: #2d2d2d;
+}
+a{
+  text-decoration: none;
 }
 html, body, ul, ol, fieldset {
   margin: 0;
@@ -14,10 +19,6 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
-}
-body {
-  line-height: 1;
-  color: #2d2d2d;
 }
 .fx{
   display: flex;

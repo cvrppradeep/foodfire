@@ -2,14 +2,14 @@
   <div>
     <Header />
     <div class="fx hero">
-      <div
+      <nuxt-link
         class="section banner food blue"
-        @click="go('/food')"
+        to="/food"
       >
         <img src="/food-tray.svg" />
         <h1>Food Order</h1>
         <div>Misiki Food Mela</div>
-      </div>
+      </nuxt-link>
       <a
         class="section banner travel red"
         href="https://www.misiki.in"
@@ -18,26 +18,28 @@
         <h1>Book a Taxi</h1>
         <div>Misiki Taxi</div>
       </a>
-      <div
+    </div>
+    <div class="fx hero">
+      <nuxt-link
         class="section banner groceries blue"
-        @click="go('/grocery')"
+        to="/grocery"
       >
         <img src="/cab.svg" />
         <h1>Groceries</h1>
         <div>Get Delivered at home</div>
-      </div>
+      </nuxt-link>
     </div>
-    <div
+    <nuxt-link
       class="fx banner yellow"
-      @click="go('/food/login')"
+      to="/food/chef"
     >
       <img
         src="/paper-plane.svg"
         style="width:20px"
       />
-      <div class="abs">Join as Chef</div>
+      <div class="abs">Wish to become Chef?</div>
       <div>13th April' 2019</div>
-    </div>
+    </nuxt-link>
     <div
       class="fx hero-banner"
       @click="go('/food')"
