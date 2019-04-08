@@ -23,7 +23,7 @@ export const minCartValue = 1500 // Disable checkout button if condition not met
 export const clearCart = true // Whether to clear the cart after order is placed. Useful while testing
 export const priceRange = [1, 138250]
 export const cartName = 'Foodfire_cart'
-export const userRoles = ['user', 'vendor', 'manager', 'admin'] // This should be in ascending order of authority. e.g. In this case guest will not have access to any other role, where as admin will have the role of guest+user+vendor+manager+admin
+export const userRoles = ['user', 'shipper', 'food', 'driver', 'vendor', 'manager', 'admin'] // This should be in ascending order of authority. e.g. In this case guest will not have access to any other role, where as admin will have the role of guest+user+vendor+manager+admin
 export const cities = ['Odisha', 'Delhi', 'Ranchi']
 export const sorts = [
   { name: "Relevance", val: null },
@@ -54,6 +54,62 @@ export const menuItems = [
   { text: 'Profile', url: '/account/profile', authenticate: 'user', icon: 'person_pin', color: 'purple' },
   { text: 'Change Password', url: '/account/change-password', authenticate: 'user', icon: 'lock', color: 'brown' }
 ]
+export const utilityFields = []
+export const places = [
+  { name: "Sunabeda", val: "SBD" },
+  { name: "Visakhapatnam", val: "VSKP" },
+  { name: "Vizianagaram", val: "VZM" },
+  { name: "Koraput", val: "KPT" },
+  { name: "Damanjodi", val: "DMJ" }
+]
+export const seatsList = [
+  { val: 1, name: "1 seat" },
+  { val: 2, name: "2 seats" },
+  { val: 3, name: "3 seats" },
+  { val: 4, name: "4 seats" },
+  { val: 5, name: "5 seats" },
+  { val: 6, name: "6 seats" },
+  { val: 7, name: "7 seats" }
+]
+export const timesList = [
+  "1 AM",
+  "2 AM",
+  "3 AM",
+  "4 AM",
+  "5 AM",
+  "6 AM",
+  "7 AM",
+  "8 AM",
+  "9 AM",
+  "10 AM",
+  "11 AM",
+  "12 PM",
+  "1 PM",
+  "2 PM",
+  "3 PM",
+  "4 PM",
+  "5 PM",
+  "6 PM",
+  "7 PM",
+  "8 PM",
+  "9 PM",
+  "10 PM",
+  "11 PM",
+  "12 AM"
+]
+export const carModels = [
+  "Indigo",
+  "Dzire",
+  "Etios",
+  "Ford Aspire",
+  "Indica",
+  "Innova",
+  "Scorpio",
+  "Tavera",
+  "Verito",
+  "Xylo",
+  "Others"
+]
 export const manifest = {
   name: 'Misiki',
   short_name: 'Misiki',
@@ -66,7 +122,7 @@ export const head = {
   link: [
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
-    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Karla' }
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' }
   ],
   meta: [
     { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },

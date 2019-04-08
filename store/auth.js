@@ -6,7 +6,7 @@ export const state = () => ({
 })
 
 // getters
-const getters = {
+export const getters = {
     hasRole: state => (role) => {
         return state.user ? state.roles.indexOf(state.user.role) >= state.roles.indexOf(role) : false;
     }

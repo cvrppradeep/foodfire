@@ -10,14 +10,14 @@
         <h1>Food Order</h1>
         <div>Misiki Food Mela</div>
       </nuxt-link>
-      <a
+      <nuxt-link
         class="section banner travel red"
-        href="https://www.misiki.in"
+        to="/travel"
       >
         <img src="/cab.svg" />
         <h1>Book a Taxi</h1>
         <div>Misiki Taxi</div>
-      </a>
+      </nuxt-link>
     </div>
     <div class="fx hero">
       <nuxt-link

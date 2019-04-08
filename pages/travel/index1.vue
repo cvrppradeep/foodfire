@@ -1,129 +1,115 @@
 <template>
-  <v-app class="grey">
-    <Header />
-    <div
-      class="fx sb vcenter"
-      v-if="bookings.length<=0"
-    >
-      <v-btn
-        @click="go('/travel/post')"
-        color="warning"
-        round
-        small
-        flat
+  <div>
+    <h1>Travel</h1>
+    <div class="grey">
+      <div
+        class="card"
+        v-for="(b,ix) in bookings"
+        :key="ix"
       >
-        <v-icon>add</v-icon> POST YOUR REQUIREMENT
-      </v-btn>
-    </div>
-    <v-card
-      class="card"
-      v-for="(b,ix) in bookings"
-      :key="ix"
-    >
-      <v-card-title class="fx center">
         <div class="fx center">
-          <v-icon>place</v-icon>
-          <h2>{{b._id.source}}<v-icon>arrow_right_alt</v-icon>{{b._id.destination}}</h2>
-          <v-icon>date_range</v-icon>
-          <h2>{{b._id.date}}</h2>
+          <div class="fx center">
+            <!-- <v-icon>place</v-icon> -->
+            <h2>{{b._id.source}}
+              <!-- <v-icon>arrow_right_alt</v-icon> -->
+              {{b._id.destination}}</h2>
+            <!-- <v-icon>date_range</v-icon> -->
+            <h2>{{b._id.date}}</h2>
+          </div>
+          <div class="fx sb vcenter">
+            <button
+              @click="go('/post')"
+              class="warning"
+              round
+              small
+              flat
+            >
+              <v-icon>add</v-icon> POST YOUR REQUIREMENT
+            </button>
+            <button
+              @click="showDetails(b)"
+              class="primary"
+              round
+            >
+              <!-- <v-icon>more_horiz</v-icon> DETAILS -->
+            </button>
+          </div>
         </div>
-        <div class="fx sb vcenter">
-          <v-btn
-            @click="go('/travel/post')"
-            color="warning"
-            round
-            small
-            flat
-          >
-            <v-icon>add</v-icon> POST YOUR REQUIREMENT
-          </v-btn>
-          <v-btn
-            @click="showDetails(b)"
-            color="primary"
-            round
-          >
-            <v-icon>more_horiz</v-icon> DETAILS
-          </v-btn>
-        </div>
-      </v-card-title>
-      <v-divider />
-      <v-card-text
-        class="fx scroll"
-        @click="showDetails(b)"
-      >
+        <div class="divider" />
         <div
-          class="car m10"
-          :class="{taxi:d.type=='Offer'}"
-          v-for="(d,ix) in b.data"
-          :key="ix"
+          class="fx scroll"
+          @click="showDetails(b)"
         >
-          <div>{{d.seats}} seat<span v-if="d.seats>1">s</span> {{d.type==="Request" ? "Required" : "Available"}}</div>
-          <div>{{d.time | time12}}</div>
-          <img
-            src="/seat.svg"
-            width="50"
-            v-if="d.type=='Request'"
-          />
-          <img
-            src="/car.svg"
-            width="50"
-            v-else-if="d.type=='Offer' && d.role=='driver'"
-          />
-          <img
-            src="/car-personal.svg"
-            width="50"
-            v-else-if="d.type=='Offer'"
-          />
-        </div>
-      </v-card-text>
-    </v-card>
-    <v-navigation-drawer
-      v-model="drawer"
-      style="margin-top:3rem"
-      temporary
-      right
-      fixed
-    >
-      <v-list class="pa-1">
-        <div class="fx center">
-          <v-icon>date_range</v-icon>
-          <h1 v-if="selectedBooking._id">{{selectedBooking._id.date}}</h1>
-        </div>
-        <div class="fx center">
-          <h1 v-if="selectedBooking._id">{{selectedBooking._id.source}} <v-icon>arrow_right_alt</v-icon> {{selectedBooking._id.destination}}</h1>
-        </div>
-      </v-list>
-      <v-divider />
-      <br />
-      <div class="fx column">
-        <div
-          class="car stretch"
-          :class="{taxi:d.type=='Offer'}"
-          v-for="(d,ix) in selectedBooking.data"
-          :key="ix"
-        >
-          <div>{{d.seats}} seat<span v-if="d.seats>1">s</span> {{d.type==="Request" ? "Required" : "Available"}}</div>
-          <h2> {{d.time | time12}}</h2>
-          <p>{{ d.name }} - {{ d.phone }}</p>
-          <img
-            src="/seat.svg"
-            width="50"
-            v-if="d.type=='Request'"
-          />
-          <img
-            src="/car.svg"
-            width="50"
-            v-else-if="d.type=='Offer' && d.role=='driver'"
-          />
-          <img
-            src="/car-personal.svg"
-            width="50"
-            v-else-if="d.type=='Offer'"
-          />
+          <div
+            class="car m10"
+            :class="{taxi:d.type=='Offer'}"
+            v-for="(d,ix) in b.data"
+            :key="ix"
+          >
+            <div>{{d.seats}} seat<span v-if="d.seats>1">s</span> {{d.type==="Request" ? "Required" : "Available"}}</div>
+            <div>{{d.time | time12}}</div>
+            <img
+              src="/seat.svg"
+              width="50"
+              v-if="d.type=='Request'"
+            />
+            <img
+              src="/car.svg"
+              width="50"
+              v-else-if="d.type=='Offer' && d.role=='driver'"
+            />
+            <img
+              src="/car-personal.svg"
+              width="50"
+              v-else-if="d.type=='Offer'"
+            />
+          </div>
         </div>
       </div>
-    </v-navigation-drawer>
-  </v-app>
+      <div>
+        <div class="list pa-1">
+          <div class="fx center">
+            <!-- <v-icon>date_range</v-icon> -->
+            <h1 v-if="selectedBooking._id">{{selectedBooking._id.date}}</h1>
+          </div>
+          <div class="fx center">
+            <h1 v-if="selectedBooking._id">{{selectedBooking._id.source}}
+              <!-- <v-icon>arrow_right_alt</v-icon> -->
+              {{selectedBooking._id.destination}}</h1>
+          </div>
+        </div>
+        <div class="divider" />
+        <br />
+        <div class="fx column">
+          <div
+            class="car stretch"
+            :class="{taxi:d.type=='Offer'}"
+            v-for="(d,ix) in selectedBooking.data"
+            :key="ix"
+          >
+            <div>{{d.seats}} seat<span v-if="d.seats>1">s</span> {{d.type==="Request" ? "Required" : "Available"}}</div>
+            <h2> {{d.time | time12}}</h2>
+            <p>{{ d.name }} - {{ d.phone }}</p>
+            <img
+              src="/seat.svg"
+              width="50"
+              v-if="d.type=='Request'"
+            />
+            <img
+              src="/car.svg"
+              width="50"
+              v-else-if="d.type=='Offer' && d.role=='driver'"
+            />
+            <img
+              src="/car-personal.svg"
+              width="50"
+              v-else-if="d.type=='Offer'"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import { mapMutations } from "vuex";
@@ -131,10 +117,11 @@ import ListImage from "@/components/ListImage";
 import moment, { duration } from "moment";
 import { difference, filter } from "lodash";
 import { places, seatsList, timesList } from "@/config";
-const Header = () => import("~/components/HeaderFood");
-
 export default {
-  components: { ListImage, Header },
+  components: { ListImage },
+  // fetch({ store, redirect }) {
+  //   if (!store.getters["auth/hasRole"]("driver")) return redirect("/owner");
+  // },
   data: () => {
     return {
       selectedBooking: {},
@@ -289,9 +276,6 @@ export default {
           this.$swal({
             title: "Success",
             text: text,
-            // "You will be travelling with " +
-            // " AAA " +
-            // " and the effective fare would be Rs500 / person",
             type: "success",
             confirmButtonColor: "#3085d6",
             confirmButtonText: "OK"
@@ -305,21 +289,11 @@ export default {
   },
   async created() {
     let vm = this;
-    // let driver =
-    //   vm.$store.getters["auth/hasRole"]("driver") ||
-    //   vm.$store.getters["auth/hasRole"]("owner");
-    // if (driver) {
-    //   this.$router.replace("owner");
-    //   return;
-    // }
     this.bookings = await this.$axios.$get("bookings/group");
     this.date = moment().format("YYYY-MM-DD");
     this.time = moment()
       .add(1, "hour")
       .format("h A");
-    // this.bookings = await this.$axios.$get(
-    //   "bookings/group/" + vm.source + "/" + vm.destination + "/" + vm.date
-    // );
   },
   head() {
     return {

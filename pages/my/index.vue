@@ -16,6 +16,7 @@
           v-if="profile"
         >
           <h2>{{profile.firstName}} {{profile.lastName}}</h2>
+          <br />
           <p class="email">{{profile.phone}}</p>
         </div>
       </center>
@@ -68,7 +69,7 @@ export default {
     },
     logout() {
       this.$store.dispatch("auth/logout");
-      this.$router.push("/food");
+      this.$router.push("/");
     }
   },
   components: { Header },

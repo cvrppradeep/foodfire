@@ -27,16 +27,20 @@
     "cookie": "^0.3.1",
     "cookie-universal-nuxt": "^2.0.14",
     "cross-env": "^5.2.0",
+    "vue-sweetalert2": "^1.6.4",
     "glob-all": "^3.1.0",
     "helmet": "^3.16.0",
     "js-cookie": "^2.2.0",
+    "moment": "^2.24.0",
     "nuxt": "^2.5.1",
     "nuxt-client-init-module": "^0.1.4",
     "nuxt-robots-module": "^1.5.1",
     "socket.io-client": "^2.2.0",
     "vue-infinite-scroll": "^2.0.2",
     "vue-lazyload": "^1.2.6",
-    "vue-timeago": "^5.1.2"
+    "vue-timeago": "^5.1.2",
+    "vuetify": "^1.5.9",
+    "vuetify-loader": "^1.2.1"
   },
   "devDependencies": {
     "@nuxtjs/sitemap": "^0.2.2",
@@ -46,7 +50,9 @@
     "sass-loader": "^7.0.1",
     "shelljs": "^0.8.3",
     "ssh2shell": "^1.9.1",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2"
   },
   "config": {
     "nuxt": {

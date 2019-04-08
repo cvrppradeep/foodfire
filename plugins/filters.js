@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import moment from 'moment'
 import { currency as currencyConfig } from '~/config'
 Vue.directive('focus', {
     // When the bound element is inserted into the DOM...
@@ -41,13 +42,87 @@ Vue.filter('ago', function (dt) {
     var time = date + ',' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;    // final date with time, you can use this according your requirement
     return time
 })
+Vue.filter('pluralize', function (noun) {
+    if (typeof noun !== 'string') { return noun; }
+
+    let rules = [
+        { regex: /octopus/gi, suffix: 'octopusses' },
+        { regex: /person/gi, suffix: 'people' },
+        { regex: /ox/gi, suffix: 'oxen' },
+        { regex: /bison|buffalo|deer|duck|fish|moose|pike|plankton|salmon|sheep|squid|swine|trout|sheap|equipment|information|rice|money|species|series|news/i, suffix: '$&' }, // bison -> bison
+        { regex: /(x|ch|ss|sh)$/gi, suffix: '$1es' }, // dish -> dishes, kiss -> kisses
+        { regex: /(hetero|canto|photo|zero|piano|pro|kimono|portico|quarto)$/gi, suffix: '$1s' }, // kimono -> kimonos
+        { regex: /(?:([^f])fe|([lr])f)$/, suffix: '$1$2ves' }, // knife -> knives, calf -> calves
+        { regex: /o$/gi, suffix: 'oes' }, // hero -> heroes
+        { regex: /([^aeiouy]|qu)y$/gi, suffix: '$1ies' }, // cherry -> cherries
+        { regex: /s$/gi, suffix: 's' }, // cats -> cats
+        { regex: /$/gi, suffix: 's' } // cat -> cats
+    ];
+
+    for (let i = 0; i < rules.length; i++) {
+        let rule = rules[i];
+        if (noun.match(rule.regex)) {
+            noun = noun.replace(rule.regex, rule.suffix);
+            break;
+        }
+    }
+
+    return noun;
+})
 Vue.filter('date', function (value) {
     const date = new Date(value)
     return date.toLocaleString(['en-US'], { month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
 })
 Vue.filter('datedm', function (value) {
-    return moment(value).format('ddd, Do MMM')
+    const date = moment(value, "hhmm").add(5, 'hours').add(30, 'minutes')
+    return date.format('ddd, Do MMM')
 })
 Vue.filter('time', function (value) {
-    return moment(value).format('hA')
+    const date = moment(value, "hhmm").add(5, 'hours').add(30, 'minutes')
+    return date.format("hA");
 })
+Vue.filter('time12', function (value) {
+    const date = moment(value, "hhmm").add(5, 'hours').add(30, 'minutes')
+    return date.format("hh:mm A");
+})
+// Vue.filter('truncate', function (text, length, clamp) {
+//     clamp = clamp || '...';
+//     let node = document.createElement('div');
+//     node.innerHTML = text;
+//     let content = node.textContent;
+//     return content.length > length ? content.slice(0, length) + clamp : content;
+// })
+Vue.filter('truncate', function (text, stop, clamp) {
+    if (text)
+        return text.slice(0, stop) + (stop < text.length ? clamp || '...' : '')
+    else
+        return ""
+})
+Vue.filter('nl2br', function (text, stop, clamp) {
+    return text.replace(/(?:\r\n|\r|\n)/g, '<br />')
+})
+Vue.filter('kb', function (num) {
+    num = parseInt(num)
+    if (typeof num !== 'number' || isNaN(num)) {
+        throw new TypeError('Expected a number');
+    }
+
+    var exponent;
+    var unit;
+    var neg = num < 0;
+    var units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+    if (neg) {
+        num = -num;
+    }
+
+    if (num < 1) {
+        return (neg ? '-' : '') + num + ' B';
+    }
+
+    exponent = Math.min(Math.floor(Math.log(num) / Math.log(1024)), units.length - 1);
+    num = (num / Math.pow(1024, exponent)).toFixed(2) * 1;
+    unit = units[exponent];
+
+    return (neg ? '-' : '') + num + ' ' + unit;
+});

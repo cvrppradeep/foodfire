@@ -1,15 +1,18 @@
 import { PROXY, ANALYTICS_TRACKING_ID, head, manifest } from "./config";
 import helmet from 'helmet'
+import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
 export default {
   mode: 'universal',
   head,
   manifest,
   // loading: '~/components/Loading.vue',
-  css: ['~assets/styles/reset.css', '~assets/styles/transitions.css'],
+  css: ['~assets/styles/reset.css', '~assets/styles/transitions.css', '~assets/style/app.styl'],
   plugins: [
     '~/plugins/filters.js',
+    '~/plugins/vuetify',
     { src: '~plugins/lazy', ssr: false },
-    { src: '~/plugins/scroll.js', ssr: false }
+    { src: '~/plugins/scroll.js', ssr: false },
+    { src: '~plugins/swal.js', ssr: false }
   ],
   modules: [
     '@nuxtjs/sitemap',
@@ -66,6 +69,13 @@ export default {
   ],
 
   build: {
+    transpile: ['vuetify/lib'],
+    plugins: [new VuetifyLoaderPlugin()],
+    loaders: {
+      stylus: {
+        import: ['~assets/style/variables.styl']
+      }
+    },
     app: 'app.[chunkhash].js',
     chunk: '[name].[chunkhash].js',
     extractCSS: true,

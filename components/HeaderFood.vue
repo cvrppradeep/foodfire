@@ -8,12 +8,13 @@
       <div class="header-logo">
         <a class="header-item flex-center">
           <router-link to="/">
-            <img
+            Misiki
+            <!-- <img
               class="logo"
-              src="/logo.png"
+              src="/logo48x48.png"
               alt="Misiki"
               height="28"
-            >
+            > -->
           </router-link>
         </a>
       </div>
@@ -67,6 +68,12 @@ export default {
 };
 </script>
 <style scoped>
+.header-logo {
+  font-size: 1.5rem;
+}
+.header-logo a {
+  color: #fff;
+}
 .searchIcon {
   position: absolute;
   right: 0;

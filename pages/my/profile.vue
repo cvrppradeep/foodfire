@@ -68,7 +68,7 @@ export default {
   },
   fetch({ store, redirect }) {
     if (!(store.state.auth || {}).user)
-      return redirect("/food/login?return=/my/profile");
+      return redirect("/login?return=/my/profile");
   },
   async asyncData({ store }) {
     let profile = {};
