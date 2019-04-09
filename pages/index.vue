@@ -2,16 +2,16 @@
   <div>
     <Header />
     <div class="fx hero">
-      <nuxt-link
+      <!-- <nuxt-link
         class="section banner food blue"
         to="/food"
       >
         <img src="/food-tray.svg" />
         <h1>Food Order</h1>
         <div>Misiki Food Mela</div>
-      </nuxt-link>
+      </nuxt-link> -->
       <nuxt-link
-        class="section banner travel red"
+        class="section banner travel blue"
         to="/travel"
       >
         <img src="/cab.svg" />
@@ -19,7 +19,7 @@
         <div>Misiki Taxi</div>
       </nuxt-link>
     </div>
-    <div class="fx hero">
+    <!-- <div class="fx hero">
       <nuxt-link
         class="section banner groceries blue"
         to="/grocery"
@@ -28,6 +28,15 @@
         <h1>Groceries</h1>
         <div>Get Delivered at home</div>
       </nuxt-link>
+    </div> -->
+    <div
+      class="fx hero-banner"
+      @click="go('/food/chef')"
+    >
+      <img
+        v-lazy="'food-festival.png'"
+        class="backgroundimg"
+      />
     </div>
     <nuxt-link
       class="fx banner yellow"
@@ -38,17 +47,8 @@
         style="width:20px"
       />
       <div class="abs">Wish to become Chef?</div>
-      <div>13th April' 2019</div>
+      <div>14th April' 2019</div>
     </nuxt-link>
-    <div
-      class="fx hero-banner"
-      @click="go('/food')"
-    >
-      <img
-        v-lazy="'food-festival.png'"
-        class="backgroundimg"
-      />
-    </div>
   </div>
 </template>
 <script>

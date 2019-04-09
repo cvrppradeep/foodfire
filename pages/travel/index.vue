@@ -104,7 +104,7 @@
         >
           <div>{{d.seats}} seat<span v-if="d.seats>1">s</span> {{d.type==="Request" ? "Required" : "Available"}}</div>
           <h2> {{d.time | time12}}</h2>
-          <p>{{ d.name }} - {{ d.phone }}</p>
+          <p>{{ d.firstName }} {{ d.lastName }}- {{ d.phone }}</p>
           <img
             src="/seat.svg"
             width="50"

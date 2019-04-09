@@ -86,6 +86,29 @@
                 </v-flex>
                 <v-spacer />
               </v-layout>
+              <v-layout
+                wrap
+                v-if="user"
+              >
+                <v-flex xs6>
+                  <v-text-field
+                    v-if="!user.firstName"
+                    label="First Name"
+                    name="firstName"
+                    v-model="firstName"
+                    box
+                  />
+                </v-flex>
+                <v-flex xs6>
+                  <v-text-field
+                    v-if="!user.lastName"
+                    label="Last Name"
+                    name="lastName"
+                    v-model="lastName"
+                    box
+                  />
+                </v-flex>
+              </v-layout>
             </v-card-text>
             <v-card-actions>
               <v-btn
@@ -195,13 +218,15 @@ export default {
   fetch({ store, redirect }) {
     if (!!store.getters["auth/hasRole"]("driver"))
       return redirect("/travel/owner");
-    let user = (store.state.auth || {}).user || {};
-    if (!user.firstName) {
-      return redirect("/my/profile?return=/post");
+    let user = (store.state.auth || {}).user || null;
+    if (!user) {
+      return redirect("/login?return=/travel/post");
     }
   },
   data: () => {
     return {
+      firstName: "",
+      lastName: "",
       bookings: [],
       panel: [true],
       places: places,
@@ -295,13 +320,20 @@ export default {
       this.$router.push(url);
     },
     async submit() {
-      if (!this.user) {
-        this.showLoginModal({ show: true, initiator: "header" });
-      } else {
-        this.book();
-      }
+      this.book();
     },
     async book() {
+      if (!this.user.firstName) {
+        if (!this.firstName || this.firstName == "") {
+          this.$store.commit("setErr", "Please enter First Name");
+          return;
+        } else if (!this.lastName || this.lastName == "") {
+          this.$store.commit("setErr", "Please enter Last Name");
+          return;
+        }
+        let user = { firstName: this.firstName, lastName: this.lastName };
+        const data = await this.$axios.$put("/users/profile", user);
+      }
       let type = "Request";
       let source = this.source;
       let destination = this.destination;

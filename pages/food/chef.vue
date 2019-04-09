@@ -11,13 +11,13 @@
     >
       <div class="form">
         <div class="form-element">
-          <label>Restaurant:</label>
+          <label>Display Name:</label>
           <input
             type="text"
             name="name"
             autofocus
             v-model="profile.restaurant"
-            placeholder="Restaurant Name"
+            placeholder="Display Name"
           /> &nbsp;&nbsp;<span style="color:red">(Public)</span>
         </div>
         <div class="form-element">
@@ -56,7 +56,8 @@
             name="Dish 1"
             v-model="profile.dish1"
             placeholder="Dish 1"
-          /><span style="color:grey"> (Private)</span>
+          />
+          <!-- <span style="color:grey"> (Private)</span> -->
         </div>
         <div class="form-element">
           <label>Dish 2:</label>
@@ -65,7 +66,8 @@
             name="dish2"
             v-model="profile.dish2"
             placeholder="Dish 2"
-          /><span style="color:grey"> (Private)</span>
+          />
+          <!-- <span style="color:grey"> (Private)</span> -->
         </div>
         <div class="form-element">
           <label>Dish 3:</label>
@@ -74,7 +76,8 @@
             name="dish3"
             v-model="profile.dish3"
             placeholder="Dish 3"
-          /><span style="color:grey"> (Private)</span>
+          />
+          <!-- <span style="color:grey"> (Private)</span> -->
         </div>
       </div>
       <div class="footer">
