@@ -8,14 +8,13 @@
       alt=""
     >
     </div>
-
-    <div class="border container">
+ <div class="border container">
       <div class="a-row s-b">
         <div>
-          <a class="pink">{{food.deliveryDate | date}}</a>
+          <a class="font-pink">{{food.deliveryDate | date}}</a>
         </div>
         <div>
-          <span class="pink small">Only {{food.stock}} left</span>
+          <span class="font-pink small">Only {{food.stock}} left</span>
         </div>
       </div>
       <div class="fontbold">
@@ -52,8 +51,7 @@
           </div>
           <div
             v-else
-            class="fx"
-          >
+            class="fx"> 
             <img
               src="/non-veg.png"
               style="width:20px;height:20px;"
@@ -77,8 +75,7 @@
       <div class="button-container">
         <div
           class="center"
-          v-if="user.phone"
-        >
+          v-if="user.phone">
           <span style="margin-top:-10px"> QrNo: &nbsp; </span><input
             class="input"
             style="max-width:100px;margin-bottom:0.5rem"
@@ -126,26 +123,26 @@
    <img class="" src='/rightarrow-1.svg'/>
 </div>
 </div> -->
-    <!-- <div class="card">
+<div>
+  <h3>Reviews</h3>
+</div>
+    <div class="card">
         <div class="a-row">
           <div>
-            <img
-              class="img-size"
-              src='/eagle.png'
+            <img class="img-size"
+            src='/personlogo.png'
             />
           </div>
           <div class="p-1">
-            <div class="instagold">
+        <div class="instagold">
               <span>
-                <Ratingcircle /></span>
+                <Ratingcircle  rating="3.5" /></span>
             </div>
             <div class="f-weightforcode">{{food.vendor_name}}</div>
+<span class="span-msg">We tried the food for the first time last night and the food was great, freshly cooked very tasty and well presented... Overall a good meal and great value we will certainly be going back...</span>
           </div>
-        </div>
-        <div>
-   <img class="" src='/rightarrow-1.svg'/>
-</div>
-      </div> -->
+       </div>
+     </div> 
     <!-- <div style="padding: 1rem;">
         <div class="a-column">
           <div style="padding-bottom: 1rem;"> <input class="input"/></div>
@@ -163,7 +160,6 @@
 const Ratingcircle = () => import("~/components/Ratingcircle");
 const Foodcartbutton = () => import("~/components/Foodcartbutton");
 const Header = () => import("~/components/HeaderFood");
-
 export default {
   components: { Ratingcircle, Foodcartbutton, Header },
   async asyncData({ $axios, route }) {
@@ -225,6 +221,12 @@ export default {
 .small {
   font-size: 0.6rem;
 }
+h3{
+    font-size: 1.2rem;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    color: grey;
+}
 .container {
   padding: 1rem;
   display: flex;
@@ -242,7 +244,7 @@ export default {
   height: 30vh;
   width: 100%;
 }
-.pink {
+.font-pink {
   color: rgb(255, 0, 104);
   font-weight: 700;
   margin-left: 0.2rem;
@@ -291,7 +293,7 @@ export default {
   box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
 }
 .p-1 {
-  padding-left: 1rem;
+  padding-left: 2rem;
 }
 .m-1 {
   margin-top: -0.5rem;
@@ -341,17 +343,21 @@ export default {
   align-items: center;
 }
 .img-size {
-  width: 3rem;
-  height: 3rem;
+ width: 27rem;
+    height: 6rem;
+       border: 1px solid #999;
+    border-radius: 50%;
 }
 .instagold {
   font-weight: bold;
   font-size: 1.2rem;
-  margin-bottom: 0.4rem;
+   margin-bottom: 0.5rem;
 }
 .f-weightforcode {
-  font-weight: 500;
-  color: grey;
+  font-weight: 900;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+    /* width: 79px; */
 }
 .price {
   font-size: 2.5rem;
@@ -393,5 +399,10 @@ export default {
 .red {
   background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
   border-color: #fb6340;
+}
+.span-msg{
+  color: grey;
+    font-weight: 500;
+    font-size: 0.8rem;
 }
 </style>

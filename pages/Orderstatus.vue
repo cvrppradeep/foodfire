@@ -10,7 +10,7 @@
                    <span style="color: grey">Description. Order Status module allows customers to check their orders status   </span>
              </div>
              </div>
-             <div class="t-center pt-1"> 
+             <div class="t-center button-pt"> 
                   <button class="button-lg input">
           <span>Order Again</span>
           </button>
@@ -27,6 +27,7 @@ h1{
     text-shadow: 1px 1px #3c3333;
     font-size: 1.5rem;
     padding-left: 1rem;
+    padding-top: 1rem;
 }
 .img{
     height: 17rem;
@@ -34,22 +35,20 @@ h1{
 .t-center{
     text-align:center;
     text-align: -webkit-center;
-   
 }
 .contains{
     padding-left: 2rem;
     padding-top: 2.5rem;
-      
-    }
-    .span-text{
+  }
+.span-text{
         font-size: 1.5rem;
         font-weight: 600;
     }
-    .contain-text{
+.contain-text{
     width: 13rem;
     padding-bottom: 1rem;
     }
-    .button-lg {
+.button-lg {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,9 +71,8 @@ h1{
     padding-left: 0.5rem;
     border-radius: 0.4rem;
   box-shadow: 0 -0.1rem 1.1rem rgba(4, 212, 240, 0.175) !important;
-
 }
-.pt-1{
+.button-pt{
     padding-top: 6rem;
 }
 </style>

@@ -22,7 +22,7 @@
             </div>
             <div class="card-container">
               <div class="a-contain">
-                <div class="pink"> Only {{d.stock}} left</div>
+                <div class="f-pink"> Only {{d.stock}} left</div>
                 <img
                   v-if="d.type=='N'"
                   src="non-veg.png"
@@ -118,11 +118,10 @@ export default {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-.pink {
+.f-pink {
   color: rgb(255, 0, 104);
   font-size: 0.6rem;
-
-  letter-spacing: 1px;
+letter-spacing: 1px;
 }
 .card-container {
   padding: 0.4rem;

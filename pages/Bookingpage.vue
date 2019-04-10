@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="bgclr">
-    <div class="contain js-sa">
+    <div class="contain jc-sa">
     <div>
         <img class="arrow" src="rightarrow-1.svg"/>
     </div>
@@ -10,10 +10,9 @@
         </span> 
          <span class="span-2">Cuisine of Antebellum Amrica
         </span>
-        
-    </div>
+   </div>
     <div> 
-        <img src="shopping_basket.1.svg"/>
+        <img src="orderstatus.1.svg" style="margin-top: -0.9rem;"/>
     </div>
     </div>
     <div class="contain-b">
@@ -26,14 +25,13 @@
         </div>
     </div>
     <div class="contain-c box">
-        
-            <span class="span-name">Advit j. singh</span>
+         <span class="span-name">Advit j. singh</span>
     <div class="contain">
         <div>
             <img src="watch.svg"/>
              </div>
-         <span class="pl-1">Time</span>
-          <span class=" p-1"> . </span>
+         <span class="p-left">Time</span>
+          <span class=" p-left"> . </span>
            <span>Dayname</span>
             <span class=" p-1"> . </span>
            <span >Date</span>
@@ -42,24 +40,22 @@
         <div> 
             <img src="peoples.svg"/>
         </div>
-        <span class=" pl-1"> 4 guest </span>
+        <span class=" p-left"> 4 guest </span>
          </div>
          <div class="contain border pb-1 pt-1">
         <span class=" bluetext"> Edit </span>
-        
-        <span class=" pl-1 f-w">Cancel Booking</span>
+        <span class=" p-left f-w">Cancel Booking</span>
          </div>
     </div>
     </div>
     <div class="footer"> 
         <div class="contain footer-align" > 
             <span style="font-weight: 700"> Having any issues ?</span>
-            <span class="pl-1 bluetext" > Support</span>
-            <div class="pl-1"><img class="que-mark " src="quemark.svg"/> </div>
+            <span class="p-left bluetext" > Support</span>
+            <div class="p-left"><img class="que-mark " src="quemark.svg"/> </div>
         </div>
     </div>
 </div>
-
 </template>
 <script>
 export default {
@@ -80,7 +76,6 @@ width: 100%;
 background-size: cover;
 background-attachment: fixed;
 position: relative;
-
 }
 .column{
     display: flex;
@@ -91,14 +86,13 @@ position: relative;
    height: 2,5rem;
   width: 2.1rem;
     margin-top: -0.9rem;
-  
 }
 .contain{
     display: flex;
     flex-direction:row;
     align-items: center;
     }
-.js-sa
+.jc-sa
    {
     justify-content: space-around;
     padding-top: 1rem;
@@ -124,28 +118,26 @@ position: relative;
        padding-top: 2rem;
 }
 .checkmark-img{
-    width: 2.3rem;
+    width: 3.3rem;
     border-radius: 0.9rem;
 }
 .confirmtext{
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-family: cursive;
     color: grey;
 }
 .tick-align{
     text-align: center;
-   padding-top: 3rem;
+   padding-top: 5rem;
 }
 .contain-c{
     display: flex;
     flex-direction: column;
     padding-top: 2rem;
     padding-left: 1rem;
-      
 }
 .pt-1{
     padding-top: 1rem;
-   
 }
 .blacktext{
      color: black;
@@ -155,7 +147,7 @@ position: relative;
     font-weight: bolder;
     letter-spacing: -0.1rem;
 }
-.pl-1{
+.p-left{
     padding-left: 1rem;
 }
 .p-1{
@@ -170,7 +162,6 @@ position: relative;
 }
 .border{
  border-top: 1px solid #f1f1f1;
- 
 }
 .pb-1{
     padding-bottom: 1rem;
@@ -180,7 +171,7 @@ position: relative;
     font-weight: 600;
 }
 .f-w{
-        font-weight: 700;
+    font-weight: 700;
 }
 .footer {
   background: #fff;

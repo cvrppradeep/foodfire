@@ -102,9 +102,15 @@
           v-for="(d,ix) in selectedBooking.data"
           :key="ix"
         >
+        <div class="flex-row">
           <div>{{d.seats}} seat<span v-if="d.seats>1">s</span> {{d.type==="Request" ? "Required" : "Available"}}</div>
+        <div> <button   @click="remove(i._id)">
+                        <v-icon>delete</v-icon>
+                      </button></div>
+        </div>
           <h2> {{d.time | time12}}</h2>
           <p>{{ d.firstName }} {{ d.lastName }}- {{ d.phone }}</p>
+         <div class="seat">
           <img
             src="/seat.svg"
             width="50"
@@ -120,6 +126,7 @@
             width="50"
             v-else-if="d.type=='Offer'"
           />
+          </div>
         </div>
       </div>
     </v-navigation-drawer>
@@ -353,7 +360,7 @@ export default {
 .scroll {
   overflow-x: auto;
 }
-.car {
+.seat {
   text-align: center;
 }
 .m10 {
@@ -379,5 +386,10 @@ export default {
 }
 img {
   margin: 10px;
+}
+.flex-row{
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 </style>

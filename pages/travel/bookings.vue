@@ -2,8 +2,8 @@
   <div>
     <Header />
     <v-container v-if="bookings.length>0">
-      <h3>Your travel history</h3>
-      <v-layout>
+      <h3 class="pl-1">Your travel history</h3>
+      <!-- <v-layout> -->
         <v-flex
           xs12
           lg6
@@ -21,7 +21,7 @@
             ></travellers>
           </div>
         </v-flex>
-      </v-layout>
+      <!-- </v-layout> -->
     </v-container>
     <v-container v-else>
       <v-layout>

@@ -18,14 +18,14 @@
       <div class="img-align"> 
           <img class="img-size" src="eagle.png"/>
       </div>
-        <div class="pl-1 pt-1">
+        <div class="column w-6 pleft-1 ptop-1">
             <div class="text-style">Food Name</div>
              <div class=" text-style price">$12.39</div>
              <div class=" text-style d-text">Description</div>
         </div>
-        <div class="cross-align">
+        <!-- <div class="cross-align">
            <img class="cross" src="close.png"/>
-            </div>
+            </div> -->
     </div>
   </div>
   <div class="butttoncard ">
@@ -61,7 +61,7 @@
            <div class="subtotal">$2565.00</div>
       </div>
  </div>
-  <div class="pt-1 center"> <button class="button-lg">
+  <div class="pt-1 t-center"> <button class="button-lg">
           <span style="font-size: 1rem">Proceed To Checkout</span>
           </button> </div>
 </div>
@@ -79,19 +79,13 @@ h2{
     text-shadow: 1px 1px #3c3333;
     font-size: 1.2rem;
     padding-left: 1rem;
+    padding-top: 1rem;
     }
 .card {
   padding: 0.5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: space-between;
   -webkit-box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
   box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
   margin-top: 0.5rem;
-  flex-direction: row;
   align-items: center;
   border-radius: 0.5rem;
   margin-left: 0.5rem;
@@ -102,8 +96,7 @@ h2{
   box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
 border-radius: 0.5rem;
 height: 4rem;
-    
-    margin: 1rem;
+margin: 1rem;
 }
 .row{
     display: flex;
@@ -125,12 +118,14 @@ height: 4rem;
 }
 .t-center{
     text-align: center;
+     text-align: -webkit-center;
 }
 .border{
     border: 1px solid #c7c7c7;
     border-radius: 0.3rem;
     padding: 0.2rem;
     margin-left: 0.5rem;
+     widows: 13%;
 }
 .img-size{
         width: 4rem;
@@ -140,18 +135,19 @@ height: 4rem;
     padding-left: 1rem;
     text-align: center;
     padding-top: 0.5rem;
+    width: 27%;
+    }
+.ptop-1{
+    padding-top: 0.5rem;
 }
-.pt-1{
-    padding-top: 1rem;
-}
-.pb-1{
+.pbottom-1{
     padding-bottom: 1rem;
 }
-.pl-1{
+.pleft-1{
     padding-left: 1rem;
 }
 .text-style{
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 800;
 }
 .price{
@@ -191,7 +187,6 @@ height: 4rem;
 }
 .shadow{
   box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
-
 }
 .j-sb{
     justify-content: space-between;
@@ -200,6 +195,9 @@ height: 4rem;
   padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 0.5rem;
+}
+.w-6{
+  width: 60%;
 }
 .d-text{
    color: grey;
@@ -237,9 +235,5 @@ height: 4rem;
   background: linear-gradient(87deg, #4068fb 0, #1ad0de 100%) !important;
   border-color: #69beda;
 }
-.center{
-    text-align:center;
-    text-align: -webkit-center;
-    
-   }
+
 </style>

@@ -22,7 +22,7 @@
                  <div class="pt-1">  <input class="input1 pt-1" placeholder="cvv"></div>
                    </div> 
            </div>
-           <div class="pt-1"> <button class="button-lg input">
+           <div class=" t-center"> <button class="button-lg input">
           <span style="font-size: 1rem">Save Card Details</span>
           </button> </div>
               </div>
@@ -41,7 +41,7 @@ export default {
 h1{
     text-shadow: 1px 1px #3c3333;
     font-size: 1rem;
-    padding-left: 1rem;
+    padding-top: 1rem;
     text-align:center;
 }
 .t-center{
@@ -61,11 +61,9 @@ h1{
     margin-right: 1rem;
     border-radius: 0.4rem;
   box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
-
 }
 .pt-1{
     padding-top: 1rem;
-   
 }
 .pl-1{
     padding-left: 0.1rem;
@@ -90,7 +88,6 @@ h1{
     border-radius: 0.4rem;
     padding-bottom: 1rem;
   box-shadow: 0 -0.1rem 1.1rem rgba(4, 212, 240, 0.175) !important;
-
 }
  .input1{
     width: 8rem;
@@ -100,7 +97,6 @@ h1{
     border-radius: 0.4rem;
     padding-bottom: 1rem;
   box-shadow: 0 -0.1rem 1.1rem rgba(4, 212, 240, 0.175) !important;
-
 }
 .button-lg {
   display: flex;
@@ -119,12 +115,12 @@ h1{
   border-color: #69beda;
 }
 .span-text{
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #3f3f9c;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #3f3f9c;
     }
-    .span-text1{
-        font-size: 1rem;
-        font-weight: 600;
+.span-text1{
+    font-size: 1rem;
+    font-weight: 600;
     }
 </style>

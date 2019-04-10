@@ -1,17 +1,18 @@
 <template>
   <v-card>
-    <v-container
+    <!-- <v-container
       fluid
       grid-list-lg
-    >
-      <v-layout row>
-        <v-flex xs12>
+    > -->
+    <div class="flex row">
+      <!-- <v-layout row> -->
+        <!-- <v-flex > -->
           <div>
-            <div class="title">{{b.source}} <v-icon>arrow_forward</v-icon> {{b.destination}}
+            <div class="title flex-text"><span class="blueclr">{{b.source}} </span><v-icon>arrow_forward</v-icon> <span class="redclr">{{b.destination}}</span>
               &nbsp;&nbsp;&nbsp;&nbsp;<v-icon>date_range</v-icon> {{b._id.date}}
             </div>
             <div class="fx">
-              <div>{{b.data.length}} traveller <span v-if="b.data.length>1">s</span></div>
+              <div class="traveller"><span>{{b.data.length}} Traveller </span> <span v-if="b.data.length>1">s</span></div>
             </div>
             <div>
               <v-list three-line>
@@ -35,9 +36,9 @@
                       />
                     </v-list-tile-avatar>
                     <v-list-tile-content>
-                      <v-list-tile-title> {{i.phone}} (<b>{{i.name}}</b>)</v-list-tile-title>
+                      <v-list-tile-title class="phoneno"> {{i.phone}} (<b>{{i.name}}</b>)</v-list-tile-title>
                       <v-list-tile-title> {{i.seats}} seat <span v-if="i.role=='driver' || i.role=='owner'">available</span><span v-else>required</span> <span v-if="i.rate">({{i.rate}} / person)</span> </v-list-tile-title>
-                      <v-list-tile-sub-title>{{i.date | date}}</v-list-tile-sub-title>
+                      <v-list-tile-sub-title class="datestyle">{{i.date | date}}</v-list-tile-sub-title>
                       <v-btn
                         icon
                         absolute
@@ -54,9 +55,10 @@
               </v-list>
             </div>
           </div>
-        </v-flex>
-      </v-layout>
-    </v-container>
+        <!-- </v-flex> -->
+      <!-- </v-layout> -->
+      </div>
+    <!-- </v-container> -->
   </v-card>
 </template>
 <script>
@@ -105,3 +107,55 @@ export default {
 };
 </script>
 
+<style>
+.flex-text{
+  display: flex;
+    justify-content: space-evenly;
+}
+.flex{
+  display: -webkit-box;
+    display: -ms-flexbox;
+    display: block;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+   /* box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.175) !important;  */
+margin: 1rem;
+}
+.blueclr{
+  color: blue;
+}
+.redclr{
+  color:red;
+}
+.layout {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    min-width: 0;
+    margin: 1rem;
+    box-shadow: 0.1rem 0.1rem 0.4rem 0.4rem rgba(0, 0, 0, 0.175) !important;
+}
+.traveller{
+  padding-top: 1rem;
+    padding-left: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.phoneno{
+  color: cornflowerblue;
+    font-weight: 600;
+}
+.datestyle{
+  padding-top: 0.5rem;
+    font-weight: 600;
+}
+</style>

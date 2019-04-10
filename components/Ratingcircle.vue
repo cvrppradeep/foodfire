@@ -72,7 +72,7 @@ export default {
   background: #88af29;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 100%;
   vertical-align: top;
 }
 
@@ -96,18 +96,17 @@ export default {
   border-bottom-left-radius: 50%;
   border: 2x solid gray;
   border-right: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
 }
-
 .circles li:after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: calc(100% - 4px);
-  height: calc(100% - 4px);
+  width: 100%;
+  height: 100%;
   border: 2px solid #fff;
   border-radius: 50%;
 }

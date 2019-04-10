@@ -13,9 +13,9 @@
               <div class="a-contain pl-1">
                   <div><img class="img-size" src="eagle.png"/> </div>
                   <div class="a-listing">
-                <div class="text-bold "> Onlyleft</div>
+                <div class="text-bold "> Store Name</div>
                 <div class="a-contain pl-1">
-                    <div class="pt-5"><img class="img-loacte" src="blocate.png"/></div>
+                    <div class="pt-img" ><img class="img-loacte" src="blocate.png"/></div>
                 <div class="text-small">Address hal township</div>
                 </div>
                   </div>
@@ -25,14 +25,14 @@
               <div class="a-contain pl-1">
                   <div><img class="img-size" src="eagle.png"/> </div>
                   <div class="a-listing">
-                <div class="text-bold "> Onlyleft</div>
+                <div class="text-bold ">User Name</div>
                 <div class="a-contain pl-1">
-                    <div class="pt-5"><img class="img-loacte" src="bulocate.png"/></div>
+                    <div class="pt-img"><img class="img-loacte" src="bulocate.png"/></div>
                 <div class="text-small"> Address hal township</div>
                 </div>
                   </div>
                 </div>
-</div>
+                </div>
        </div>
           </div>
              <div> <h3>Payment Method</h3></div>
@@ -64,9 +64,7 @@
           <span style="font-size: 1rem">Submit Order</span>
           </button> </div>
           </div>
-        
-     
-</template>
+        </template>
 <script>
 export default {
     
@@ -79,6 +77,7 @@ h2{
     font-size: 1.2rem;
     padding-left: 1rem;
     text-align: center;
+    padding-top: 1rem;
     }
     h3{
     text-shadow: 1px 1px #3c3333;
@@ -115,7 +114,7 @@ position: relative;
 width: 100%;
 height: 20vh;
 }
-.pt-5{
+.pt-img{
     padding-top: 0.5rem;
 }
 .a-listing {
@@ -186,8 +185,7 @@ font-size: 1.2rem;
   box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
 border-radius: 0.5rem;
 height: 4rem;
-    
-    margin: 1rem;
+ margin: 1rem;
 }
 .span-text{
     padding-left: 1.5rem;
@@ -215,7 +213,6 @@ height: 4rem;
 .center{
     text-align:center;
     text-align: -webkit-center;
-    
    }
    .pt-1{
     padding-top: 1rem;
