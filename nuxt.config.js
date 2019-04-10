@@ -16,7 +16,7 @@ export default {
   ],
   modules: [
     '@nuxtjs/sitemap',
-    'nuxt-robots-module',
+    '@nuxtjs/robots',
     '@nuxtjs/toast',
     '@nuxtjs/axios',
     '@nuxtjs/pwa',

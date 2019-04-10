@@ -34,7 +34,7 @@
       @click="go('/food/chef')"
     >
       <img
-        v-lazy="'food-festival.png'"
+        v-lazy="'food-mela.jpg'"
         class="backgroundimg"
       />
     </div>

@@ -19,6 +19,7 @@
               <v-layout wrap>
                 <v-flex xs6>
                   <v-autocomplete
+                    :attach="true"
                     v-model="source"
                     label="From"
                     :items="places"
@@ -29,6 +30,7 @@
                 </v-flex>
                 <v-flex xs6>
                   <v-autocomplete
+                    :attach="true"
                     v-model="destination"
                     label="To"
                     :items="toPlaces"
@@ -39,6 +41,7 @@
                 </v-flex>
                 <v-flex xs6>
                   <v-menu
+                    :attach="true"
                     ref="menuDate"
                     :close-on-content-click="false"
                     v-model="menuDate"
@@ -64,6 +67,7 @@
                 </v-flex>
                 <v-flex xs6>
                   <v-select
+                    :attach="true"
                     label="Time"
                     name="time"
                     v-model="time"
@@ -74,6 +78,7 @@
                 </v-flex>
                 <v-flex xs6>
                   <v-select
+                    :attach="true"
                     label="No of seats"
                     name="seats"
                     v-model="seats"
@@ -215,11 +220,12 @@ const ListImage = () => import("~/components/ListImage");
 
 export default {
   components: { ListImage, Header },
-  fetch({ store, redirect }) {
+  async fetch({ store, redirect, $axios }) {
     if (!!store.getters["auth/hasRole"]("driver"))
       return redirect("/travel/owner");
-    let user = (store.state.auth || {}).user || null;
-    if (!user) {
+    try {
+      await $axios.get("/users/me");
+    } catch (e) {
       return redirect("/login?return=/travel/post");
     }
   },

@@ -36,7 +36,7 @@
             class="flex-center logo-size"
             aria-label="menu"
             v-else
-            @click="go('/login?return=/grocery')"
+            @click="go('/login?return=/')"
           >
             <img
               class="img"
@@ -152,7 +152,7 @@ a.header-item {
 }
 .header-item {
   color: #4a4a4a;
-  display: block;
+  /* display: block; */
   /* line-height: 1.5; */
   padding: 0.5rem 0.75rem;
   position: relative;
