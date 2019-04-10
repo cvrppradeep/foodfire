@@ -5,7 +5,7 @@
       v-for="(f,ix) in foods"
       :key="ix"
     >
-      <div class="heading">Food Mela <span class="time">6th April 6:00 PM</span></div>
+      <div class="heading">Food Mela <span class="time">14th April 6:00 PM</span></div>
       <div class="align-row">
         <div
           class="product-card"
@@ -120,8 +120,8 @@ export default {
 }
 .f-pink {
   color: rgb(255, 0, 104);
-  font-size: 0.6rem;
-letter-spacing: 1px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
 }
 .card-container {
   padding: 0.4rem;
