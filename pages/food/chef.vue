@@ -123,6 +123,7 @@ export default {
       updateProfile: "auth/updateProfile"
     }),
     save(profile) {
+      profile.role = "chef";
       this.updateProfile(profile);
       this.$router.push("/my");
     }

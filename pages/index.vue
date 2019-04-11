@@ -2,16 +2,16 @@
   <div>
     <Header />
     <div class="fx hero">
-      <!-- <nuxt-link
+      <nuxt-link
         class="section banner food blue"
-        to="/food"
+        to="/food/chefs"
       >
         <img src="/food-tray.svg" />
         <h1>Food Order</h1>
         <div>Misiki Food Mela</div>
-      </nuxt-link> -->
+      </nuxt-link>
       <nuxt-link
-        class="section banner travel blue"
+        class="section banner travel red"
         to="/travel"
       >
         <img src="/cab.svg" />
@@ -31,7 +31,7 @@
     </div> -->
     <div
       class="fx hero-banner"
-      @click="go('/food/chef')"
+      @click="go('/food/terms')"
     >
       <img
         v-lazy="'food-mela.jpg'"
