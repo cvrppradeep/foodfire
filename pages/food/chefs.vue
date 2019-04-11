@@ -7,17 +7,37 @@
         <li
           v-for="c in chefs"
           :key="c._id"
-        >{{c.restaurant}}</li>
+        >
+          <h1>{{c.restaurant}}</h1>
+          <Ratingcircle rating="3.5" /><br /><br />
+          <v-chip
+            v-if="c.dish1"
+            class="red"
+            text-color="white"
+          >{{c.dish1}}</v-chip>
+          <v-chip
+            v-if="c.dish2"
+            color="blue"
+            text-color="white"
+          >{{c.dish2}}</v-chip>
+          <v-chip
+            v-if="c.dish3"
+            color="green"
+            text-color="white"
+          >{{c.dish3}}</v-chip>
+        </li>
       </ul>
     </div>
   </div>
 </template>
 <script>
 const Header = () => import("~/components/HeaderFood");
+const Ratingcircle = () => import("~/components/Ratingcircle");
 
 export default {
   components: {
-    Header
+    Header,
+    Ratingcircle
   },
   async asyncData({ $axios }) {
     let chefs = null;
