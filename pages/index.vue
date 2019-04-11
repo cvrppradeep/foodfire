@@ -41,7 +41,7 @@
     </div> -->
     <div
       class="fx hero-banner"
-      @click="go('/food/terms')"
+      @click="go('/food/steps')"
     >
       <img
         v-lazy="'food-mela.jpg'"
@@ -56,8 +56,8 @@
         src="/paper-plane.svg"
         style="width:20px"
       />
-      <div class="abs">Wish to become Chef?</div>
-      <div>14th April' 2019</div>
+      <div class="abs">Know more about Food Festival...???</div>
+      <!-- <div>14th April' 2019</div> -->
     </nuxt-link>
     <div class="footer">
       <nuxt-link to="/food/terms">Food Mela Terms</nuxt-link>
