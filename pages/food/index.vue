@@ -17,7 +17,6 @@
       </v-dialog>
     </v-layout>
     <div
-      class="overlay"
       v-for="(f,ix) in foods"
       :key="ix"
     >
@@ -61,12 +60,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="overlay-content">
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
       </div>
     </div>
   </div>

@@ -102,30 +102,35 @@
           v-for="(d,ix) in selectedBooking.data"
           :key="ix"
         >
-        <div class="flex-row">
-          <div>{{d.seats}} seat<span v-if="d.seats>1">s</span> {{d.type==="Request" ? "Required" : "Available"}}</div>
-        <div> <button   @click="remove(i._id)">
-                        <v-icon>delete</v-icon>
-                      </button></div>
-        </div>
+          <div class="flex-row">
+            <div>{{d.seats}} seat<span v-if="d.seats>1">s</span> {{d.type==="Request" ? "Required" : "Available"}}</div>
+            <div>
+              <button
+                @click="remove(d._id)"
+                v-if="d.phone==user.phone"
+              >
+                <v-icon>delete</v-icon>
+              </button>
+            </div>
+          </div>
           <h2> {{d.time | time12}}</h2>
           <p>{{ d.firstName }} {{ d.lastName }}- {{ d.phone }}</p>
-         <div class="seat">
-          <img
-            src="/seat.svg"
-            width="50"
-            v-if="d.type=='Request'"
-          />
-          <img
-            src="/car.svg"
-            width="50"
-            v-else-if="d.type=='Offer' && d.role=='driver'"
-          />
-          <img
-            src="/car-personal.svg"
-            width="50"
-            v-else-if="d.type=='Offer'"
-          />
+          <div class="seat">
+            <img
+              src="/seat.svg"
+              width="50"
+              v-if="d.type=='Request'"
+            />
+            <img
+              src="/car.svg"
+              width="50"
+              v-else-if="d.type=='Offer' && d.role=='driver'"
+            />
+            <img
+              src="/car-personal.svg"
+              width="50"
+              v-else-if="d.type=='Offer'"
+            />
           </div>
         </div>
       </div>
@@ -212,14 +217,8 @@ export default {
       }).then(async result => {
         if (result.value) {
           await this.$axios.$delete("bookings/" + i);
-          this.bookings = await this.$axios.$get(
-            "bookings/group/" +
-              this.source +
-              "/" +
-              this.destination +
-              "/" +
-              this.date
-          );
+          this.drawer = false;
+          this.bookings = await this.$axios.$get("bookings/group");
         }
       });
     },
@@ -387,9 +386,9 @@ export default {
 img {
   margin: 10px;
 }
-.flex-row{
+.flex-row {
   display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  flex-direction: row;
+  justify-content: space-between;
 }
 </style>
