@@ -342,12 +342,12 @@ img[lazy="loaded"] {
   font-size: 2rem;
 }
  .banner {
-              flex: 1;
-              margin: 10px;
-              padding: 1rem;
-              border-radius: 3px;
-              color: #fff;
-            }
+  flex: 1;
+  margin: 10px;
+  padding: 1rem;
+  border-radius: 3px;
+  color: #fff;
+}
 .yellow {
   box-shadow: 10px 10px 30px -15px #c7581d;
   background: linear-gradient(87deg, #e48c3a 0, #eb6e2b 100%);

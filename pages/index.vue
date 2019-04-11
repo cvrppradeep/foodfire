@@ -20,7 +20,7 @@
       </nuxt-link>
     </div>
     <nuxt-link
-      class="fx yellow narrow-banner"
+      class="fx green banner"
       to="/food/chefs"
     >
       <img
@@ -59,17 +59,9 @@
       <div class="abs">Wish to become Chef?</div>
       <div>14th April' 2019</div>
     </nuxt-link>
-    <nuxt-link
-      class="fx banner yellow"
-      to="/food/chef"
-    >
-      <img
-        src="/paper-plane.svg"
-        style="width:20px"
-      />
-      <div class="abs">Wish to become Chef?</div>
-      <div>14th April' 2019</div>
-    </nuxt-link>
+    <div class="footer">
+      <nuxt-link to="/food/terms">Food Mela Terms</nuxt-link>
+    </div>
   </div>
 </template>
 <script>
@@ -85,6 +77,11 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.footer {
+  position: relative;
+  margin-top: 20px;
+  padding: 20px;
+}
 .section {
   font-size: 0.75rem;
   font-weight: 700;
@@ -108,10 +105,13 @@ export default {
   border-radius: 3px;
   width: 100%;
 }
-.narrow-banner {
-  padding: 5px;
-}
-.narrow-banner .abs {
+// .narrow-banner {
+//   padding: 1rem;
+//   border-radius: 3px;
+//   width: 100%;
+//   margin: 10px;
+// }
+.banner .abs {
   color: #fff;
 }
 </style>
