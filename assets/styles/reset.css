@@ -348,6 +348,28 @@ img[lazy="loaded"] {
   border-radius: 3px;
   color: #fff;
 }
+.button-lg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: none;
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 2.3rem;
+  border: none;
+  padding: 0.5rem 2rem;
+  outline: none;
+}
+.button-lg:disabled {
+  background: #eee !important;
+}
+.button-lg img {
+  transform: rotate(180deg);
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+}
 .yellow {
   box-shadow: 10px 10px 30px -15px #c7581d;
   background: linear-gradient(87deg, #e48c3a 0, #eb6e2b 100%);

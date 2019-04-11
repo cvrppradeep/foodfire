@@ -26,7 +26,7 @@
     <li class="circle half"></li> -->
     <li
       class=" half"
-      v-if="rem=='0.5'"
+      v-if="rem>='0.5'"
     ></li>
     <li v-if="diff>0"></li>
     <li v-if="diff>1"></li>
@@ -96,9 +96,9 @@ export default {
   border-bottom-left-radius: 50%;
   border: 2x solid gray;
   border-right: 0;
-  -webkit-box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  box-sizing:border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .circles li:after {
   content: "";

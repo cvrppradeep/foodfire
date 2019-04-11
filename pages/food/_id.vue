@@ -8,13 +8,20 @@
       alt=""
     >
     </div>
- <div class="border container">
+    <div class="border container">
       <div class="a-row s-b">
         <div>
           <a class="font-pink">{{food.deliveryDate | date}}</a>
         </div>
         <div>
-          <span class="font-pink small">Only {{food.stock}} left</span>
+          <span
+            class="font-pink small"
+            v-if="food.stock>0"
+          >Only {{food.stock}} left</span>
+          <span
+            class="font-pink small"
+            v-else
+          >Sold Out</span>
         </div>
       </div>
       <div class="fontbold">
@@ -34,11 +41,11 @@
       <div>
         <div class="review">
           <div>
-            <Ratingcircle rating="2.5" />
+            <Ratingcircle :rating="avg" />
             <span
               class="p-1"
               v-if="reviews.length>0"
-            >0 reviews</span>
+            >{{reviews.length}} reviews</span>
           </div>
           <div
             v-if="food.type=='V'"
@@ -51,7 +58,8 @@
           </div>
           <div
             v-else
-            class="fx"> 
+            class="fx"
+          >
             <img
               src="/non-veg.png"
               style="width:20px;height:20px;"
@@ -75,7 +83,8 @@
       <div class="button-container">
         <div
           class="center"
-          v-if="user.phone">
+          v-if="user.phone"
+        >
           <span style="margin-top:-10px"> QrNo: &nbsp; </span><input
             class="input"
             style="max-width:100px;margin-bottom:0.5rem"
@@ -86,9 +95,10 @@
         <button
           class="button-lg blue"
           v-if="user.phone"
+          :disabled="food.stock<=0"
           @click="order(food)"
         >
-          <span>Pre Order</span>
+          <span>Place Order</span>
           <span><img
               class="img-style"
               src='/backarrow.svg'
@@ -96,6 +106,7 @@
         </button>
         <button
           v-else
+          :disabled="food.stock<=0"
           class="button-lg blue"
           @click="go('/login?return=/food/'+$route.params.id)"
         >
@@ -123,26 +134,35 @@
    <img class="" src='/rightarrow-1.svg'/>
 </div>
 </div> -->
-<div>
-  <h3>Reviews</h3>
-</div>
-    <div class="card">
-        <div class="a-row">
-          <div>
-            <img class="img-size"
+    <div class="fx">
+      <h3>Reviews</h3>
+      <h3>
+        <nuxt-link :to="'/food/reviews/'
+          +food._id">Rate Now</nuxt-link>
+      </h3>
+    </div>
+    <div
+      class="card"
+      v-for="r in reviews"
+      :key="r._id"
+    >
+      <div class="a-row">
+        <div>
+          <img
+            class="img-size"
             src='/personlogo.png'
-            />
+          />
+        </div>
+        <div class="p-1">
+          <div class="instagold">
+            <span>
+              <Ratingcircle :rating="r.rating" /></span>
           </div>
-          <div class="p-1">
-        <div class="instagold">
-              <span>
-                <Ratingcircle  rating="3.5" /></span>
-            </div>
-            <div class="f-weightforcode">{{food.vendor_name}}</div>
-<span class="span-msg">We tried the food for the first time last night and the food was great, freshly cooked very tasty and well presented... Overall a good meal and great value we will certainly be going back...</span>
-          </div>
-       </div>
-     </div> 
+          <div class="f-weightforcode">{{r.vendor_name}}</div>
+          <span class="span-msg">{{r.message}}</span>
+        </div>
+      </div>
+    </div>
     <!-- <div style="padding: 1rem;">
         <div class="a-column">
           <div style="padding-bottom: 1rem;"> <input class="input"/></div>
@@ -176,8 +196,22 @@ export default {
   data() {
     return {
       qty: 1,
-      reviews: []
+      reviews: [],
+      total: 0,
+      avg: 0
     };
+  },
+  async created() {
+    this.reviews = await this.$axios.$get(
+      "reviews/product/" + this.$route.params.id
+    );
+    let total = 0;
+    for (let r of this.reviews) {
+      total += r.rating;
+    }
+    const avg = Math.round((total / this.reviews.length) * 10) / 10;
+    this.total = total;
+    this.avg = avg;
   },
   methods: {
     add(qty) {
@@ -196,17 +230,29 @@ export default {
         this.$store.commit("setErr", "Please enter QrNo");
         return;
       }
-      try {
-        let order = await this.$axios.$post("food-orders", {
-          pid: food._id,
-          qty: this.qty,
-          address: { qrno: this.address }
-        });
-        this.$router.push("/food/success?id=" + order._id);
-      } catch (e) {
-        if (e.response.status == 401) this.$router.push("/login");
-        this.$store.commit("setErr", e.response.data);
-      }
+      this.$swal({
+        title: "Are you sure?",
+        text: "Order once placed can not be cancelled!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Place Order!"
+      }).then(async result => {
+        if (result.value) {
+          try {
+            let order = await this.$axios.$post("food-orders", {
+              pid: food._id,
+              qty: this.qty,
+              address: { qrno: this.address }
+            });
+            this.$router.push("/food/success?id=" + order._id);
+          } catch (e) {
+            if (e.response.status == 401) this.$router.push("/login");
+            this.$store.commit("setErr", e.response.data);
+          }
+        }
+      });
     }
   },
   computed: {
@@ -221,11 +267,11 @@ export default {
 .small {
   font-size: 0.6rem;
 }
-h3{
-    font-size: 1.2rem;
-    padding-left: 1rem;
-    padding-top: 1rem;
-    color: grey;
+h3 {
+  font-size: 1.2rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  color: grey;
 }
 .container {
   padding: 1rem;
@@ -309,25 +355,7 @@ h3{
   align-items: center;
   box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.175) !important;
 }
-.button-lg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-transform: none;
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  font-size: 1.5rem;
-  font-weight: 700;
-  border-radius: 2.3rem;
-  border: none;
-  padding: 0.5rem 2rem;
-  outline: none;
-}
-.button-lg img {
-  transform: rotate(180deg);
-  margin-left: 1rem;
-  margin-top: 0.5rem;
-}
+
 .card {
   padding: 2rem;
   display: -webkit-box;
@@ -343,21 +371,21 @@ h3{
   align-items: center;
 }
 .img-size {
- width: 27rem;
-    height: 6rem;
-       border: 1px solid #999;
-    border-radius: 50%;
+  width: 27rem;
+  height: 6rem;
+  border: 1px solid #999;
+  border-radius: 50%;
 }
 .instagold {
   font-weight: bold;
   font-size: 1.2rem;
-   margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .f-weightforcode {
   font-weight: 900;
-    margin-top: 0.4rem;
-    margin-bottom: 0.4rem;
-    /* width: 79px; */
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+  /* width: 79px; */
 }
 .price {
   font-size: 2.5rem;
@@ -392,17 +420,10 @@ h3{
   padding: 7px;
   outline: none;
 }
-.blue {
-  background: linear-gradient(87deg, #40c8fb 0, #1c45da 100%) !important;
-  border-color: #69beda;
-}
-.red {
-  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
-  border-color: #fb6340;
-}
-.span-msg{
+
+.span-msg {
   color: grey;
-    font-weight: 500;
-    font-size: 0.8rem;
+  font-weight: 500;
+  font-size: 0.8rem;
 }
 </style>
