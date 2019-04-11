@@ -125,7 +125,7 @@ export default {
     save(profile) {
       profile.role = "chef";
       this.updateProfile(profile);
-      this.$router.push("/my");
+      this.$router.push("/food/chefs");
     }
   },
   watch: {

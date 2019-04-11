@@ -4,7 +4,7 @@
     <div class="fx hero">
       <nuxt-link
         class="section banner food blue"
-        to="/food/chefs"
+        to="/food"
       >
         <img src="/food-tray.svg" />
         <h1>Food Order</h1>
@@ -19,6 +19,16 @@
         <div>Misiki Taxi</div>
       </nuxt-link>
     </div>
+    <nuxt-link
+      class="fx yellow narrow-banner"
+      to="/food/chefs"
+    >
+      <img
+        src="/chef.png"
+        style="width:30px"
+      />
+      <div class="abs">Registered Chefs.</div>
+    </nuxt-link>
     <!-- <div class="fx hero">
       <nuxt-link
         class="section banner groceries blue"
@@ -38,6 +48,17 @@
         class="backgroundimg"
       />
     </div>
+    <nuxt-link
+      class="fx banner yellow"
+      to="/food/chef"
+    >
+      <img
+        src="/paper-plane.svg"
+        style="width:20px"
+      />
+      <div class="abs">Wish to become Chef?</div>
+      <div>14th April' 2019</div>
+    </nuxt-link>
     <nuxt-link
       class="fx banner yellow"
       to="/food/chef"
@@ -86,6 +107,12 @@ export default {
   padding: 1rem;
   border-radius: 3px;
   width: 100%;
+}
+.narrow-banner {
+  padding: 5px;
+}
+.narrow-banner .abs {
+  color: #fff;
 }
 </style>
 

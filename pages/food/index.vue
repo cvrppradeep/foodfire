@@ -1,7 +1,23 @@
 <template>
   <div>
     <HeaderFood />
+    <v-layout
+      row
+      justify-center
+    >
+      <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="290"
+      >
+        <v-card>
+          <v-card-title class="headline">Live on Apr 14th, 2019</v-card-title>
+          <v-card-text>Please visit back Sunday 6:00 PM.</v-card-text>
+        </v-card>
+      </v-dialog>
+    </v-layout>
     <div
+      class="overlay"
       v-for="(f,ix) in foods"
       :key="ix"
     >
@@ -22,7 +38,14 @@
             </div>
             <div class="card-container">
               <div class="a-contain">
-                <div class="f-pink"> Only {{d.stock}} left</div>
+                <div
+                  class="f-pink"
+                  v-if="d.stock>0"
+                > Only {{d.stock}} left</div>
+                <div
+                  class="f-pink"
+                  v-else
+                > Sold out </div>
                 <img
                   v-if="d.type=='N'"
                   src="non-veg.png"
@@ -39,6 +62,12 @@
           </div>
         </div>
       </div>
+      <div class="overlay-content">
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+      </div>
     </div>
   </div>
 </template>
@@ -52,9 +81,14 @@ export default {
     const foods = await $axios.$get("foods/group");
     return { foods };
   },
+  data() {
+    return {
+      dialog: true
+    };
+  },
   methods: {
     go(url) {
-      this.$router.push(url);
+      // this.$router.push(url);
     }
   }
 };
@@ -129,5 +163,8 @@ export default {
 .time {
   font-size: 0.8rem;
   color: #eee;
+}
+.v-dialog__content {
+  background: rgba(0, 0, 0, 0.6);
 }
 </style>
