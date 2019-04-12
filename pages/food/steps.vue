@@ -2,7 +2,7 @@
   <div>
     <Header />
     <div class="heading">How to ???</div>
-    <h2>Housewives</h2>
+    <h2 style="padding-left: 0.5rem">Housewives</h2>
     <ul>
       <li><span>Step-1:</span>
         <nuxt-link to="/food/chef">Register as Chef</nuxt-link>

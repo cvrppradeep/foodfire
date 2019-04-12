@@ -97,9 +97,10 @@
           v-if="user.phone"
           :disabled="food.stock<=0"
           @click="order(food)"
-        >
-          <span>Place Order</span>
-          <span><img
+        > <span  v-if="user.phone"
+          :disabled="food.stock<=0">Sold Out</span>
+          <span v-else>Place Order</span>
+          <span><img 
               class="img-style"
               src='/backarrow.svg'
             /></span>
@@ -110,7 +111,7 @@
           class="button-lg blue"
           @click="go('/login?return=/food/'+$route.params.id)"
         >
-          <span>Login to Order</span>
+          <span>Login To order</span>
           <span><img
               class="img-style"
               src='/backarrow.svg'
@@ -136,7 +137,7 @@
 </div> -->
     <div class="fx">
       <h3>Reviews</h3>
-      <h3>
+      <h3 style="padding-right:1rem">
         <nuxt-link :to="'/food/reviews/'
           +food._id">Rate Now</nuxt-link>
       </h3>

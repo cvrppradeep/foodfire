@@ -50,6 +50,17 @@
           /><span style="color:green"> (Private)</span>
         </div>
         <div class="form-element">
+          <label>Quarter No:</label>
+          <input
+            type="text"
+            name="name"
+            autofocus
+            v-model="profile.qrno"
+            placeholder="Quarter No with zone"
+          /><span style="color:green"> (Private)</span>
+        </div>
+        
+        <div class="form-element">
           <label>Dish 1:</label>
           <input
             type="text"

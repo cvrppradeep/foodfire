@@ -22,7 +22,7 @@
       <li>they just need to prepare n pack in the standard packing boxes(paper/plastic/aluminium foils etc) and delivery boy will pick d same from your quarter.</li>
       <li>chefs can upload the dish by 10am of the day for distribution to buyers between 7 to 8pm d same day.</li>
       <li>Upto 20 plates/box etc chefs should prepare/keep atleast one box/plate extra to adjust for any damage/loss during transit etc.</li>
-      <li>Dishes must be homemade and not bought ftom outside/restaurant.</li>
+      <li>Dishes must be homemade and not bought from outside/restaurant.</li>
       <li>Chef's identity will not be revealed to general public. they can choose any nickname for online display.</li>
       <li>Once dish has been posted, it cannot be removed unless for a very genuine n compelling reasons </li>
       <li>Customers will rate every chef for their dishes. After review lowly rated chefs may be asked to go.</li>

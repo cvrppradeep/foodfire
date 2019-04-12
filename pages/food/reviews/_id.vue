@@ -13,7 +13,7 @@
           v-model="review.rating"
           color="green"
         ></v-rating><br />
-        <v-textarea
+        <v-textarea style="width:22rem"
           v-focus
           box
           v-model="review.message"
