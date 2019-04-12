@@ -13,7 +13,8 @@
           v-model="review.rating"
           color="green"
         ></v-rating><br />
-        <v-textarea style="width:22rem"
+        <v-textarea
+          style="width:22rem"
           v-focus
           box
           v-model="review.message"
@@ -32,6 +33,10 @@
 const Header = () => import("~/components/HeaderFood");
 export default {
   components: { Header },
+  fetch({ store, redirect, route }) {
+    if (!(store.state.auth || {}).user)
+      return redirect("/login?return=/food/reviews/" + route.params.id);
+  },
   data() {
     return {
       review: {}
