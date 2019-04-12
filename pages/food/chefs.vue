@@ -3,6 +3,17 @@
     <Header />
     <div class="heading">Registered Chefs</div>
     <div>
+      <div
+        class="fx"
+        style="justify-content:center"
+      >
+        <nuxt-link
+          to="/food/chef"
+          class="button-lg blue"
+          style="width:300px;height:3rem"
+        > Register as Chef</nuxt-link>
+        <!-- <nuxt-link to="/food/steps">Steps</nuxt-link> -->
+      </div>
       <ul class="p-left">
         <li
           class="card"
