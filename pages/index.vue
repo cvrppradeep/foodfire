@@ -50,7 +50,7 @@
     </div>
     <nuxt-link
       class="fx banner yellow"
-      to="/food/chef"
+      to="/food/steps"
     >
       <img
         src="/paper-plane.svg"

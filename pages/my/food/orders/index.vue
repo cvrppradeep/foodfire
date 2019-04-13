@@ -32,7 +32,10 @@
           </div>
           <div class="columns is-mobile border ">
             <div class="container">
-              <div class="products head">
+              <div
+                class="products head"
+                v-if="o.item"
+              >
                 <food
                   :product="{_id:o.pid,name:o.item.name,img:o.item.img,slug:o.item.slug,qty:o.qty,price:o.amount}"
                   :showcart="true"
@@ -50,7 +53,6 @@
         @click="loadMore"
       ><img src="/down-arrow.svg" />Load More ...</button> -->
     </div>
-    <cart-bar />
     <loading-dots />
     <br />
     <br />

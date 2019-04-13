@@ -1,32 +1,19 @@
 <template>
   <div>
-    <HeaderFood />
-    <v-layout
-      row
-      justify-center
-    >
-      <v-dialog
-        v-model="dialog"
-        persistent
-        max-width="290"
-      >
-        <v-card>
-          <v-card-title class="headline">Live on Apr 14th, 2019</v-card-title>
-          <v-card-text>Please visit back Sunday Morning</v-card-text>
-        </v-card>
-      </v-dialog>
-    </v-layout>
-    <div
-      v-for="(f,ix) in foods"
-      :key="ix"
-    >
-      <div class="heading">Food Mela <span class="time">14th April 6:00 PM</span></div>
+    <Header />
+    <div class="heading">My Dishes </div>
+    <div class="container fx center">
+      <button
+        class="button-lg blue"
+        style="margin-bottom:20px"
+        @click="go('/my/food/dishes/new')"
+      >Add New</button>
       <div class="align-row">
         <div
-          class="product-card"
-          v-for="d in f.data"
+          v-for="d in foods"
           :key="d._id"
           @click="go('/food/'+d._id)"
+          class="listingcard"
         >
           <div class="a-listing">
             <div class="height ">
@@ -38,21 +25,21 @@
             <div class="card-container">
               <div class="a-contain">
                 <div
-                  class="f-pink"
+                  class="pinky"
                   v-if="d.stock>0"
-                > Only {{d.stock}} left</div>
+                >Only {{d.stock}} left</div>
                 <div
-                  class="f-pink"
+                  class="green"
                   v-else
-                > Sold out </div>
+                >Sold out</div>
                 <img
                   v-if="d.type=='N'"
-                  src="non-veg.png"
+                  src="/non-veg.png"
                   class="image-size"
                 />
                 <img
                   v-else
-                  src="veg.png"
+                  src="/veg.png"
                   class="image-size"
                 />
               </div>
@@ -65,46 +52,82 @@
   </div>
 </template>
 <script>
-const Ratingcircle = () => import("~/components/Ratingcircle");
-const CartButtons = () => import("~/components/CartButtons");
-const HeaderFood = () => import("~/components/HeaderFood");
+const Header = () => import("~/components/HeaderFood");
+
 export default {
-  components: { Ratingcircle, CartButtons, HeaderFood },
-  async asyncData({ $axios }) {
-    const foods = await $axios.$get("foods/group");
-    return { foods };
+  fetch({ store, redirect }) {
+    if (!store.getters["auth/hasRole"]("chef")) return redirect("/login");
   },
+  components: { Header },
   data() {
     return {
-      dialog: true
+      loading: false,
+      foods: []
     };
+  },
+  async created() {
+    this.loading = true;
+    try {
+      this.foods = await this.$axios.$get("foods/my");
+    } catch (e) {
+      return;
+    } finally {
+      this.loading = false;
+    }
   },
   methods: {
     go(url) {
       this.$router.push(url);
     }
+  },
+  layout: "none",
+  head() {
+    return {
+      title: "Post Your Food"
+    };
   }
 };
 </script>
-
 <style scoped>
-.product-card {
-  display: flex;
-  background-color: rgb(247, 247, 247);
-  justify-content: center;
+body {
+  font-family: Oswald;
+}
+.big-button {
+  text-transform: initial;
+  color: #fff;
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
+  border-color: #fb6340;
+  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  display: block;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  padding: 7px;
+  outline: none;
+  font-family: Karla, Roboto, sans-serif;
+}
+.big-button .loading {
+  -webkit-animation: fadeIn 3s infinite;
+  -moz-animation: fadeIn 3s infinite;
+  -o-animation: fadeIn 3s infinite;
+  animation: fadeIn 3s infinite;
+}
+.listingcard {
+  /* height: 29vh;  */
   border-radius: 0.2rem;
-  margin: 0.5rem;
+  background-color: rgb(247, 247, 247);
+  display: flex;
+  justify-content: center;
+  margin: 0.2rem;
   box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.175) !important;
-  width: calc(50% - 1rem);
+  width: 156px;
 }
 @media (min-width: 650px) {
-  .product-card {
-    width: calc(25% - 1rem);
-  }
-}
-@media (min-width: 1000px) {
-  .product-card {
-    width: calc(20% - 1rem);
+  .listingcard {
+    height: 22vh;
   }
 }
 .backgroundimg {
@@ -127,8 +150,7 @@ export default {
   align-items: center;
 }
 .p-name {
-  font-size: 0.8rem;
-  line-height: 1rem;
+  line-height: 1.2rem;
 }
 .align-row {
   display: flex;
@@ -145,9 +167,8 @@ export default {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-.f-pink {
+.pinky {
   color: rgb(255, 0, 104);
-  font-size: 0.9rem;
   letter-spacing: 1px;
 }
 .card-container {
@@ -157,7 +178,5 @@ export default {
   font-size: 0.8rem;
   color: #eee;
 }
-.v-dialog__content {
-  background: rgba(0, 0, 0, 0.6);
-}
 </style>
+

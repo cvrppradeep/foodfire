@@ -1,25 +1,22 @@
 <template>
-  <div class="flex-column ">
-    <div>
-      <div class="flex-row-nocenter">
-        <button
-          type="button"
-          class="cart-button buttonrounded "
-          @click="add(-1)"
-          v-if="qty>1"
-        >
-          <img src="/minus.svg" />
-        </button>
-        <span class="product-id">{{qty}}</span>
-        <button
-          type="button"
-          class="cart-button button.is-danger buttonrounded btnplus-clr"
-          @click="add(1)"
-        >
-          <img src="/plus.svg" />
-        </button>
-      </div>
-    </div>
+  <div class="fx">
+    Qty: &nbsp;
+    <button
+      type="button"
+      class="cart-button buttonrounded "
+      @click="add(-5)"
+      v-if="qty>1"
+    >
+      <img src="/minus.svg" />
+    </button>
+    <span class="product-id">{{qty}}</span>
+    <button
+      type="button"
+      class="cart-button button.is-danger buttonrounded btnplus-clr"
+      @click="add(5)"
+    >
+      <img src="/plus.svg" />
+    </button>
   </div>
 </template>
 <script>
@@ -65,9 +62,9 @@ export default {
 .btnplus-clr {
   background: #ffdd57;
 }
-.flex-column {
+.fx {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 

@@ -27,12 +27,12 @@
           <img src="/profile.svg" />
           <nuxt-link to="/my/profile"> My Profile</nuxt-link>
         </li>
-         <li>
+        <li>
           <img
             src="/fastfood.svg"
             width="25px"
           />
-          <nuxt-link to="/Checkout"> My Food Booking</nuxt-link>
+          <nuxt-link to="/my/food/orders"> My Food Booking</nuxt-link>
         </li>
         <li>
           <img
@@ -44,7 +44,12 @@
         <!-- <li>
           <img src="/orders.svg" />
           <nuxt-link to="/my/food/orders"> Food Orders</nuxt-link>
+        </li> -->
+        <li>
+          <img src="/orders.svg" />
+          <nuxt-link to="/my/food/dishes"> My Dishes</nuxt-link>
         </li>
+        <!-- 
         <li>
           <img src="/orders.svg" />
           <nuxt-link to="/my/grocery/orders"> Grocery Orders</nuxt-link>
