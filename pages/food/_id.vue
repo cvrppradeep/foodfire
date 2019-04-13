@@ -58,7 +58,7 @@
         </div>
       </div>
        <div class="p-top font-pink">
-            <span>By: {{food.resturant}}</span>
+            <span>By: {{food.restaurant}}</span>
         </div>
     </div>
    

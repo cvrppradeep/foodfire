@@ -51,11 +51,9 @@ export default {
 
 <style>
 h3{
-    
     font-size: 1.2rem;
     padding-left: 1rem;
-    
-    }
+   }
 .card {
   padding: 0.5rem;
   -webkit-box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
@@ -75,7 +73,6 @@ flex-direction: row ;
         display: flex;
         flex-direction: column
     }
-
 .qtrborder{
   border: 2px solid;
         padding: 0.5rem;
