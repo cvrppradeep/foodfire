@@ -49,6 +49,62 @@
             placeholder="Email"
           />
         </div>
+        <div v-if="user && user.role=='chef'">
+          <div class="form-element">
+            <label>Restaurant:</label>
+            <input
+              type="text"
+              name="restaurant"
+              v-model="profile.restaurant"
+              placeholder="Restaurant"
+            />
+          </div>
+          <div class="form-element">
+            <label>Dish1:</label>
+            <input
+              type="text"
+              name="dish1"
+              v-model="profile.dish1"
+              placeholder="Dish1"
+            />
+          </div>
+          <div class="form-element">
+            <label>Dish2:</label>
+            <input
+              type="text"
+              name="dish2"
+              v-model="profile.dish2"
+              placeholder="Dish2"
+            />
+          </div>
+          <div class="form-element">
+            <label>Dish3:</label>
+            <input
+              type="text"
+              name="dish3"
+              v-model="profile.dish3"
+              placeholder="Dish3"
+            />
+          </div>
+          <div class="form-element">
+            <label>Dish4:</label>
+            <input
+              type="text"
+              name="dish4"
+              v-model="profile.dish4"
+              placeholder="Dish4"
+            />
+          </div>
+          <div class="form-element">
+            <label>Dish5:</label>
+            <input
+              type="text"
+              name="dish5"
+              v-model="profile.dish5"
+              placeholder="Dish5"
+            />
+          </div>
+        </div>
       </div>
       <div class="footer">
         <div class="form-element">

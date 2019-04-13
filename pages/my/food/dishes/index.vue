@@ -19,9 +19,11 @@
             <div class="height ">
               <img
                 v-lazy="'/images'+d.img"
-                class="backgroundimg"/>
-               <div class="delete-icon">
-                  <v-icon>delete</v-icon></div>
+                class="backgroundimg"
+              />
+              <!-- <div class="delete-icon">
+                    <v-icon>delete</v-icon>
+                </div> -->
             </div>
             <div class="card-container">
               <div class="a-contain">
@@ -175,20 +177,20 @@ body {
 }
 .card-container {
   /* padding: 0.4rem; */
-    padding-top: 7.5rem;
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
-    padding-bottom: 0.4rem;
+  padding-top: 7.5rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  padding-bottom: 0.4rem;
 }
 .time {
   font-size: 0.8rem;
   color: #eee;
 }
-.delete-icon{
+.delete-icon {
   margin-top: -9rem;
-    margin-left: 8rem;
+  margin-left: 8rem;
 }
-.greenclr{
+.greenclr {
   color: green;
 }
 </style>

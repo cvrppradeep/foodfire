@@ -27,7 +27,7 @@
       <div class="fontbold">
         {{food.name}}
       </div>
-       <div>
+      <div>
         <div class="review">
           <div>
             <Ratingcircle :rating="avg" />
@@ -56,11 +56,11 @@
           </div>
         </div>
       </div>
-       <div class="p-top font-pink">
-            <span>By: {{food.restaurant}}</span>
-        </div>
+      <div class="p-top font-pink">
+        <span>By: {{food.restaurant}}</span>
+      </div>
     </div>
-   
+
     <div class="amount border">
       <div>
         <span class="price">{{food.rate * qty | currency}}</span>
@@ -90,14 +90,14 @@
           v-if="user.phone"
           :disabled="food.stock<=0"
           @click="order(food)"
-        > 
-       <span>Place Order</span>
-          <span><img 
+        >
+          <span>Place Order</span>
+          <span><img
               class="img-style"
               src='/backarrow.svg'
             /></span>
         </button>
-        
+
         <button
           v-else
           :disabled="food.stock<=0"
@@ -204,8 +204,8 @@ export default {
       total += r.rating;
     }
     const avg = Math.round((total / this.reviews.length) * 10) / 10;
+    this.avg = avg || 0;
     this.total = total;
-    this.avg = avg;
   },
   methods: {
     add(qty) {
@@ -365,8 +365,8 @@ h3 {
   align-items: center;
 }
 .img-size {
- width: 3rem;
-    height: 3rem;
+  width: 3rem;
+  height: 3rem;
   border: 1px solid #999;
   border-radius: 50%;
   margin-right: 1rem;
@@ -421,8 +421,7 @@ h3 {
   font-weight: 500;
   font-size: 0.8rem;
 }
-.p-top{
+.p-top {
   padding-top: 1rem;
 }
-
 </style>

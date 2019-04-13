@@ -8,7 +8,7 @@
       <center>
         <div class="circle">
           <h1>
-            <center>SA</center>
+            <center v-if="profile.firstName">{{profile.firstName.charAt(0)}}{{profile.lastName.charAt(0)}}</center>
           </h1>
         </div>
         <div
@@ -32,7 +32,11 @@
             src="/fastfood.svg"
             width="25px"
           />
-          <nuxt-link to="/my/food/orders"> My Food Booking</nuxt-link>
+          <nuxt-link to="/my/food/orders"> My Food Orders</nuxt-link>
+        </li>
+        <li v-if="user && user.role=='chef'">
+          <img src="/orders.svg" />
+          <nuxt-link to="/my/food/dishes"> My Dishes</nuxt-link>
         </li>
         <li>
           <img
@@ -45,10 +49,6 @@
           <img src="/orders.svg" />
           <nuxt-link to="/my/food/orders"> Food Orders</nuxt-link>
         </li> -->
-        <li>
-          <img src="/orders.svg" />
-          <nuxt-link to="/my/food/dishes"> My Dishes</nuxt-link>
-        </li>
         <!-- 
         <li>
           <img src="/orders.svg" />
@@ -81,6 +81,11 @@ export default {
     let userDetails = await store.dispatch("auth/fetch");
     profile = Object.assign({}, userDetails);
     return { profile };
+  },
+  computed: {
+    user() {
+      return (this.$store.state.auth || {}).user || null;
+    }
   },
   methods: {
     go(url) {

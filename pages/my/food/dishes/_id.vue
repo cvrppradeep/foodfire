@@ -195,10 +195,8 @@ export default {
       const food = await this.$axios.$get("foods/" + this.$route.params.id);
       this.food = food;
     } catch (e) {}
-    this.date = moment().format("YYYY-MM-DD");
-    this.time = moment()
-      .add(1, "hour")
-      .format("h A");
+    this.date = moment("2019-04-14 18:00:00").format("YYYY-MM-DD");
+    this.time = moment("2019-04-14 18:00:00").format("h A");
     try {
       this.dishes = await this.$axios.$get("dishes/chef");
     } catch (err) {
@@ -207,7 +205,7 @@ export default {
   },
   methods: {
     add(qty) {
-      if (qty < 5 && this.qty <= 5) return;
+      if (qty < 5 && this.qty <= 0) return;
       // if (qty > 0 && this.qty >= 300) {
       //   this.$store.commit("setErr", "Sorry! Maximum 300 qty allowed.");
       //   return;

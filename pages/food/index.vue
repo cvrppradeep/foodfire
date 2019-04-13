@@ -12,7 +12,7 @@
       >
         <v-card>
           <v-card-title class="headline">Live on Apr 14th, 2019</v-card-title>
-          <v-card-text>Please visit back Sunday Morning</v-card-text>
+          <v-card-text>Please visit back Tomorrow Morning</v-card-text>
         </v-card>
       </v-dialog>
     </v-layout>
