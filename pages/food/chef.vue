@@ -59,7 +59,7 @@
             placeholder="Quarter No with zone"
           /><span style="color:green"> (Private)</span>
         </div>
-        
+
         <div class="form-element">
           <label>Dish 1:</label>
           <input
@@ -88,8 +88,35 @@
             v-model="profile.dish3"
             placeholder="Dish 3"
           />
-          <!-- <span style="color:grey"> (Private)</span> -->
         </div>
+        <div class="form-element">
+          <label>Dish 4:</label>
+          <input
+            type="text"
+            name="dish4"
+            v-model="profile.dish3"
+            placeholder="Dish 4"
+          />
+        </div>
+        <div class="form-element">
+          <label>Dish 5:</label>
+          <input
+            type="text"
+            name="dish5"
+            v-model="profile.dish3"
+            placeholder="Dish 5"
+          />
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
       <div class="footer">
         <div class="form-element">
