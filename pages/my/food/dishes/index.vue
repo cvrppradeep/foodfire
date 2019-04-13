@@ -12,7 +12,7 @@
         <div
           v-for="d in foods"
           :key="d._id"
-          @click="go('/food/'+d._id)"
+          @click="go('/my/food/dishes/'+d._id)"
           class="listingcard"
         >
           <div class="a-listing">
