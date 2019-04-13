@@ -225,14 +225,19 @@ export default {
           return;
         }
         this.food.deliveryDate = date;
-        if (this.$route.params.id == "new")
-          res = await this.$axios.$post("foods", this.food);
-        else
+        this.food.stock = this.qty;
+        if (this.$route.params.id == "new") {
+          try {
+            res = await this.$axios.$post("foods", this.food);
+          } catch (e) {
+            this.$store.commit("setErr", e);
+          }
+        } else
           res = await this.$axios.$put(
             "foods/" + this.$route.params.id,
             this.food
           );
-        this.$router.push("/food");
+        this.$router.push("/my/food/dishes");
       } catch (e) {
         // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", e.toString());
         this.$store.commit("setErr", e.toString());
