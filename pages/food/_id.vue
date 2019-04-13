@@ -27,8 +27,7 @@
       <div class="fontbold">
         {{food.name}}
       </div>
-      
-      <div>
+       <div>
         <div class="review">
           <div>
             <Ratingcircle :rating="avg" />
@@ -91,14 +90,14 @@
           v-if="user.phone"
           :disabled="food.stock<=0"
           @click="order(food)"
-        > <span  v-if="user.phone"
-          :disabled="food.stock<=0">Sold Out</span>
-          <span v-else>Place Order</span>
+        > 
+       <span>Place Order</span>
           <span><img 
               class="img-style"
               src='/backarrow.svg'
             /></span>
         </button>
+        
         <button
           v-else
           :disabled="food.stock<=0"

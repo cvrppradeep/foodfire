@@ -19,8 +19,9 @@
             <div class="height ">
               <img
                 v-lazy="'/images'+d.img"
-                class="backgroundimg"
-              />
+                class="backgroundimg"/>
+               <div class="delete-icon">
+                  <v-icon>delete</v-icon></div>
             </div>
             <div class="card-container">
               <div class="a-contain">
@@ -29,9 +30,9 @@
                   v-if="d.stock>0"
                 >Only {{d.stock}} left</div>
                 <div
-                  class="green"
+                  class="greenclr"
                   v-else
-                >Sold out</div>
+                > Sold out</div>
                 <img
                   v-if="d.type=='N'"
                   src="/non-veg.png"
@@ -156,6 +157,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  /* justify-content: space-evenly; */
 }
 /* @media (min-width:300px) and (max-width:800px ) {
      .align-row{
@@ -172,11 +174,22 @@ body {
   letter-spacing: 1px;
 }
 .card-container {
-  padding: 0.4rem;
+  /* padding: 0.4rem; */
+    padding-top: 7.5rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    padding-bottom: 0.4rem;
 }
 .time {
   font-size: 0.8rem;
   color: #eee;
+}
+.delete-icon{
+  margin-top: -9rem;
+    margin-left: 8rem;
+}
+.greenclr{
+  color: green;
 }
 </style>
 
