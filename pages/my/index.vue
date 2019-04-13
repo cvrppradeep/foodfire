@@ -27,6 +27,13 @@
           <img src="/profile.svg" />
           <nuxt-link to="/my/profile"> My Profile</nuxt-link>
         </li>
+         <li>
+          <img
+            src="/fastfood.svg"
+            width="25px"
+          />
+          <nuxt-link to="/Checkout"> My Food Booking</nuxt-link>
+        </li>
         <li>
           <img
             src="/car.svg"
@@ -101,7 +108,7 @@ export default {
 
 .links {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   margin: 0 auto;
 }

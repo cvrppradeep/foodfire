@@ -1,21 +1,38 @@
 <template>
  <div>
-     <div><h2>Your Food Cart </h2></div>
+     <Header />
+      <div class="heading">Your Order Status</div>
+    
+           <div class="card" >
+        <div class="row">
+     
+      <div class="img-align"> 
+          <img class="cartimg-size" src="/eagle.png"/>
+      </div>
+        <div class="column w-6 pleft-1 ptop-1">
+            <div class="text-style">Food Name</div>
+             <div class=" text-style price">$12.39</div>
+            </div>
+        <!-- <div class="cross-align">
+           <img class="cross" src="close.png"/>
+            </div> -->
+    </div>
+  </div>
       <div class="product-card">
           <div class="a-listing">
-            <div class="height ">
+            <!-- <div class="height ">
               <img
                 src="hero.jpeg"
                 class="backgroundimg"
               />
-            </div>
-            <div class="card-container">
+            </div> -->
+      <div class="card-container">
               <div class="a-contain pl-1">
-                  <div><img class="img-size" src="eagle.png"/> </div>
+                  <div><img class="img-size" src="/shop1.png"/> </div>
                   <div class="a-listing">
                 <div class="text-bold "> Store Name</div>
                 <div class="a-contain pl-1">
-                    <div class="pt-img" ><img class="img-loacte" src="blocate.png"/></div>
+                    <div class="pt-img" ><img class="img-loacte" src="/blocate.png"/></div>
                 <div class="text-small">Address hal township</div>
                 </div>
                   </div>
@@ -23,11 +40,11 @@
                 <div class="dotted">
                 </div>
               <div class="a-contain pl-1">
-                  <div><img class="img-size" src="eagle.png"/> </div>
+                  <div><img class="img-size border" src="/person2.png"/> </div>
                   <div class="a-listing">
                 <div class="text-bold ">User Name</div>
                 <div class="a-contain pl-1">
-                    <div class="pt-img"><img class="img-loacte" src="bulocate.png"/></div>
+                    <div class="pt-img"><img class="img-loacte" src="/bulocate.png"/></div>
                 <div class="text-small"> Address hal township</div>
                 </div>
                   </div>
@@ -35,7 +52,7 @@
                 </div>
        </div>
           </div>
-             <div> <h3>Payment Method</h3></div>
+             <!-- <div> <h3>Payment Method</h3></div>
                <div class="b-card ">
                    <div class="a-contain">
                        <div class="pl-1">
@@ -43,35 +60,44 @@
                      </div>
                      <span class="span-text">Credit/Debit Card</span>
                    </div>
-                    </div>
+                    </div>-->
                     <div class="b-card ">
                    <div class="a-contain">
                        <div class="pl-1">
                           <img class="img-size" src="cash.png"/> 
                      </div>
-                     <span class="span-text">Cash on Delivery</span>
+                     <span class="span-text">To Collect <h1>100</h1></span>
                    </div>
                     </div>
-                     <div class="b-card ">
+                    <!-- <div class="b-card ">
                    <div class="a-contain">
                        <div class="pl-1">
                           <img class="img-size" src="paypal.png"/> 
                      </div>
                      <span class="span-text">Paypal</span>
                    </div>
-                    </div>
+                    </div> -->
                     <div class="pt-1 center pb-1"> <button class="button-lg">
-          <span style="font-size: 1rem">Submit Order</span>
+          <span style="font-size: 1rem">Delivered</span>
+          </button> </div>
+           <div class="pt-1 center pb-1"> <button >
+          <span style="font-size: 1rem">Cancel</span>
           </button> </div>
           </div>
         </template>
 <script>
+const Header = () => import("~/components/HeaderFood");
 export default {
-    
+    components: {
+    Header
+  }
 }
 </script>
 
 <style>
+h1{
+  margin-left: 2rem;
+}
 h2{
     text-shadow: 1px 1px #3c3333;
     font-size: 1.2rem;
@@ -88,7 +114,7 @@ h2{
 .product-card {
   display: flex;
   background-color: rgb(247, 247, 247);
-  justify-content: center;
+ 
   border-radius: 0.2rem;
   margin: 0.5rem;
   box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.175) !important;
@@ -115,7 +141,8 @@ width: 100%;
 height: 20vh;
 }
 .pt-img{
-    padding-top: 0.5rem;
+    padding-top: 0.6rem;
+    padding-left: 0.5rem;
 }
 .a-listing {
   display: flex;
@@ -160,9 +187,10 @@ font-size: 1.2rem;
 .text-small{
   font-size: 0.8rem;
     /* letter-spacing: 1px; */
-    padding-top: 0.7rem;
-    font-weight: 700; 
-    color: grey; 
+    padding-top: 0.8rem;
+    font-weight: 700;
+    color: grey;
+    padding-left: 0.2rem;
 }
 .card-container {
   padding: 0.4rem;
@@ -174,7 +202,7 @@ font-size: 1.2rem;
     width: 4rem;
     padding-top: 3rem;
     margin-top: 0rem;
-    margin-left: -1.8rem;
+    margin-left: -2.0rem;
 }
 .img-loacte{
     width: 1rem;
@@ -220,4 +248,53 @@ height: 4rem;
 .pb-1{
     padding-bottom: 1rem;
 }
+.card {
+  padding: 0.5rem;
+  -webkit-box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
+  box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
+  margin-top: 0.5rem;
+  align-items: center;
+  border-radius: 0.5rem;
+  margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+.row{
+ display: flex;
+flex-direction: row ;
+ /* justify-content: space-between; */
+}
+.column{
+        display: flex;
+        flex-direction: column
+    }
+.cartimg-size{
+        width: 6rem;
+    height: 6rem;
+}
+.img-align{
+    text-align: center;
+    width: 27%;
+}
+    .ptop-1{
+    padding-top: 0.5rem;
+}
+.pleft-1{
+    padding-left: 1rem;
+}
+.w-6{
+  width: 60%;
+}
+.text-style{
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.price{
+   padding-top: 0.6rem;
+   
+}
+.border{
+  border: 2px solid #2b73cc;
+    border-radius: 2rem;
+}
+
 </style>

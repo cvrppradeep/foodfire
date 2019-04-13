@@ -27,17 +27,7 @@
       <div class="fontbold">
         {{food.name}}
       </div>
-      <!-- <div class="address">
-            <div class="p-6">
-              <span> {{food.description}}</span>
-            </div>
-            <div class="p-6 m-1">
-        <strong>.</strong>
-        </div>
-         <div>
-           <span> 3.4 kms away</span>
-         </div>
-        </div>-->
+      
       <div>
         <div class="review">
           <div>
@@ -67,7 +57,11 @@
           </div>
         </div>
       </div>
+       <div class="p-top font-pink">
+            <span>By: {{food.resturant}}</span>
+        </div>
     </div>
+   
     <div class="amount border">
       <div>
         <span class="price">{{food.rate * qty | currency}}</span>
@@ -428,4 +422,8 @@ h3 {
   font-weight: 500;
   font-size: 0.8rem;
 }
+.p-top{
+  padding-top: 1rem;
+}
+
 </style>
