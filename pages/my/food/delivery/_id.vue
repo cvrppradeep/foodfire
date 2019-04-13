@@ -1,58 +1,75 @@
 <template>
- <div>
-     <Header />
-      <div class="heading">Your Order Status</div>
-    
-           <div class="card" >
-        <div class="row">
-     
-      <div class="img-align"> 
-          <img class="cartimg-size" src="/eagle.png"/>
-      </div>
-        <div class="column w-6 pleft-1 ptop-1">
-            <div class="text-style">Food Name</div>
-             <div class=" text-style price">$12.39</div>
+  <div>
+    <Header />
+    <div class="heading">Your Order Status</div>
+    <div class="product-card">
+      <div class="a-listing">
+        <div class="card-container">
+          <div class="a-contain pl-1">
+            <div><img
+                class="img-size"
+                src="/shop1.png"
+              /> </div>
+            <div
+              class="a-listing"
+              v-if="order.vendor"
+            >
+              <div class="text-bold ">{{order.vendor.restaurant}}</div>
+              <div class="a-contain pl-1">
+                <div class="pt-img"><img
+                    class="img-loacte"
+                    src="/blocate.png"
+                  /></div>
+                <div class="text-small">{{order.vendor.phone}}</div>
+              </div>
             </div>
+          </div>
+          <div class="dotted">
+          </div>
+          <div class="a-contain pl-1">
+            <div><img
+                class="img-size border"
+                src="/person2.png"
+              /> </div>
+            <div
+              class="a-listing"
+              v-if="order.address"
+            >
+              <div class="text-bold ">{{order.address.recipient_name}}</div>
+              <div class="a-contain pl-1">
+                <div class="pt-img"><img
+                    class="img-loacte"
+                    src="/bulocate.png"
+                  /></div>
+                <div class="text-small">{{order.address.qrno}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div
+      class="card"
+      v-if="order.item"
+    >
+      <div class="row">
+        <div class="img-align">
+          <img
+            class="cartimg-size"
+            :src="order.item.img"
+          />
+        </div>
+        <div class="column w-6 pleft-1 ptop-1">
+          <div class="text-style">{{order.item.name}}</div>
+          <div class=" text-style price">{{order.rate | currency}} x {{order.qty}}</div>
+        </div>
         <!-- <div class="cross-align">
            <img class="cross" src="close.png"/>
             </div> -->
+      </div>
     </div>
-  </div>
-      <div class="product-card">
-          <div class="a-listing">
-            <!-- <div class="height ">
-              <img
-                src="hero.jpeg"
-                class="backgroundimg"
-              />
-            </div> -->
-      <div class="card-container">
-              <div class="a-contain pl-1">
-                  <div><img class="img-size" src="/shop1.png"/> </div>
-                  <div class="a-listing">
-                <div class="text-bold "> Store Name</div>
-                <div class="a-contain pl-1">
-                    <div class="pt-img" ><img class="img-loacte" src="/blocate.png"/></div>
-                <div class="text-small">Address hal township</div>
-                </div>
-                  </div>
-                </div>
-                <div class="dotted">
-                </div>
-              <div class="a-contain pl-1">
-                  <div><img class="img-size border" src="/person2.png"/> </div>
-                  <div class="a-listing">
-                <div class="text-bold ">User Name</div>
-                <div class="a-contain pl-1">
-                    <div class="pt-img"><img class="img-loacte" src="/bulocate.png"/></div>
-                <div class="text-small"> Address hal township</div>
-                </div>
-                  </div>
-                </div>
-                </div>
-       </div>
-          </div>
-             <!-- <div> <h3>Payment Method</h3></div>
+    <!-- <div> <h3>Payment Method</h3></div>
                <div class="b-card ">
                    <div class="a-contain">
                        <div class="pl-1">
@@ -61,15 +78,18 @@
                      <span class="span-text">Credit/Debit Card</span>
                    </div>
                     </div>-->
-                    <div class="b-card ">
-                   <div class="a-contain">
-                       <div class="pl-1">
-                          <img class="img-size" src="cash.png"/> 
-                     </div>
-                     <span class="span-text">To Collect <h1>100</h1></span>
-                   </div>
-                    </div>
-                    <!-- <div class="b-card ">
+    <div class="b-card ">
+      <div class="a-contain">
+        <div class="pl-1">
+          <img
+            class="img-size"
+            src="cash.png"
+          />
+        </div>
+        <span class="span-text">To Collect <h1>{{order.amount | currency}}</h1></span>
+      </div>
+    </div>
+    <!-- <div class="b-card ">
                    <div class="a-contain">
                        <div class="pl-1">
                           <img class="img-size" src="paypal.png"/> 
@@ -77,44 +97,70 @@
                      <span class="span-text">Paypal</span>
                    </div>
                     </div> -->
-                    <div class="pt-1 center pb-1"> <button class="button-lg">
-          <span style="font-size: 1rem">Delivered</span>
-          </button> </div>
-           <div class="pt-1 center pb-1"> <button >
-          <span style="font-size: 1rem">Cancel</span>
-          </button> </div>
-          </div>
-        </template>
+    <div class="pt-1 center pb-1"> <button class="button-lg">
+        <span style="font-size: 1rem">Delivered</span>
+      </button> </div>
+    <div class="pt-1 center pb-1"> <button>
+        <span style="font-size: 1rem">Cancel</span>
+      </button> </div>
+    <div class="btn-align footer">
+      <div class="btn btn-block btn-white back-to-menu-btn">
+        <div>
+          <img
+            class="height35"
+            src="/backarrow.svg"
+          />
+        </div>
+        <div>
+          <router-link
+            to="/my/food/delivery"
+            class="btnclr"
+          >Food Mela</router-link>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 <script>
 const Header = () => import("~/components/HeaderFood");
 export default {
-    components: {
-    Header
-  }
-}
+  async asyncData({ $axios, route }) {
+    try {
+      const order = await $axios.$get("food-orders/" + route.params.id);
+      return { order };
+    } catch (e) {}
+  },
+  components: { Header }
+};
 </script>
 
-<style>
-h1{
+<style scoped>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+h1 {
   margin-left: 2rem;
 }
-h2{
-    text-shadow: 1px 1px #3c3333;
-    font-size: 1.2rem;
-    padding-left: 1rem;
-    text-align: center;
-    padding-top: 1rem;
-    }
-    h3{
-    text-shadow: 1px 1px #3c3333;
-    font-size: 1.2rem;
-    padding-left: 1rem;
-    
-    }
+h2 {
+  text-shadow: 1px 1px #3c3333;
+  font-size: 1.2rem;
+  padding-left: 1rem;
+  text-align: center;
+  padding-top: 1rem;
+}
+h3 {
+  text-shadow: 1px 1px #3c3333;
+  font-size: 1.2rem;
+  padding-left: 1rem;
+}
 .product-card {
   display: flex;
   background-color: rgb(247, 247, 247);
- 
+
   border-radius: 0.2rem;
   margin: 0.5rem;
   box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.175) !important;
@@ -135,28 +181,28 @@ h2{
   min-height: 126px;
   /* box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.175) !important; */
   background-size: cover;
-background-attachment: fixed;
-position: relative;
-width: 100%;
-height: 20vh;
+  background-attachment: fixed;
+  position: relative;
+  width: 100%;
+  height: 20vh;
 }
-.pt-img{
-    padding-top: 0.6rem;
-    padding-left: 0.5rem;
+.pt-img {
+  padding-top: 0.6rem;
+  padding-left: 0.5rem;
 }
 .a-listing {
   display: flex;
   flex-direction: column;
 }
-.img-size{
-        width: 3rem;
-    height: 3rem;
+.img-size {
+  width: 3rem;
+  height: 3rem;
 }
 .a-contain {
   display: flex;
   flex-direction: row;
-  }
-  .pl-1{
+}
+.pl-1 {
   padding-left: 0.5rem;
 }
 .p-name {
@@ -179,48 +225,48 @@ height: 20vh;
   padding-right: 0.5rem;
 }
 .text-bold {
-font-size: 1.2rem;
-    /* letter-spacing: 1px; */
-    padding-left: 1rem;
-    font-weight: 700;
+  font-size: 1.2rem;
+  /* letter-spacing: 1px; */
+  padding-left: 1rem;
+  font-weight: 700;
 }
-.text-small{
+.text-small {
   font-size: 0.8rem;
-    /* letter-spacing: 1px; */
-    padding-top: 0.8rem;
-    font-weight: 700;
-    color: grey;
-    padding-left: 0.2rem;
+  /* letter-spacing: 1px; */
+  padding-top: 0.8rem;
+  font-weight: 700;
+  color: grey;
+  padding-left: 0.2rem;
 }
 .card-container {
   padding: 0.4rem;
 }
-.dotted{
-    border-left: 3px dotted #b7b6b6;
-    /* -webkit-transform: rotate(90deg); */
-    transform: rotate(180deg);
-    width: 4rem;
-    padding-top: 3rem;
-    margin-top: 0rem;
-    margin-left: -2.0rem;
+.dotted {
+  border-left: 3px dotted #b7b6b6;
+  /* -webkit-transform: rotate(90deg); */
+  transform: rotate(180deg);
+  width: 4rem;
+  padding-top: 3rem;
+  margin-top: 0rem;
+  margin-left: -2rem;
 }
-.img-loacte{
-    width: 1rem;
-    height: 1rem;
+.img-loacte {
+  width: 1rem;
+  height: 1rem;
 }
-.b-card{
-   padding: 0.5rem;
+.b-card {
+  padding: 0.5rem;
   box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
-border-radius: 0.5rem;
-height: 4rem;
- margin: 1rem;
+  border-radius: 0.5rem;
+  height: 4rem;
+  margin: 1rem;
 }
-.span-text{
-    padding-left: 1.5rem;
-    display: flex;
-    align-items: center;
-    font-size: 1.1rem;
-    font-weight: 700;
+.span-text {
+  padding-left: 1.5rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 .button-lg {
   display: flex;
@@ -238,15 +284,15 @@ height: 4rem;
   background: linear-gradient(87deg, #4068fb 0, #1ad0de 100%) !important;
   border-color: #69beda;
 }
-.center{
-    text-align:center;
-    text-align: -webkit-center;
-   }
-   .pt-1{
-    padding-top: 1rem;
+.center {
+  text-align: center;
+  text-align: -webkit-center;
 }
-.pb-1{
-    padding-bottom: 1rem;
+.pt-1 {
+  padding-top: 1rem;
+}
+.pb-1 {
+  padding-bottom: 1rem;
 }
 .card {
   padding: 0.5rem;
@@ -256,45 +302,43 @@ height: 4rem;
   align-items: center;
   border-radius: 0.5rem;
   margin-left: 0.5rem;
-    margin-right: 0.5rem;
+  margin-right: 0.5rem;
 }
-.row{
- display: flex;
-flex-direction: row ;
- /* justify-content: space-between; */
+.row {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
 }
-.column{
-        display: flex;
-        flex-direction: column
-    }
-.cartimg-size{
-        width: 6rem;
-    height: 6rem;
+.column {
+  display: flex;
+  flex-direction: column;
 }
-.img-align{
-    text-align: center;
-    width: 27%;
+.cartimg-size {
+  width: 6rem;
+  height: 6rem;
 }
-    .ptop-1{
-    padding-top: 0.5rem;
+.img-align {
+  text-align: center;
+  width: 27%;
 }
-.pleft-1{
-    padding-left: 1rem;
+.ptop-1 {
+  padding-top: 0.5rem;
 }
-.w-6{
+.pleft-1 {
+  padding-left: 1rem;
+}
+.w-6 {
   width: 60%;
 }
-.text-style{
-    font-size: 1.2rem;
-    font-weight: 500;
+.text-style {
+  font-size: 1.2rem;
+  font-weight: 500;
 }
-.price{
-   padding-top: 0.6rem;
-   
+.price {
+  padding-top: 0.6rem;
 }
-.border{
+.border {
   border: 2px solid #2b73cc;
-    border-radius: 2rem;
+  border-radius: 2rem;
 }
-
 </style>

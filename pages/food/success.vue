@@ -18,7 +18,7 @@
                 Your order request has been received <small>successfully.</small>
               </h2>
               <p class="font13">Order No: <span class="font-weight-bold">{{order["orderNo"]}}</span></p>
-              <p>Delivery will start 06-Apr-2019 6:00PM - 8:00PM</p>
+              <p>Delivery will start 14-Apr-2019 6:00PM - 8:00PM</p>
               <h5><strong>Note: </strong>Order once booked can not be cancelled.</h5>
             </div>
             <div>
@@ -118,10 +118,10 @@ export default {
       }
       console.log("err...", `${err}`);
     }
-    try {
-      await $axios.$post("cart", { items: [] });
-    } catch (e) {}
-    if (clearCart) store.commit("cart/clearCart", {});
+    // try {
+    //   await $axios.$post("cart", { items: [] });
+    // } catch (e) {}
+    // if (clearCart) store.commit("cart/clearCart", {});
 
     return { order };
   },

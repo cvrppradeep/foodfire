@@ -39,6 +39,16 @@
             color="green"
             text-color="white"
           >{{c.dish3}}</v-chip>
+          <v-chip
+            v-if="c.dish4"
+            color="green"
+            text-color="white"
+          >{{c.dish4}}</v-chip>
+          <v-chip
+            v-if="c.dish5"
+            color="green"
+            text-color="white"
+          >{{c.dish5}}</v-chip>
         </li>
       </ul>
     </div>
@@ -64,7 +74,7 @@ export default {
 </script>
 <style scoped>
 h1 {
-margin: 0px 0px 10px 0px;;
+  margin: 0px 0px 10px 0px;
 }
 ul > li {
   list-style: none;

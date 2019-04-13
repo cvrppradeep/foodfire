@@ -311,7 +311,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .fx {
   display: flex;
   flex-wrap: wrap;

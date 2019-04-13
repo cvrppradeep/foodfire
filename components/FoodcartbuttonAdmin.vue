@@ -30,7 +30,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoepd>
 .product-id {
   padding-left: 10px;
   padding-right: 10px;
