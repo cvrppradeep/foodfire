@@ -43,7 +43,7 @@ export default {
       return this.rating % 1;
     },
     diff() {
-      return 4 - Math.floor(this.rating);
+      return 5 - Math.floor(this.rating);
     }
   }
 };

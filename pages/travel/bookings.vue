@@ -24,7 +24,7 @@
       <!-- </v-layout> -->
     </v-container>
     <v-container v-else>
-      <v-layout>
+      <div>
         <v-flex>
           <v-responsive>
             <center>
@@ -35,7 +35,7 @@
             </center>
           </v-responsive>
         </v-flex>
-      </v-layout>
+ </div>
     </v-container>
   </div>
 </template>

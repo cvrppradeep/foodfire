@@ -154,12 +154,12 @@
             src='/personlogo.png'
           />
         </div>
-        <div class="p-1">
+        <div>
           <div class="instagold">
             <span>
               <Ratingcircle :rating="r.rating" /></span>
           </div>
-          <div class="f-weightforcode">{{r.vendor_name}}</div>
+          <div class="f-weightforcode">{{r.firstName}} {{r.lastName}}</div>
           <span class="span-msg">{{r.message}}</span>
         </div>
       </div>
@@ -358,7 +358,7 @@ h3 {
 }
 
 .card {
-  padding: 2rem;
+  padding: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -372,10 +372,11 @@ h3 {
   align-items: center;
 }
 .img-size {
-  width: 27rem;
-  height: 6rem;
+ width: 3rem;
+    height: 3rem;
   border: 1px solid #999;
   border-radius: 50%;
+  margin-right: 1rem;
 }
 .instagold {
   font-weight: bold;

@@ -53,7 +53,7 @@ export default {
 </script>
 <style scoped>
 h1 {
-  margin: 20px 0;
+margin: 0px 0px 10px 0px;;
 }
 ul > li {
   list-style: none;
