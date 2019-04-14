@@ -1,7 +1,7 @@
 {
   "name": "foodfire",
   "version": "1.0.0",
-  "description": "Get awesome groceries delivered at your home",
+  "description": "Get awesome food delivered to your home",
   "author": "Swadesh Behera",
   "private": false,
   "scripts": {

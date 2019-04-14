@@ -142,7 +142,10 @@ export default {
   computed: {
     ...mapGetters({
       loading: "loading"
-    })
+    }),
+    user() {
+      return (this.$store.state.auth || {}).user || null;
+    }
   },
   methods: {
     ...mapActions({

@@ -70,6 +70,29 @@
         />
       </div>
     </div>
+    <v-layout
+      wrap
+      v-if="user"
+    >
+      <v-flex xs6>
+        <v-text-field
+          v-if="!user.firstName"
+          label="First Name"
+          name="firstName"
+          v-model="firstName"
+          box
+        />
+      </v-flex>
+      <v-flex xs6>
+        <v-text-field
+          v-if="!user.lastName"
+          label="Last Name"
+          name="lastName"
+          v-model="lastName"
+          box
+        />
+      </v-flex>
+    </v-layout>
     <div>
       <div class="button-container">
         <div
@@ -192,6 +215,8 @@ export default {
   data() {
     return {
       qty: 1,
+      firstName: "",
+      lastName: "",
       reviews: [],
       total: 0,
       avg: 0
@@ -225,6 +250,17 @@ export default {
       if (!this.address) {
         this.$store.commit("setErr", "Please enter QrNo");
         return;
+      }
+      if (!this.user.firstName) {
+        if (!this.firstName || this.firstName == "") {
+          this.$store.commit("setErr", "Please enter First Name");
+          return;
+        } else if (!this.lastName || this.lastName == "") {
+          this.$store.commit("setErr", "Please enter Last Name");
+          return;
+        }
+        let user = { firstName: this.firstName, lastName: this.lastName };
+        const data = await this.$axios.$put("/users/profile", user);
       }
       this.$swal({
         title: "Are you sure?",

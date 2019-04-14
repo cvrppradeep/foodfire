@@ -10,156 +10,79 @@
       </nuxt-link>&nbsp;
       Add Food Details
     </div>
-    <div class="container">
-      <form
-        novalidate
-        autocomplete="off"
-        @submit.stop.prevent="submit()"
-        class="container center"
-      >
-        <div class="card shadow columns">
+    <form
+      novalidate
+      autocomplete="off"
+      @submit.stop.prevent="submit()"
+      class="container center"
+    >
+      <div class="card shadow columns">
+        <br />
+        <div class="margin-phn">
+          <v-text-field
+            label="Dish Name"
+            name="name"
+            v-model="food.name"
+            box
+          />
+          <v-text-field
+            label="Description"
+            name="description"
+            v-model="food.description"
+            box
+          />
+          <v-text-field
+            label="Rate"
+            name="rate"
+            v-model="food.rate"
+            box
+          />
+          <v-text-field
+            label="Qty"
+            name="qty"
+            v-model="food.stock"
+            box
+          />
+          <v-radio-group v-model="food.type">
+            <v-radio
+              label="Veg"
+              value="V"
+            ></v-radio>
+            <v-radio
+              label="Non Veg"
+              value="N"
+            ></v-radio>
+          </v-radio-group>
+          <single-image-upload
+            :image="food.img"
+            :name="food"
+            folder="food"
+            @remove="remove"
+            @save="save"
+          />
+          <v-switch
+            v-model="food.active"
+            label="Active"
+          >Active</v-switch>
+          <img
+            v-if="food.img"
+            :src="'/images/'+food.img"
+          />
+          <div class="msg">{{msg}}</div>
           <br />
-          <div class="margin-phn">
-            <v-select
-              :items="dishes"
-              :attach="true"
-              item-text="name"
-              item-value="_id"
-              return-object
-              v-model="food"
-              label="Name"
-            >
-            </v-select>
-            <img
-              v-if="food.img"
-              :src="'/images/'+food.img"
-            />
-            <!--
-              <v-text-field
-              type="tel"
-              name='name'
-              ref="name"
-              v-model="food.name"
-              label="Name of Dish"
-              required
-            /> -->
-            <div class="msg">{{msg}}</div>
-          </div>
           <br />
-          <!-- <div class="margin-phn">
-            <v-textarea
-              name='description'
-              ref="description"
-              v-model="food.description"
-              label="Little Description"
-              required
-            />
-            <div class="msg">{{msg}}</div>
-          </div>
           <br />
-          <div class="margin-phn">
-            <v-menu
-              ref="menuDate"
-              :close-on-content-click="false"
-              v-model="menuDate"
-              :nudge-right="40"
-              :return-value.sync="date"
-              lazy
-              transition="scale-transition"
-              offset-y
-              full-width
-            >
-              <v-text-field
-                slot="activator"
-                v-model="date"
-                label="Date of Delivery"
-                readonly
-                box
-              ></v-text-field>
-              <v-date-picker
-                v-model="date"
-                @input="$refs.menuDate.save(date)"
-              ></v-date-picker>
-            </v-menu>
-            <div class="msg">{{msg}}</div>
-          </div>
           <br />
-          <div class="margin-phn">
-            <label for="phone">Time of Delivery</label>
-            7 PM
-          </div>
-          <br /> -->
-          <!-- <v-select
-              label="Time of Delivery"
-              name="time"
-              v-model="time"
-              v-validate="'required'"
-              ref="time"
-              :items="timesList"
-              box
-              required
-            > </v-select> -->
-          <!-- <div class="msg">{{msg}}</div> -->
-          <div class="margin-phn">
-            <Foodcartbutton
-              :qty="qty"
-              @add="add"
-            />
-            <!-- <input
-              type="tel"
-              class="phone"
-              name='qty'
-              ref="qty"
-              v-model="food.stock"
-              placeholder="Qty"
-              required
-            /> plate -->
-            <!-- <div class="msg">{{msg}}</div> -->
-          </div>
-          <br />
-          <!-- <div class="margin-phn">
-            <label for="phone">Type</label>
-            <input
-              type="tel"
-              class="phone"
-              name='type'
-              ref="type"
-              v-model="food.type"
-              placeholder="Veg / Non-Veg"
-              required
-            /> plate
-            <div class="msg">{{msg}}</div>
-          </div>
-          <div class="margin-phn">
-            <label for="phone">Price</label>
-            <input
-              type="tel"
-              class="phone"
-              name='price'
-              ref="price"
-              v-model="food.rate"
-              placeholder="Price"
-              required
-            /> plate
-            <div class="msg">{{msg}}</div>
-          </div> -->
           <br />
         </div>
-        <div class="footer">
-          <div class="cart-total footer">
-            <div class="card shadow-lg2 w100">
-              <v-btn
-                type="submit"
-                color="pink"
-                text-color="white"
-                :disabled="loading"
-              ><span :class="{'loading':loading}">Submit</span>
-              </v-btn>
-            </div>
-          </div>
+      </div>
+      <div class="footer">
+        <div class="form-element">
+          <button type="submit">Save Changes</button>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
+
   </div>
 </template>
 <script>
@@ -167,12 +90,13 @@ import moment from "moment";
 import { timesList } from "~/config";
 const Foodcartbutton = () => import("~/components/FoodcartbuttonAdmin");
 const Header = () => import("~/components/HeaderFood");
+import SingleImageUpload from "@/components/SingleImageUpload";
 
 export default {
   fetch({ store, redirect }) {
     if (!store.getters["auth/hasRole"]("chef")) return redirect("/login");
   },
-  components: { Foodcartbutton, Header },
+  components: { Foodcartbutton, Header, SingleImageUpload },
   data() {
     return {
       loading: false,
@@ -204,6 +128,13 @@ export default {
     }
   },
   methods: {
+    save(name, image) {
+      this.food.img = image;
+      this.submit();
+    },
+    remove(name) {
+      this.food.img = "";
+    },
     add(qty) {
       if (qty < 5 && this.qty <= 0) return;
       // if (qty > 0 && this.qty >= 300) {
@@ -223,7 +154,6 @@ export default {
           return;
         }
         this.food.deliveryDate = date;
-        this.food.stock = this.qty;
         if (this.$route.params.id == "new") {
           try {
             res = await this.$axios.$post("foods", this.food);
