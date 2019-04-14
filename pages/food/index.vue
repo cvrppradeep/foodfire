@@ -5,16 +5,16 @@
       row
       justify-center
     >
-      <!-- <v-dialog
+      <v-dialog
         v-model="dialog"
         persistent
         max-width="290"
       >
         <v-card>
-          <v-card-title class="headline">Live on Apr 14th, 2019</v-card-title>
-          <v-card-text>Please visit back Tomorrow Morning</v-card-text>
+          <v-card-title class="headline">Thank You</v-card-title>
+          <v-card-text>Restaurant closed for the day</v-card-text>
         </v-card>
-      </v-dialog> -->
+      </v-dialog>
     </v-layout>
     <div>
       <div class="heading">Food Orders <span class="time">Live Now</span></div>

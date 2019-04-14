@@ -148,11 +148,11 @@ export default {
       try {
         this.loading = true;
         let date = moment(this.date + " " + this.time, "YYYY-MM-DD h a");
-        if (date.diff(moment()) < 0) {
-          console.log("Delivery time is invalid");
-          this.$store.commit("setErr", "Delivery time is invalid");
-          return;
-        }
+        // if (date.diff(moment()) < 0) {
+        //   console.log("Delivery time is invalid");
+        //   this.$store.commit("setErr", "Delivery time is invalid");
+        //   return;
+        // }
         this.food.deliveryDate = date;
         if (this.$route.params.id == "new") {
           try {

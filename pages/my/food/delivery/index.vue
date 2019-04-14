@@ -18,8 +18,9 @@
             @click="go('/my/food/delivery/'+i._id)"
             class="fx customer"
           >
+            <div style="color:#333">{{i.item}}</div>
             <div>{{i.name}} ({{i.phone}})</div>
-            <div>{{i.qrno}}</div>
+            <div style="color:red">{{i.qrno}}</div>
           </div>
         </li>
       </ul>
@@ -48,11 +49,13 @@ export default {
 h1 {
   margin: 0px 0px 10px 0px;
 }
+li .customer {
+  border-bottom: 1px solid #ccc;
+}
 ul > li {
   list-style: none;
   margin: 10px;
   padding: 10px;
-  /* border-bottom: 1px solid grey; */
 }
 .card {
   padding: 1rem;
@@ -67,14 +70,14 @@ ul > li {
 .font {
   padding-left: 1rem;
 }
-.seller{
+.seller {
   font-size: 1.4rem;
 }
-.customer{
+.customer {
   padding: 1rem;
-    font-size: 1.2rem;
-    color: blue;
-    font-weight: 500;
+  font-size: 1.2rem;
+  color: blue;
+  font-weight: 500;
 }
 </style>
 

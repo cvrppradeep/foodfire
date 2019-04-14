@@ -11,8 +11,8 @@
         >
           <h1 class="seller">{{o.address.recipient_name}} ({{o.phone}})</h1>
           <h3 class="fx customer">
-            <div>{{o.rate | currency}} * {{o.qty}} = {{o.amount | currency}}</div>
-            <div>QrNo: {{o.address.qrno}}</div>
+            <div><span style="color:#333">{{o.item.name}}</span> {{o.rate | currency}} * {{o.qty}} = {{o.amount | currency}}</div>
+            <div style="color:red">QrNo: {{o.address.qrno}}</div>
           </h3>
         </li>
       </ul>
@@ -60,14 +60,14 @@ ul > li {
 .font {
   padding-left: 1rem;
 }
-.seller{
+.seller {
   font-size: 1.4rem;
 }
-.customer{
+.customer {
   padding: 1rem;
-    font-size: 1.2rem;
-    color: blue;
-    font-weight: 500;
+  font-size: 1.2rem;
+  color: blue;
+  font-weight: 500;
 }
 </style>
 
