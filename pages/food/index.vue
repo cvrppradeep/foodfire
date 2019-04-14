@@ -5,7 +5,7 @@
       row
       justify-center
     >
-      <v-dialog
+      <!-- <v-dialog
         v-model="dialog"
         persistent
         max-width="290"
@@ -14,17 +14,14 @@
           <v-card-title class="headline">Live on Apr 14th, 2019</v-card-title>
           <v-card-text>Please visit back Tomorrow Morning</v-card-text>
         </v-card>
-      </v-dialog>
+      </v-dialog> -->
     </v-layout>
-    <div
-      v-for="(f,ix) in foods"
-      :key="ix"
-    >
-      <div class="heading">Food Mela <span class="time">14th April 6:00 PM</span></div>
+    <div>
+      <div class="heading">Food Orders <span class="time">Live Now</span></div>
       <div class="align-row">
         <div
           class="product-card"
-          v-for="d in f.data"
+          v-for="d in foods"
           :key="d._id"
           @click="go('/food/'+d._id)"
         >

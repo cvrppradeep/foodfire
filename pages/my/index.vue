@@ -38,6 +38,10 @@
           <img src="/orders.svg" />
           <nuxt-link to="/my/food/dishes"> My Dishes</nuxt-link>
         </li>
+        <li v-if="user && user.role=='chef'">
+          <img src="/orders.svg" />
+          <nuxt-link to="/my/food/customers"> My Customer Orders</nuxt-link>
+        </li>
         <li>
           <img
             src="/car.svg"

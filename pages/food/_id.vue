@@ -11,7 +11,7 @@
     <div class="border container">
       <div class="a-row s-b">
         <div>
-          <a class="font-pink">{{food.deliveryDate | date}}</a>
+          <a class="font-pink">By {{food.restaurant}}</a>
         </div>
         <div>
           <span
@@ -56,9 +56,7 @@
           </div>
         </div>
       </div>
-      <div class="p-top font-pink">
-        <span>By: {{food.restaurant}}</span>
-      </div>
+
     </div>
 
     <div class="amount border">
@@ -85,6 +83,10 @@
             placeholder="Your QrNo"
           />
         </div>
+        <div class="p-top font-pink">
+          <span>Expected Delivery: 7:00 PM</span>
+        </div>
+        <br />
         <button
           class="button-lg blue"
           v-if="user.phone"

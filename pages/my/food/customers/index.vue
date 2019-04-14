@@ -9,18 +9,11 @@
           v-for="(o,ix) in orders"
           :key="ix"
         >
-          <div class="font">
-            <h1>{{o._id.restaurant}} - {{o._id.phone}}</h1>
-          </div>
-          <div
-            v-for="(i,ixx) in o.data"
-            :key="'i-'+ixx"
-            @click="go('/my/food/delivery/'+i._id)"
-            class="fx"
-          >
-            <div>{{i.name}} ({{i.phone}})</div>
-            <div>{{i.qrno}}</div>
-          </div>
+          <h1>{{o.address.recipient_name}} ({{o.phone}})</h1>
+          <h3 class="fx">
+            <div>{{o.rate | currency}} * {{o.qty}} = {{o.amount | currency}}</div>
+            <div>QrNo: {{o.address.qrno}}</div>
+          </h3>
         </li>
       </ul>
     </div>
@@ -31,7 +24,7 @@ const Header = () => import("~/components/HeaderFood");
 export default {
   async asyncData({ $axios }) {
     try {
-      let orders = await $axios.$get("food-orders/group");
+      let orders = await $axios.$get("food-orders/my-customers");
       return { orders };
     } catch (e) {}
   },

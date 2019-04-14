@@ -1,9 +1,9 @@
 <template>
   <div>
     <Header />
-    <div class="heading">Your Order Status</div>
+    <div class="heading">Delivery Details</div>
     <div class="product-card">
-      <div class="a-listing">
+      <div class="a-listing fx">
         <div class="card-container">
           <div class="a-contain pl-1">
             <div><img
@@ -46,7 +46,7 @@
             </div>
           </div>
         </div>
-
+        <h3>{{order.rate | currency}} * {{order.qty}} = {{order.amount | currency}}</h3>
       </div>
     </div>
     <div
@@ -125,22 +125,37 @@
 const Header = () => import("~/components/HeaderFood");
 export default {
   async asyncData({ $axios, route }) {
+    let order = {};
     try {
-      const order = await $axios.$get("food-orders/" + route.params.id);
+      order = await $axios.$get("food-orders/" + route.params.id);
       return { order };
-    } catch (e) {}
+    } catch (e) {
+      order = {};
+    }
   },
   components: { Header }
 };
 </script>
 
 <style scoped>
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
+.btn {
+  padding: 7px;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+}
+.btn-white {
+  background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%) !important;
+  border-color: #fff;
+  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.back-to-menu-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 h1 {
   margin-left: 2rem;
