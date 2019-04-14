@@ -20,6 +20,7 @@
           >
             <div style="color:#333">{{i.item}}</div>
             <div>{{i.name}} ({{i.phone}})</div>
+            <div>{{i.qty}} * {{i.amount | currency}}</div>
             <div style="color:red">{{i.qrno}}</div>
           </div>
         </li>
