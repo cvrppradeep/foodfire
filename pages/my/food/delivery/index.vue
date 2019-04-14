@@ -10,13 +10,13 @@
           :key="ix"
         >
           <div class="font">
-            <h1>{{o._id.restaurant}} - {{o._id.phone}}</h1>
+            <h1 class="seller">{{o._id.restaurant}} - {{o._id.phone}}</h1>
           </div>
           <div
             v-for="(i,ixx) in o.data"
             :key="'i-'+ixx"
             @click="go('/my/food/delivery/'+i._id)"
-            class="fx"
+            class="fx customer"
           >
             <div>{{i.name}} ({{i.phone}})</div>
             <div>{{i.qrno}}</div>
@@ -66,6 +66,15 @@ ul > li {
 }
 .font {
   padding-left: 1rem;
+}
+.seller{
+  font-size: 1.4rem;
+}
+.customer{
+  padding: 1rem;
+    font-size: 1.2rem;
+    color: blue;
+    font-weight: 500;
 }
 </style>
 

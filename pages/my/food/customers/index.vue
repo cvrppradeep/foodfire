@@ -9,8 +9,8 @@
           v-for="(o,ix) in orders"
           :key="ix"
         >
-          <h1>{{o.address.recipient_name}} ({{o.phone}})</h1>
-          <h3 class="fx">
+          <h1 class="seller">{{o.address.recipient_name}} ({{o.phone}})</h1>
+          <h3 class="fx customer">
             <div>{{o.rate | currency}} * {{o.qty}} = {{o.amount | currency}}</div>
             <div>QrNo: {{o.address.qrno}}</div>
           </h3>
@@ -59,6 +59,15 @@ ul > li {
 }
 .font {
   padding-left: 1rem;
+}
+.seller{
+  font-size: 1.4rem;
+}
+.customer{
+  padding: 1rem;
+    font-size: 1.2rem;
+    color: blue;
+    font-weight: 500;
 }
 </style>
 
