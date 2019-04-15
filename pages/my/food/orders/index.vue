@@ -26,7 +26,7 @@
                 <h4>Date: {{o.createdAt | ago}} </h4>
               </div>
             </div>
-            <div class="fx center">
+            <div class="fx center p-top">
               <div class="address">Address: {{o.address.qrno}}, {{o.address.city}}</div>
             </div>
           </div>
@@ -273,5 +273,10 @@ p {
   padding-left: 10px;
   font-size: 13px;
 }
+.p-top{
+  padding-top: 1rem;
+    color: blue;
+}
+
 </style>
 

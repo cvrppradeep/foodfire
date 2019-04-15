@@ -11,7 +11,7 @@
     </div>
     <div class="product-name">
       <strong>{{product.name}}</strong>
-      <div class="fx">
+      <div class="fx m-left">
         <div class="variants">
           <strong>{{product.qty}}</strong>
         </div>
@@ -68,6 +68,9 @@ strong {
   right: 0;
   text-align: center;
   margin-bottom: 50px;
+}
+.m-left{
+  margin-left: 2rem;
 }
 </style>
 

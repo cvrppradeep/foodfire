@@ -26,7 +26,7 @@
                   <h5><strong>Note: </strong>Your order will be sent to you, usually within 1-24hrs.</h5>
                 </div>
                 <div>
-                  Adress: <strong
+                  Address: <strong
                     class=""
                     v-if="order.address"
                   >{{order.address.address}}</strong><br />
