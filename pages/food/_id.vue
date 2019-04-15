@@ -111,8 +111,19 @@
         </div>
         <br />
         <button
+          v-if="!openclose"
+          disabled
           class="button-lg blue"
-          v-if="user.phone"
+        >
+          <span>Open 10AM-8PM</span>
+          <span><img
+              class="img-style"
+              src='/backarrow.svg'
+            /></span>
+        </button>
+        <button
+          class="button-lg blue"
+          v-else-if="user.phone"
           :disabled="food.stock<=0"
           @click="order(food)"
         >
@@ -202,7 +213,8 @@ const Header = () => import("~/components/HeaderFood");
 export default {
   components: { Ratingcircle, Foodcartbutton, Header },
   async asyncData({ $axios, route }) {
-    let address = "";
+    let address = "",
+      openclose = false;
     const food = await $axios.$get("foods/" + route.params.id);
     try {
       let user = await $axios.$get("users/me");
@@ -210,7 +222,12 @@ export default {
         address = user.address.qrno;
       }
     } catch (e) {}
-    return { qty: 1, food, address };
+    try {
+      openclose = await $axios.$get("foods/openclose");
+    } catch (e) {
+      openclose = false;
+    }
+    return { qty: 1, food, address, openclose };
   },
   data() {
     return {
