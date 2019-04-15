@@ -1,12 +1,12 @@
 <template>
   <div>
     <HeaderFood />
-    <v-layout
+    <!-- <v-layout
       row
       justify-center
     >
       <v-dialog
-        v-model="dialog"
+        v-model="openclose"
         persistent
         max-width="290"
       >
@@ -15,7 +15,7 @@
           <v-card-text>Restaurant closed for the day</v-card-text>
         </v-card>
       </v-dialog>
-    </v-layout>
+    </v-layout> -->
     <div>
       <div class="heading">Food Orders <span class="time">Live Now</span></div>
       <div class="align-row">
@@ -36,7 +36,11 @@
               <div class="a-contain">
                 <div
                   class="f-pink"
-                  v-if="d.stock>0"
+                  v-if="!openclose"
+                >We open 10AM-8PM</div>
+                <div
+                  class="f-pink"
+                  v-else-if="d.stock>0"
                 > Only {{d.stock}} left</div>
                 <div
                   class="f-pink"
@@ -68,13 +72,22 @@ const HeaderFood = () => import("~/components/HeaderFood");
 export default {
   components: { Ratingcircle, CartButtons, HeaderFood },
   async asyncData({ $axios }) {
-    const foods = await $axios.$get("foods/group");
-    return { foods };
+    let foods = [],
+      openclose = false;
+    try {
+      foods = await $axios.$get("foods/group");
+    } catch (e) {
+      foods = [];
+    }
+    try {
+      openclose = await $axios.$get("foods/openclose");
+    } catch (e) {
+      openclose = false;
+    }
+    return { foods, openclose };
   },
   data() {
-    return {
-      dialog: true
-    };
+    return {};
   },
   methods: {
     go(url) {
