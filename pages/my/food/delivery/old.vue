@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <div class="heading">Today's Delivery</div>
+    <div class="heading">Old Delivery</div>
     <div>
       <ul class="p-left">
         <li
@@ -27,9 +27,9 @@
       </ul>
     </div>
     <nuxt-link
-      to="/my/food/delivery/old/"
+      to="/my/food/delivery/"
       class="history-button"
-    >Old Delivery</nuxt-link>
+    >Today's Delivery</nuxt-link>
   </div>
 </template>
 <script>
@@ -38,7 +38,7 @@ export default {
   async asyncData({ $axios }) {
     let orders = [];
     try {
-      orders = await $axios.$get("food-orders/group");
+      orders = await $axios.$get("food-orders/old-group");
     } catch (e) {}
     return { orders };
   },

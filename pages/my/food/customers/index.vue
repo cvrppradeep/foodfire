@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <div class="heading">Customer Orders</div>
+    <div class="heading">Today's Orders</div>
     <div>
       <ul class="p-left">
         <li
@@ -17,16 +17,21 @@
         </li>
       </ul>
     </div>
+    <nuxt-link
+      to="/my/food/customers/old/"
+      class="history-button"
+    >Old Customers</nuxt-link>
   </div>
 </template>
 <script>
 const Header = () => import("~/components/HeaderFood");
 export default {
   async asyncData({ $axios }) {
+    let orders = [];
     try {
-      let orders = await $axios.$get("food-orders/my-customers");
-      return { orders };
+      orders = await $axios.$get("food-orders/my-customers");
     } catch (e) {}
+    return { orders };
   },
   components: { Header },
   methods: {

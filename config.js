@@ -1,6 +1,6 @@
 const REMOTE_API_URL = 'https://api.iotutorials.com'
- const LOCAL_API_URL = 'https://api.iotutorials.com'
-// const LOCAL_API_URL = 'http://localhost:9006'
+//  const LOCAL_API_URL = 'https://api.iotutorials.com'
+const LOCAL_API_URL = 'http://localhost:9006'
 const DOMAIN = (process.env.NODE_ENV === 'production') ? REMOTE_API_URL : LOCAL_API_URL
 export const TITLE = "Misiki - The joy of sharing"
 export const DESCRIPTION = "Wanna showcase your cooking skills? Earn while others relish the taste...Misiki Food...a new online platform for food lovers. Join as chef!"

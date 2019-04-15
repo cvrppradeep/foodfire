@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <div class="heading">Today's Delivery</div>
+    <div class="heading">Today's Orders</div>
     <div>
       <ul class="p-left">
         <li
@@ -9,27 +9,18 @@
           v-for="(o,ix) in orders"
           :key="ix"
         >
-          <div class="font">
-            <h1 class="seller">{{o._id.restaurant}} - {{o._id.phone}}</h1>
-          </div>
-          <div
-            v-for="(i,ixx) in o.data"
-            :key="'i-'+ixx"
-            @click="go('/my/food/delivery/'+i._id)"
-            class="fx customer"
-          >
-            <div style="color:#333">{{i.item}}</div>
-            <div>{{i.name}} ({{i.phone}})</div>
-            <div>{{i.qty}} * {{i.rate | currency}} = {{i.amount | currency}}</div>
-            <div style="color:red">{{i.qrno}}</div>
-          </div>
+          <h1 class="seller">{{o.address.recipient_name}} ({{o.phone}})</h1>
+          <h3 class="fx customer">
+            <div><span style="color:#333">{{o.item.name}}</span> {{o.rate | currency}} * {{o.qty}} = {{o.amount | currency}}</div>
+            <div style="color:red">QrNo: {{o.address.qrno}}</div>
+          </h3>
         </li>
       </ul>
     </div>
     <nuxt-link
-      to="/my/food/delivery/old/"
+      to="/my/food/customers/"
       class="history-button"
-    >Old Delivery</nuxt-link>
+    >Today's Customers</nuxt-link>
   </div>
 </template>
 <script>
@@ -38,7 +29,7 @@ export default {
   async asyncData({ $axios }) {
     let orders = [];
     try {
-      orders = await $axios.$get("food-orders/group");
+      orders = await $axios.$get("food-orders/my-old-customers");
     } catch (e) {}
     return { orders };
   },
@@ -55,13 +46,11 @@ export default {
 h1 {
   margin: 0px 0px 10px 0px;
 }
-li .customer {
-  border-bottom: 1px solid #ccc;
-}
 ul > li {
   list-style: none;
   margin: 10px;
   padding: 10px;
+  /* border-bottom: 1px solid grey; */
 }
 .card {
   padding: 1rem;
