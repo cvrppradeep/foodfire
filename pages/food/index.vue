@@ -37,7 +37,7 @@
                 <div
                   class="f-pink"
                   v-if="!openclose"
-                >Open 10AM-8PM</div>
+                >Open 06:00AM - 06:00PM</div>
                 <div
                   class="f-pink"
                   v-else-if="d.stock>0"
