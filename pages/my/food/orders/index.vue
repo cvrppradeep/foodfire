@@ -15,7 +15,7 @@
         :key="o._id"
         :title="`${o.firstName} ${o.lastName} => ${o.address.address}`"
         class="container"
-        @click="go('/food/'+o._id)"
+        @click="go('/food/'+o.item._id)"
       >
         <div class="card shadow-lg2">
           <div class="border">

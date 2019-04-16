@@ -16,7 +16,7 @@
 
       <div class="phoneno column center">
         <h4>You'll recieve the confirmation message shortly to </h4>
-        <span style=" padding-top: 0.4rem;">Phone No.<strong class="greenclr">{{order.phone}}</strong> </span>
+        <span style=" padding-top: 0.4rem;"><strong class="greenclr">{{order.phone}}</strong> </span>
         <div style="padding-top: 0.4rem;">
           Delivery Address: <strong
             class="blueclr"
@@ -71,7 +71,7 @@
           <router-link
             to="/food"
             class="btnclr"
-          >Food Mela</router-link>
+          >Order More</router-link>
         </div>
       </div>
     </div>

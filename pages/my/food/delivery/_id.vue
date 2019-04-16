@@ -115,7 +115,7 @@
           <router-link
             to="/my/food/delivery"
             class="btnclr"
-          >Food Mela</router-link>
+          >Back to all Delivery</router-link>
         </div>
       </div>
     </div>

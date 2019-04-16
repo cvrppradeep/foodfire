@@ -1,154 +1,158 @@
 <template>
   <div>
-    <!-- <Header /> -->
-    <!-- <label>{{f._id.deliveryDate}}</label> -->
-    <div
-      class="img-height backgroundimg"
-      v-lazy:background-image="'/images'+food.img"
-      alt=""
-    >
-    </div>
-    <div class="border container">
-      <div class="a-row s-b">
-        <div>
-          <a class="font-pink">By {{food.restaurant}}</a>
-        </div>
-        <div>
-          <span
-            class="font-pink small"
-            v-if="food.stock>0"
-          >Only {{food.stock}} left</span>
-          <span
-            class="font-pink small"
-            v-else
-          >Sold Out</span>
-        </div>
+    <h1 v-if="!food">
+      <Header />
+      Item not found</h1>
+    <div v-else>
+      <!-- <Header /> -->
+      <!-- <label>{{f._id.deliveryDate}}</label> -->
+      <div
+        class="img-height backgroundimg"
+        v-lazy:background-image="'/images'+food.img"
+        alt=""
+      >
       </div>
-      <div class="fontbold">
-        {{food.name}}
-      </div>
-      <div>
-        <div class="review">
+      <div class="border container">
+        <div class="a-row s-b">
           <div>
-            <Ratingcircle :rating="avg" />
+            <a class="font-pink">By {{food.restaurant}}</a>
+          </div>
+          <div>
             <span
-              class="p-1"
-              v-if="reviews.length>0"
-            >{{reviews.length}} reviews</span>
-          </div>
-          <div
-            v-if="food.type=='V'"
-            class="fx"
-          >
-            <img
-              src="/veg.png"
-              style="width:20px;height:20px;"
-            /> Veg
-          </div>
-          <div
-            v-else
-            class="fx"
-          >
-            <img
-              src="/non-veg.png"
-              style="width:20px;height:20px;"
-            /> Non-Veg
+              class="font-pink small"
+              v-if="food.stock>0"
+            >Only {{food.stock}} left</span>
+            <span
+              class="font-pink small"
+              v-else
+            >Sold Out</span>
           </div>
         </div>
+        <div class="fontbold">
+          {{food.name}}
+        </div>
+        <div>
+          <div class="review">
+            <div>
+              <Ratingcircle :rating="avg" />
+              <span
+                class="p-1"
+                v-if="reviews.length>0"
+              >{{reviews.length}} reviews</span>
+            </div>
+            <div
+              v-if="food.type=='V'"
+              class="fx"
+            >
+              <img
+                src="/veg.png"
+                style="width:20px;height:20px;"
+              /> Veg
+            </div>
+            <div
+              v-else
+              class="fx"
+            >
+              <img
+                src="/non-veg.png"
+                style="width:20px;height:20px;"
+              /> Non-Veg
+            </div>
+          </div>
+        </div>
+
       </div>
 
-    </div>
-
-    <div class="amount border">
-      <div>
-        <span class="price">{{food.rate * qty | currency}}</span>
-      </div>
-      <div>
-        <Foodcartbutton
-          :qty="qty"
-          @add="add"
-        />
-      </div>
-    </div>
-    <v-layout
-      wrap
-      v-if="user"
-    >
-      <v-flex xs6>
-        <v-text-field
-          v-if="!user.firstName"
-          label="First Name"
-          name="firstName"
-          v-model="firstName"
-          box
-        />
-      </v-flex>
-      <v-flex xs6>
-        <v-text-field
-          v-if="!user.lastName"
-          label="Last Name"
-          name="lastName"
-          v-model="lastName"
-          box
-        />
-      </v-flex>
-    </v-layout>
-    <div>
-      <div class="button-container">
-        <div
-          class="center"
-          v-if="user.phone"
-        >
-          <span style="margin-top:-10px"> QrNo: &nbsp; </span><input
-            class="input"
-            style="max-width:100px;margin-bottom:0.5rem"
-            v-model="address"
-            placeholder="Your QrNo"
+      <div class="amount border">
+        <div>
+          <span class="price">{{food.rate * qty | currency}}</span>
+        </div>
+        <div>
+          <Foodcartbutton
+            :qty="qty"
+            @add="add"
           />
         </div>
-        <div class="p-top font-pink">
-          <span>Expected Delivery: 7:00 PM</span>
-        </div>
-        <br />
-        <button
-          v-if="!openclose"
-          disabled
-          class="button-lg blue"
-        >
-          <span>Open 6AM - 5PM</span>
-          <span><img
-              class="img-style"
-              src='/backarrow.svg'
-            /></span>
-        </button>
-        <button
-          class="button-lg blue"
-          v-else-if="user.phone"
-          :disabled="food.stock<=0"
-          @click="order(food)"
-        >
-          <span>Place Order</span>
-          <span><img
-              class="img-style"
-              src='/backarrow.svg'
-            /></span>
-        </button>
-
-        <button
-          v-else
-          :disabled="food.stock<=0"
-          class="button-lg blue"
-          @click="go('/login?return=/food/'+$route.params.id)"
-        >
-          <span>Login To order</span>
-          <span><img
-              class="img-style"
-              src='/backarrow.svg'
-            /></span>
-        </button>
       </div>
-    </div>
-    <!-- <div class="card" >
+      <v-layout
+        wrap
+        v-if="user"
+      >
+        <v-flex xs6>
+          <v-text-field
+            v-if="user.phone && !user.firstName"
+            label="First Name"
+            name="firstName"
+            v-model="firstName"
+            box
+          />
+        </v-flex>
+        <v-flex xs6>
+          <v-text-field
+            v-if="user.phone && !user.lastName"
+            label="Last Name"
+            name="lastName"
+            v-model="lastName"
+            box
+          />
+        </v-flex>
+      </v-layout>
+      <div>
+        <div class="button-container">
+          <div
+            class="center"
+            v-if="user.phone"
+          >
+            <span style="margin-top:-10px"> QrNo: &nbsp; </span><input
+              class="input"
+              style="max-width:100px;margin-bottom:0.5rem"
+              v-model="address"
+              placeholder="Your QrNo"
+            />
+          </div>
+          <div class="p-top font-pink">
+            <span>Expected Delivery: 7:00 PM</span>
+          </div>
+          <br />
+          <button
+            v-if="!openclose"
+            disabled
+            class="button-lg blue"
+          >
+            <span>Open 6AM - 5PM</span>
+            <span><img
+                class="img-style"
+                src='/backarrow.svg'
+              /></span>
+          </button>
+          <button
+            class="button-lg blue"
+            v-else-if="user.phone"
+            :disabled="food.stock<=0"
+            @click="order(food)"
+          >
+            <span>Place Order</span>
+            <span><img
+                class="img-style"
+                src='/backarrow.svg'
+              /></span>
+          </button>
+
+          <button
+            v-else
+            :disabled="food.stock<=0"
+            class="button-lg blue"
+            @click="go('/login?return=/food/'+$route.params.id)"
+          >
+            <span>Login To order</span>
+            <span><img
+                class="img-style"
+                src='/backarrow.svg'
+              /></span>
+          </button>
+        </div>
+      </div>
+      <!-- <div class="card" >
       <div class="a-row">
       <div>
 <img class="img-size" src='/eagle.png'/>
@@ -164,36 +168,36 @@
    <img class="" src='/rightarrow-1.svg'/>
 </div>
 </div> -->
-    <div class="fx">
-      <h3>Reviews</h3>
-      <h3 style="padding-right:1rem">
-        <nuxt-link :to="'/food/reviews/'
+      <div class="fx">
+        <h3>Reviews</h3>
+        <h3 style="padding-right:1rem">
+          <nuxt-link :to="'/food/reviews/'
           +food._id">Rate Now</nuxt-link>
-      </h3>
-    </div>
-    <div
-      class="card"
-      v-for="r in reviews"
-      :key="r._id"
-    >
-      <div class="a-row">
-        <div style="padding-right: 2rem;">
-          <img
-            class="img-size"
-            src='/personlogo.png'
-          />
-        </div>
-        <div>
-          <div class="instagold">
-            <span>
-              <Ratingcircle :rating="r.rating" /></span>
+        </h3>
+      </div>
+      <div
+        class="card"
+        v-for="r in reviews"
+        :key="r._id"
+      >
+        <div class="a-row">
+          <div style="padding-right: 2rem;">
+            <img
+              class="img-size"
+              src='/personlogo.png'
+            />
           </div>
-          <div class="f-weightforcode">{{r.firstName}} {{r.lastName}}</div>
-          <span class="span-msg">{{r.message}}</span>
+          <div>
+            <div class="instagold">
+              <span>
+                <Ratingcircle :rating="r.rating" /></span>
+            </div>
+            <div class="f-weightforcode">{{r.firstName}} {{r.lastName}}</div>
+            <span class="span-msg">{{r.message}}</span>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- <div style="padding: 1rem;">
+      <!-- <div style="padding: 1rem;">
         <div class="a-column">
           <div style="padding-bottom: 1rem;"> <input class="input"/></div>
           <button
@@ -204,6 +208,7 @@
         </div>
       </div> -->
 
+    </div>
   </div>
 </template>
 <script>
@@ -217,8 +222,11 @@ export default {
   components: { Ratingcircle, Foodcartbutton, Header },
   async asyncData({ $axios, route }) {
     let address = "",
-      openclose = false;
-    const food = await $axios.$get("foods/" + route.params.id);
+      openclose = false,
+      food = {};
+    try {
+      food = await $axios.$get("foods/" + route.params.id);
+    } catch (e) {}
     try {
       let user = await $axios.$get("users/me");
       if (user && user.address) {
