@@ -25,6 +25,9 @@
 </template>
 <script>
 const Header = () => import("~/components/HeaderFood");
+import io from "socket.io-client";
+import { WS_URL } from "~/config";
+let socket = io(WS_URL);
 export default {
   async asyncData({ $axios }) {
     let orders = [];
@@ -32,6 +35,13 @@ export default {
       orders = await $axios.$get("food-orders/my-customers");
     } catch (e) {}
     return { orders };
+  },
+  async created() {
+    let axios = this.$axios;
+    let vm = this;
+    socket.on("food-order" + ":save", async function(item) {
+      vm.orders = await axios.$get("food-orders/my-customers");
+    });
   },
   components: { Header },
   methods: {

@@ -39,16 +39,9 @@
 <script>
 const Header = () => import("~/components/HeaderFood");
 import io from "socket.io-client";
-import { find, remove } from "lodash";
 import { WS_URL } from "~/config";
-import axios from "axios";
 let socket = io(WS_URL);
 export default {
-  // data() {
-  //   return {
-  //     orders: []
-  //   };
-  // },
   async asyncData({ $axios }) {
     let orders = [];
     try {
