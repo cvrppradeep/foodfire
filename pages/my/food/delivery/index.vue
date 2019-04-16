@@ -2,7 +2,7 @@
   <div>
     <Header />
     <div class="heading">Today's Delivery</div>
-     <a href="/api/food-orders/export/500">Export</a>
+    <a href="/api/food-orders/export/500">Export</a>
     <div>
       <ul class="p-left">
         <li
@@ -19,8 +19,11 @@
             @click="go('/food/'+i._id)"
             class="fx customer"
           >
-           <div class="p-bottom">{{i.name}} ({{i.phone}}) </div>
-            <div class="p-bottom" style="color:#333">{{i.item}}</div>
+            <div class="p-bottom">{{i.name}} ({{i.phone}}) </div>
+            <div
+              class="p-bottom"
+              style="color:#333"
+            >{{i.item}}</div>
             <div class="p-bottom">{{i.qty}} * {{i.rate | currency}} = {{i.amount | currency}}</div>
             <div style="color:red">{{i.qrno}}</div>
           </div>
@@ -35,13 +38,30 @@
 </template>
 <script>
 const Header = () => import("~/components/HeaderFood");
+import io from "socket.io-client";
+import { find, remove } from "lodash";
+import { WS_URL } from "~/config";
+import axios from "axios";
+let socket = io(WS_URL);
 export default {
+  // data() {
+  //   return {
+  //     orders: []
+  //   };
+  // },
   async asyncData({ $axios }) {
     let orders = [];
     try {
       orders = await $axios.$get("food-orders/group");
     } catch (e) {}
     return { orders };
+  },
+  async created() {
+    let axios = this.$axios;
+    let vm = this;
+    socket.on("food-order" + ":save", async function(item) {
+      vm.orders = await axios.$get("food-orders/group");
+    });
   },
   components: { Header },
   methods: {
@@ -86,7 +106,7 @@ ul > li {
   color: blue;
   font-weight: 500;
 }
-.p-bottom{
+.p-bottom {
   padding-bottom: 1rem;
 }
 </style>

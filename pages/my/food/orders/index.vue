@@ -15,6 +15,7 @@
         :key="o._id"
         :title="`${o.firstName} ${o.lastName} => ${o.address.address}`"
         class="container"
+        @click="go('/food/'+o._id)"
       >
         <div class="card shadow-lg2">
           <div class="border">
@@ -146,6 +147,9 @@ export default {
     },
     async loadMore() {
       this.getData({ q: this.q, scrolled: true });
+    },
+    go(url) {
+      this.$router.push(url);
     }
   }
 };
@@ -273,10 +277,9 @@ p {
   padding-left: 10px;
   font-size: 13px;
 }
-.p-top{
+.p-top {
   padding-top: 1rem;
-    color: blue;
+  color: blue;
 }
-
 </style>
 

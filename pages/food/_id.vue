@@ -210,6 +210,9 @@
 const Ratingcircle = () => import("~/components/Ratingcircle");
 const Foodcartbutton = () => import("~/components/Foodcartbutton");
 const Header = () => import("~/components/HeaderFood");
+import { SocketService } from "~/service/socket";
+let ss = new SocketService();
+
 export default {
   components: { Ratingcircle, Foodcartbutton, Header },
   async asyncData({ $axios, route }) {
@@ -240,6 +243,7 @@ export default {
     };
   },
   async created() {
+    await ss.syncOneUpdate("food", this.food);
     this.reviews = await this.$axios.$get(
       "reviews/product/" + this.$route.params.id
     );

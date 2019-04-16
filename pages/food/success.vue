@@ -1,54 +1,63 @@
 <template>
-<div>
-  <Header/>
-  <div class="center column p-top" v-if="order">
-    <img class="img" src="/Tick_Mark.png"/>
-    <h2>Order Successfully Placed</h2>
-    <div class="border-top center">
-<h3 class="border-bottom">Your Order No is <span class="redclr">{{order["orderNo"]}}</span></h3>
+  <div>
+    <Header />
+    <div
+      class="center column p-top"
+      v-if="order"
+    >
+      <img
+        class="img"
+        src="/Tick_Mark.png"
+      />
+      <h2>Order Successfully Placed</h2>
+      <div class="border-top center">
+        <h3 class="border-bottom">Your Order No is <span class="redclr">{{order["orderNo"]}}</span></h3>
+      </div>
+
+      <div class="phoneno column center">
+        <h4>You'll recieve the confirmation message shortly to </h4>
+        <span style=" padding-top: 0.4rem;">Phone No.<strong class="greenclr">{{order.phone}}</strong> </span>
+        <div style="padding-top: 0.4rem;">
+          Delivery Address: <strong
+            class="blueclr"
+            v-if="order.address"
+          >{{order.address.qrno}}</strong><br />
+        </div>
+      </div>
     </div>
-    
-    <div class="phoneno column center">
-      <h4>You'll recieve the confirmation message shortly to </h4>
-      <span style=" padding-top: 0.4rem;">Phone No.<strong class="greenclr">9878765441</strong> </span>
-      <div style="padding-top: 0.4rem;">
-           Delivery Address: <strong
-                class="blueclr"
-                v-if="order.address"
-              >{{order.address.qrno}}</strong><br />
-            </div>
-    </div>
-    </div>
-    <div class="row jc-sa order"  v-for="(p, index) in order.items"
-                    :key="index">
+    <div
+      class="row jc-sa order"
+      v-for="(p, index) in order.items"
+      :key="index"
+    >
       <span>
         ORDER TOTAL
       </span>
       <span>
-     {{p.price | currency}}
+        {{p.price | currency}}
       </span>
     </div>
     <div class="row jc-sa payment">
       <span>
-       Payment Method
+        Payment Method
       </span>
       <span>
-       COD
+        COD
       </span>
     </div>
     <div class="center column">
-    <p>Delivery will start 14-Apr-2019 6:00PM - 8:00PM</p>
-              <h5><strong class="redclr">Note: </strong>Order once booked can not be cancelled.</h5>
-              </div>
+      <p>Delivery will be between 6:30PM - 8:30PM</p>
+      <h5><strong class="redclr">Note: </strong>Order once booked can not be cancelled.</h5>
+    </div>
     <div class=" btn1  center">
-     
-        <router-link
-            to="/my/food/orders"
-      class="button1 ">
-My Orders
-        </router-link>
-     
-     
+
+      <router-link
+        to="/my/food/orders"
+        class="button1 "
+      >
+        My Orders
+      </router-link>
+
     </div>
     <div class=" footer">
       <div class="btn btn-block btn-white back-to-menu-btn">
@@ -152,97 +161,95 @@ export default {
 </script>
 </script>
 <style>
-h2{
+h2 {
   color: #10b310;
   font-size: 1.8rem;
-    font-weight: 600;
-    padding-bottom: 2rem;
+  font-weight: 600;
+  padding-bottom: 2rem;
 }
-.center{
+.center {
   text-align: center;
 }
-.img{
+.img {
   width: 6rem;
   height: 7rem;
 }
-.column{
+.column {
   display: flex;
   flex-direction: column;
 }
-.p-top{
-padding-top: 1.5rem;
+.p-top {
+  padding-top: 1.5rem;
 }
-.border-top{
-  border-top:2px solid #eae3e3;
+.border-top {
+  border-top: 2px solid #eae3e3;
   padding-top: 2rem;
   width: 100%;
 }
-.border-bottom{
-  border-bottom: 2px solid #eae3e3;;
-   padding-bottom: 2rem;
-   width: 100%;
+.border-bottom {
+  border-bottom: 2px solid #eae3e3;
+  padding-bottom: 2rem;
+  width: 100%;
 }
-.redclr{
+.redclr {
   color: red;
 }
-.greenclr{
-color: #10b310;
-font-size: 1.2rem;
-    font-weight: 500;
-   
-}
-.phoneno{
-  padding-top: 1.2rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: gray;
-}
-.row{
-  display: flex;
-  flex-direction: row;
-}
-.jc-sa{
-  justify-content:space-around;
-  padding-top: 1.2rem;
-}
-.order{
+.greenclr {
+  color: #10b310;
   font-size: 1.2rem;
   font-weight: 500;
 }
-.payment{
+.phoneno {
+  padding-top: 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: gray;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.jc-sa {
+  justify-content: space-around;
+  padding-top: 1.2rem;
+}
+.order {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.payment {
   font-size: 1rem;
   font-weight: 500;
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
 }
-.button1{
-  
+.button1 {
   text-transform: initial;
   border-style: solid;
-  
+
   border-color: black;
   -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
     0 1px 3px rgba(0, 0, 0, 0.08);
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   width: 10rem;
-  
+
   font-size: 1.2rem;
   line-height: 1.5;
- border-radius: 0.4rem;
+  border-radius: 0.4rem;
   padding: 7px;
   outline: none;
 }
 
-.jc-se{
-  justify-content: space-evenly
+.jc-se {
+  justify-content: space-evenly;
 }
-.width{
+.width {
   width: 10rem;
 }
-.btn1{
+.btn1 {
   padding-top: 2rem;
 }
-.blueclr{
+.blueclr {
   color: blue;
 }
 .footer {

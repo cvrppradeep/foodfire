@@ -6,6 +6,15 @@ export class SocketService {
   constructor() {
     // this.arr = []
   }
+  syncOneUpdate(modelName, obj) {
+    socket.on(modelName + ':save', async function (item) {
+      obj.stock = item.stock
+    });
+
+    socket.on(modelName + ':remove', function (item) {
+      obj.stock = 0
+    });
+  }
   syncUpdates(modelName, array) {
     socket.on(modelName + ':save', async function (item) {
       var oldItem = await find(array, { _id: item._id });
