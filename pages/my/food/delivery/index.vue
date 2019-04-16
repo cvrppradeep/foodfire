@@ -2,7 +2,7 @@
   <div>
     <Header />
     <div class="heading">Today's Delivery</div>
-    <a href="/api/food-orders/export/500">Export</a>
+     <a href="/api/food-orders/export/500">Export</a>
     <div>
       <ul class="p-left">
         <li
@@ -11,17 +11,17 @@
           :key="ix"
         >
           <div class="font">
-            <h1 class="seller">{{o._id.restaurant}} - {{o._id.phone}}</h1>
+            <h1 class="seller">{{o._id.restaurant}} - {{o._id.phone}} {{o._id.qrno}}</h1>
           </div>
           <div
             v-for="(i,ixx) in o.data"
             :key="'i-'+ixx"
-            @click="go('/my/food/delivery/'+i._id)"
+            @click="go('/food/'+i._id)"
             class="fx customer"
           >
-            <div style="color:#333">{{i.item}}</div>
-            <div>{{i.name}} ({{i.phone}})</div>
-            <div>{{i.qty}} * {{i.rate | currency}} = {{i.amount | currency}}</div>
+           <div class="p-bottom">{{i.name}} ({{i.phone}}) </div>
+            <div class="p-bottom" style="color:#333">{{i.item}}</div>
+            <div class="p-bottom">{{i.qty}} * {{i.rate | currency}} = {{i.amount | currency}}</div>
             <div style="color:red">{{i.qrno}}</div>
           </div>
         </li>
@@ -85,6 +85,9 @@ ul > li {
   font-size: 1.2rem;
   color: blue;
   font-weight: 500;
+}
+.p-bottom{
+  padding-bottom: 1rem;
 }
 </style>
 

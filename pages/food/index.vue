@@ -32,12 +32,19 @@
                 class="backgroundimg"
               />
             </div>
+            <div class="restroname">
+            {{d.name}} 
+            </div>
             <div class="card-container">
               <div class="a-contain">
+                <div style="font-weight: 600;">
+                 {{d.rate | currency}}
+                </div>
                 <div
                   class="f-pink"
                   v-if="!openclose"
                 >Open 6AM - 5PM</div>
+               
                 <div
                   class="f-pink"
                   v-else-if="d.stock>0"
@@ -57,7 +64,7 @@
                   class="image-size"
                 />
               </div>
-              <div class="p-name">{{d.name}}</div>
+              <div class="p-name">By : {{d.restaurant}}</div>
             </div>
           </div>
         </div>
@@ -91,7 +98,7 @@ export default {
   data() {
     return {};
   },
-  async created() {
+    async created() {
     await ss.syncUpdates("food", this.foods);
   },
   methods: {
@@ -142,8 +149,9 @@ export default {
   align-items: center;
 }
 .p-name {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   line-height: 1rem;
+  color: #3279ff;
 }
 .align-row {
   display: flex;
@@ -162,8 +170,9 @@ export default {
 }
 .f-pink {
   color: rgb(255, 0, 104);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   letter-spacing: 1px;
+  font-weight: 500;
 }
 .card-container {
   padding: 0.4rem;
@@ -175,4 +184,11 @@ export default {
 .v-dialog__content {
   background: rgba(0, 0, 0, 0.6);
 }
+.restroname{
+  padding-left: 0.4rem;
+    padding-top: 0.4rem;
+    font-weight: 400;
+    color:#0c921e;
+}
+
 </style>

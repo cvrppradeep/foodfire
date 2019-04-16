@@ -177,7 +177,7 @@
       :key="r._id"
     >
       <div class="a-row">
-        <div style="width: 7rem;">
+        <div style="padding-right: 2rem;">
           <img
             class="img-size"
             src='/personlogo.png'
