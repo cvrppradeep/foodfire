@@ -115,7 +115,7 @@
           disabled
           class="button-lg blue"
         >
-          <span>Open 6AM - 6PM</span>
+          <span>Open 6AM - 5PM</span>
           <span><img
               class="img-style"
               src='/backarrow.svg'

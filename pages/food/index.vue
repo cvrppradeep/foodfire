@@ -37,7 +37,7 @@
                 <div
                   class="f-pink"
                   v-if="!openclose"
-                >Open 6AM - 6PM</div>
+                >Open 6AM - 5PM</div>
                 <div
                   class="f-pink"
                   v-else-if="d.stock>0"
@@ -69,6 +69,8 @@
 const Ratingcircle = () => import("~/components/Ratingcircle");
 const CartButtons = () => import("~/components/CartButtons");
 const HeaderFood = () => import("~/components/HeaderFood");
+import { SocketService } from "~/service/socket";
+let ss = new SocketService();
 export default {
   components: { Ratingcircle, CartButtons, HeaderFood },
   async asyncData({ $axios }) {
@@ -88,6 +90,9 @@ export default {
   },
   data() {
     return {};
+  },
+  async created() {
+    await ss.syncUpdates("food", this.foods);
   },
   methods: {
     go(url) {

@@ -2,6 +2,7 @@
   <div>
     <Header />
     <div class="heading">Today's Delivery</div>
+    <a href="/api/food-orders/export/500">Export</a>
     <div>
       <ul class="p-left">
         <li

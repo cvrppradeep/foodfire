@@ -19,6 +19,10 @@
       <div class="card shadow columns">
         <br />
         <div class="margin-phn">
+          <v-checkbox
+            v-model="food.active"
+            label="Open Kitchen"
+          />
           <v-text-field
             label="Dish Name"
             name="name"
@@ -60,10 +64,7 @@
             @remove="remove"
             @save="save"
           />
-          <v-switch
-            v-model="food.active"
-            label="Active"
-          >Active</v-switch>
+
           <img
             v-if="food.img"
             :src="'/images/'+food.img"
@@ -160,11 +161,13 @@ export default {
           } catch (e) {
             this.$store.commit("setErr", e);
           }
-        } else
+        } else {
+          if (!this.food.active) this.food.stock = 0;
           res = await this.$axios.$put(
             "foods/" + this.$route.params.id,
             this.food
           );
+        }
         this.$router.push("/my/food/dishes");
       } catch (e) {
         // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", e.toString());
