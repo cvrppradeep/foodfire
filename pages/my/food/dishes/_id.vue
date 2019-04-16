@@ -13,7 +13,7 @@
     <form
       novalidate
       autocomplete="off"
-      @submit.stop.prevent="submit(true)"
+      @submit.stop.prevent="submit()"
       class="container center"
     >
       <div class="card shadow columns">
@@ -21,7 +21,7 @@
         <div class="margin-phn">
           <v-checkbox
             v-model="food.active"
-            @change="submit()"
+            @change="submit(true)"
             label="Open Kitchen"
           />
           <v-text-field
@@ -145,7 +145,7 @@ export default {
       // }
       this.qty += qty;
     },
-    async submit(push) {
+    async submit(openclose) {
       let res = {};
       try {
         this.loading = true;
@@ -157,6 +157,7 @@ export default {
         // }
         this.food.deliveryDate = date;
         if (this.$route.params.id == "new") {
+          if (openclose) return;
           try {
             res = await this.$axios.$post("foods", this.food);
           } catch (e) {
@@ -169,7 +170,7 @@ export default {
             this.food
           );
         }
-        if (push) this.$router.push("/my/food/dishes");
+        if (!openclose) this.$router.push("/my/food/dishes");
       } catch (e) {
         // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", e.toString());
         this.$store.commit("setErr", e.toString());

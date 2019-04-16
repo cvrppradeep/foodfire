@@ -11,7 +11,7 @@
           :key="ix"
         >
           <div class="font">
-            <h1 class="seller">{{o._id.restaurant}} - {{o._id.phone}} {{o._id.qrno}}</h1>
+            <h1 class="seller">{{o._id.restaurant}} - {{o._id.phone}} <span style="color:green">{{o._id.qrno}}</span></h1>
           </div>
           <div
             v-for="(i,ixx) in o.data"

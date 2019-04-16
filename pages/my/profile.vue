@@ -49,6 +49,15 @@
             placeholder="Email"
           />
         </div>
+        <!-- <div class="form-element">
+          <label>QrNo:</label>
+          <input
+            type="text"
+            name="qrno"
+            v-model="profile.qrno"
+            placeholder="QrNo"
+          />
+        </div> -->
         <div v-if="user && user.role=='chef'">
           <div class="form-element">
             <label>Restaurant:</label>
