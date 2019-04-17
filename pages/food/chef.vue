@@ -60,7 +60,7 @@
           /><span style="color:green"> (Private)</span>
         </div>
 
-        <div class="form-element">
+        <!-- <div class="form-element">
           <label>Dish 1:</label>
           <input
             type="text"
@@ -68,7 +68,6 @@
             v-model="profile.dish1"
             placeholder="Dish 1"
           />
-          <!-- <span style="color:grey"> (Private)</span> -->
         </div>
         <div class="form-element">
           <label>Dish 2:</label>
@@ -78,7 +77,6 @@
             v-model="profile.dish2"
             placeholder="Dish 2"
           />
-          <!-- <span style="color:grey"> (Private)</span> -->
         </div>
         <div class="form-element">
           <label>Dish 3:</label>
@@ -106,7 +104,7 @@
             v-model="profile.dish3"
             placeholder="Dish 5"
           />
-        </div>
+        </div> -->
         <br />
         <br />
         <br />

@@ -30,6 +30,7 @@
             <div class="fx center p-top">
               <div class="address">Address: {{o.address.qrno}}, {{o.address.city}}</div>
             </div>
+            <h3>Order Status: {{o.status}}</h3>
           </div>
           <div class="columns is-mobile border ">
             <div class="container">
@@ -69,6 +70,9 @@ const Header = () => import("~/components/HeaderFood");
 const CartBar = () => import("~/components/CartBar");
 const LoadingDots = () => import("~/components/LoadingDots");
 const recordsPerScroll = 5;
+import io from "socket.io-client";
+import { WS_URL } from "~/config";
+let socket = io(WS_URL);
 export default {
   fetch({ store, redirect }) {
     if (!(store.state.auth || {}).user)
@@ -87,6 +91,13 @@ export default {
       err = e;
     }
     return { orders, err };
+  },
+  async created() {
+    let axios = this.$axios;
+    let vm = this;
+    socket.on("food-order" + ":save", async function(item) {
+      vm.orders = await axios.$get("food-orders/my");
+    });
   },
   data() {
     return {

@@ -15,21 +15,40 @@
             <div style="color:red">QrNo: {{o.address.qrno}}</div>
           </h3>
           <div class="center">
-          <v-btn-toggle v-model="o.status" @change='save(o)'>
-              <v-btn flat value="Received" class="btn4 font" >
+            <v-btn-toggle
+              v-model="o.status"
+              @change='save(o)'
+            >
+              <v-btn
+                flat
+                value="Received"
+                class="btn4 font"
+              >
                 Order placed
               </v-btn>
-              <v-btn flat value="Prepared" class="btn1 font">
+              <v-btn
+                flat
+                value="Prepared"
+                class="btn1 font"
+              >
                 Prepared
               </v-btn>
-              <v-btn flat value="Out For Delivery" class="btn2 font" >
-               Out For Delivery
+              <v-btn
+                flat
+                value="Out For Delivery"
+                class="btn2 font"
+              >
+                Out For Delivery
               </v-btn>
-              <v-btn flat value="Delivered" class="btn3 font" >
+              <v-btn
+                flat
+                value="Delivered"
+                class="btn3 font"
+              >
                 Delivered
               </v-btn>
             </v-btn-toggle>
-            </div>
+          </div>
         </li>
       </ul>
     </div>
@@ -46,7 +65,8 @@ import { WS_URL } from "~/config";
 let socket = io(WS_URL);
 export default {
   async asyncData({ $axios }) {
-    let orders = [],status='Received';
+    let orders = [],
+      status = "Received";
     try {
       orders = await $axios.$get("food-orders/my-customers");
     } catch (e) {}
@@ -61,11 +81,10 @@ export default {
   },
   components: { Header },
   methods: {
-    async save(o){
+    async save(o) {
       try {
-await this.$axios.$put('orders/'+o._id,{status:o.status})
-      }
-      catch(e) {}
+        await this.$axios.$put("food-orders/" + o._id, { status: o.status });
+      } catch (e) {}
     },
     go(url) {
       this.$router.push(url);
@@ -106,26 +125,35 @@ ul > li {
   color: blue;
   font-weight: 500;
 }
-.center{
+.center {
   text-align: center;
-  padding-top:1rem;
+  padding-top: 1rem;
 }
 
-.btn1--active:before, .btn1:hover:before, .btn1:focus:before {
-    
-    background-color: red;
+.btn1--active:before,
+.btn1:hover:before,
+.btn1:focus:before {
+  background-color: red;
 }
-.btn2--active:before, .btn2:hover:before, .btn2:focus:before {
+.btn2--active:before,
+.btn2:hover:before,
+.btn2:focus:before {
   background-color: orange;
 }
-.btn3--active:before, .btn3:hover:before, .btn3:focus:before {
+.btn3--active:before,
+.btn3:hover:before,
+.btn3:focus:before {
   background-color: blue;
 }
-.btn4--active:before, .btn4:hover:before, .btn4:focus:before {
+.btn4--active:before,
+.btn4:hover:before,
+.btn4:focus:before {
   background-color: green;
 }
-.font{
-  font-size: 0.7rem;padding-left: 0.5rem !important;font-weight: 900;
+.font {
+  font-size: 0.7rem;
+  padding-left: 0.5rem !important;
+  font-weight: 900;
 }
 </style>
 
