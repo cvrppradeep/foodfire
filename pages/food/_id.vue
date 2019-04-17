@@ -31,6 +31,9 @@
         <div class="fontbold">
           {{food.name}}
         </div>
+        <div class="description">
+          <span >{{food.description}}</span>
+        </div>
         <div>
           <div class="review">
             <div>
@@ -59,6 +62,7 @@
               /> Non-Veg
             </div>
           </div>
+
         </div>
 
       </div>
@@ -491,4 +495,11 @@ h3 {
 .p-top {
   padding-top: 1rem;
 }
+.description{
+  padding-top: 0.6rem;
+    padding-left: 0.3rem;
+    color: grey;
+  font-weight: 500;
+}
+
 </style>
