@@ -32,7 +32,7 @@
               >
                 <v-btn
                   flat
-                  value="Received"
+                  value="Order placed"
                   class="btn4 font"
                 >
                   Order placed
