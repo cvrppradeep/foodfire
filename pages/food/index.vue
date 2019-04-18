@@ -18,6 +18,31 @@
     </v-layout> -->
     <div>
       <div class="heading">Food Orders <span class="time">Live Now</span></div>
+        <Notification/>
+        <div class="fx">
+        <v-btn-toggle v-model="daily" @change="filter(daily,type)" class="fz6">
+          <v-btn flat value="false">
+            Home
+          </v-btn>
+          <v-btn flat value="null">
+            All
+          </v-btn>
+          <v-btn flat value="true">
+            Restaurant
+          </v-btn>
+        </v-btn-toggle>
+        <v-btn-toggle v-model="type" @change="filter(daily,type)" class="fz6">
+          <v-btn flat value="V">
+            Veg
+          </v-btn>
+          <v-btn flat value="null">
+            All
+          </v-btn>
+          <v-btn flat value="N">
+            Non Veg
+          </v-btn>
+        </v-btn-toggle>
+        </div>
       <div class="align-row">
         <div
           class="product-card"
@@ -43,7 +68,7 @@
                 <div
                   class="f-pink"
                   v-if="!openclose"
-                >Open 6AM - 5PM</div>
+                >Open 6AM - 6PM</div>
 
                 <div
                   class="f-pink"
@@ -73,16 +98,19 @@
   </div>
 </template>
 <script>
+import { HOST, TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from "~/config";
 const Ratingcircle = () => import("~/components/Ratingcircle");
 const CartButtons = () => import("~/components/CartButtons");
 const HeaderFood = () => import("~/components/HeaderFood");
+const Notification = () => import("~/components/Notification");
 import { SocketService } from "~/service/socket";
 let ss = new SocketService();
 export default {
-  components: { Ratingcircle, CartButtons, HeaderFood },
+  components: { Ratingcircle, CartButtons, HeaderFood,Notification },
   async asyncData({ $axios }) {
     let foods = [],
-      openclose = false;
+      openclose = false,
+      daily=null;
     try {
       foods = await $axios.$get("foods/group");
     } catch (e) {
@@ -96,7 +124,10 @@ export default {
     return { foods, openclose };
   },
   data() {
-    return {};
+    return {
+      daily:"null",
+      type:"null"
+    };
   },
   async created() {
     await ss.syncUpdates("food", this.foods);
@@ -104,12 +135,69 @@ export default {
   methods: {
     go(url) {
       this.$router.push(url);
+    },
+   async filter(daily,type){
+      this.foods = await this.$axios.$get("foods/group?daily="+daily+"&type="+type);
     }
+  },
+  head() {
+    const host = process.server
+      ? this.$ssrContext.req.headers.host
+      : window.location.host;
+    return {
+      title: TITLE,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: DESCRIPTION
+        },
+        {
+          hid: "og:description",
+          name: "Description",
+          property: "og:description",
+          content: DESCRIPTION
+        },
+        {
+          name: "Keywords",
+          content: KEYWORDS
+        },
+        {
+          hid: "og:title",
+          name: "og_title",
+          property: "og:title",
+          content: TITLE
+        },
+        {
+          name: "og_url",
+          property: "og:url",
+          content: host
+        },
+        {
+          name: "og_image",
+          property: "og:image",
+          content: host + sharingLogo
+        },
+
+        {
+          name: "twitter:title",
+          content: TITLE
+        },
+        {
+          hid: "twitter_description",
+          name: "twitter:description",
+          content: DESCRIPTION
+        }
+      ]
+    };
   }
 };
 </script>
 
 <style scoped>
+.v-btn--active{
+  border-bottom:2px solid red;
+}
 .product-card {
   display: flex;
   background-color: rgb(247, 247, 247);
@@ -189,5 +277,10 @@ export default {
   padding-top: 0.4rem;
   font-weight: 400;
   color: #0c921e;
+}
+.fz6 button {
+  padding-left: 1rem;
+  font-size: 0.8rem;
+  padding-left: 0.5rem !important;
 }
 </style>

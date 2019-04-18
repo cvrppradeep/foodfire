@@ -49,6 +49,13 @@
           />
           <nuxt-link to="/travel/bookings"> My Taxi Bookings</nuxt-link>
         </li>
+        <li v-if="user && user.role=='admin'">
+          <img
+            src="/fastfood.svg"
+            width="25px"
+          />
+          <nuxt-link to="/food/delivery"> My Deliveries</nuxt-link>
+        </li>
         <!-- <li>
           <img src="/orders.svg" />
           <nuxt-link to="/my/food/orders"> Food Orders</nuxt-link>

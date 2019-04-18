@@ -21,10 +21,10 @@
             >
               <v-btn
                 flat
-                value="Order placed"
+                value="Cancelled"
                 class="btn4 font"
               >
-                Order placed
+                Cancelled
               </v-btn>
               <v-btn
                 flat

@@ -19,16 +19,39 @@
         <div>Misiki Taxi</div>
       </nuxt-link>
     </div>
-    <nuxt-link
-      class="fx green banner"
-      to="/food/chefs"
+    <div class="fx hero">
+      <nuxt-link
+        class="fx green banner"
+        to="/food/chefs"
+      >
+        <img
+          src="/chef.png"
+          style="width:30px"
+        />
+        <div class="abs">Registered Chefs.</div>
+      </nuxt-link>
+      <nuxt-link
+        class="fx blue banner"
+        to="/food/chef"
+      >
+        <img
+          src="/chef.png"
+          style="width:30px"
+        />
+        <div class="abs">Join as Chef.</div>
+      </nuxt-link>
+    </div>
+    <Notification/>
+    <!-- <nuxt-link
+      class="fx banner yellow"
+      to="/food"
     >
       <img
-        src="/chef.png"
-        style="width:30px"
+        src="/cycle.svg"
+        style="width:30px;"
       />
-      <div class="abs">Registered Chefs.</div>
-    </nuxt-link>
+      <div class="abs">Food delivery only to Sunabeda Township.</div>
+    </nuxt-link> -->
     <!-- <div class="fx hero">
       <nuxt-link
         class="section banner groceries blue"
@@ -66,8 +89,9 @@
 </template>
 <script>
 const Header = () => import("~/components/HeaderFood");
+const Notification = () => import("~/components/Notification");
 export default {
-  components: { Header },
+  components: { Header, Notification },
   layout: "none",
   methods: {
     go(url) {

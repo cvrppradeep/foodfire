@@ -2,13 +2,14 @@ const REMOTE_API_URL = 'https://api.iotutorials.com'
 // const LOCAL_API_URL = 'https://api.iotutorials.com'
 const LOCAL_API_URL = 'http://localhost:9006'
 const DOMAIN = (process.env.NODE_ENV === 'production') ? REMOTE_API_URL : LOCAL_API_URL
-export const TITLE = "Misiki - The joy of sharing"
-export const DESCRIPTION = "Wanna showcase your cooking skills? Earn while others relish the taste...Misiki Food...a new online platform for food lovers. Join as chef!"
-export const KEYWORDS = "Be the Master Chef of Sunabeda and earn from home! Coming soon..Misiki Food / Eats..join as Chef!"
+export const TITLE = "Misiki Food - The joy of sharing"
+export const DESCRIPTION = "Wanna showcase your cooking skills? Earn while others relish the taste...Misiki Food...a new online platform for food lovers. Join as chef! Be the Master Chef of Sunabeda and earn from home! Coming soon..Misiki Food / Eats..join as Chef!"
+export const KEYWORDS = "food at sunabeda,join as chef, food delivery, food home delivery, restaurant delivery, sunabeda"
 export const PROXY = DOMAIN
 export const WS_URL = DOMAIN
 export const API = DOMAIN
 export const HOST = 'https://www.iotutorials.com'
+export const sharingLogo = 'https://www.misiki.in/images/logo.png'
 export const IMAGEKIT = 'https://ik.imagekit.io/3wzatecz51w3i'
 export const STRIPE_PUBLISHABLE_KEY = 'pk_test_srKHaSHynBIVLX03r33xLszb'
 export const ANALYTICS_TRACKING_ID = 'UA-49421899-5'

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-<div class="heading">Food Mela Terms</div>
+    <div class="heading">Food Mela Terms</div>
     <div class="banner yellow">
       Misiki looking for Chefs who can set our taste bud on fire and earn a few bucks from d comfort of home. Register for free and know more
     </div>
@@ -36,8 +36,49 @@
 </template>
 <script>
 const Header = () => import("~/components/HeaderFood");
+import { HOST, TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from "~/config";
+
 export default {
-  components: { Header }
+  components: { Header },
+  head() {
+    return {
+      title: "Order placed successfully",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: ""
+        },
+        {
+          hid: "og:description",
+          name: "Description",
+          property: "og:description",
+          content: ""
+        },
+        {
+          hid: "keywords",
+          name: "Keywords",
+          property: "keywords",
+          content: ""
+        },
+        {
+          hid: "og:title",
+          name: "og:title",
+          property: "og:title",
+          content: "Order placed successfully"
+        },
+        // Twitter
+        {
+          name: "twitter:title",
+          content: "Order placed successfully"
+        },
+        {
+          name: "twitter:description",
+          content: ""
+        }
+      ]
+    };
+  }
 };
 </script>
 

@@ -57,6 +57,7 @@
 <script>
 const Header = () => import("~/components/HeaderFood");
 const Ratingcircle = () => import("~/components/Ratingcircle");
+import { HOST, TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from "~/config";
 
 export default {
   components: {
@@ -69,6 +70,57 @@ export default {
       let chefs = await $axios.$get("users/chefs");
       return { chefs };
     } catch (e) {}
+  },
+  head() {
+    const host = process.server
+      ? this.$ssrContext.req.headers.host
+      : window.location.host;
+    return {
+      title: this.title || TITLE,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.description || DESCRIPTION
+        },
+        {
+          hid: "og:description",
+          name: "Description",
+          property: "og:description",
+          content: this.description || DESCRIPTION
+        },
+        {
+          name: "Keywords",
+          content: this.keywords || KEYWORDS
+        },
+        {
+          hid: "og:title",
+          name: "og_title",
+          property: "og:title",
+          content: this.title || TITLE
+        },
+        {
+          name: "og_url",
+          property: "og:url",
+          content: host
+        },
+        {
+          name: "og_image",
+          property: "og:image",
+          content: host + sharingLogo
+        },
+
+        {
+          name: "twitter:title",
+          content: this.title || TITLE
+        },
+        {
+          hid: "twitter_description",
+          name: "twitter:description",
+          content: this.description || DESCRIPTION
+        }
+      ]
+    };
   }
 };
 </script>

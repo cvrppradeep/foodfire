@@ -4,6 +4,7 @@
       <Header />
       Item not found</h1>
     <div v-else>
+      <Notification/>
       <!-- <Header /> -->
       <!-- <label>{{f._id.deliveryDate}}</label> -->
       <div
@@ -32,7 +33,7 @@
           {{food.name}}
         </div>
         <div class="description">
-          <span >{{food.description}}</span>
+          <span>{{food.description}}</span>
         </div>
         <div>
           <div class="review">
@@ -123,7 +124,7 @@
             disabled
             class="button-lg blue"
           >
-            <span>Open 6AM - 5PM</span>
+            <span>Open 6AM - 6PM</span>
             <span><img
                 class="img-style"
                 src='/backarrow.svg'
@@ -216,14 +217,24 @@
   </div>
 </template>
 <script>
+import { HOST, TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from "~/config";
 const Ratingcircle = () => import("~/components/Ratingcircle");
 const Foodcartbutton = () => import("~/components/Foodcartbutton");
 const Header = () => import("~/components/HeaderFood");
+const Notification = () => import("~/components/Notification");
 import { SocketService } from "~/service/socket";
 let ss = new SocketService();
 
 export default {
-  components: { Ratingcircle, Foodcartbutton, Header },
+  components: { Ratingcircle, Foodcartbutton, Header,Notification },
+  async validate({ params, $axios }) {
+    try {
+      let food = await $axios.$get("foods/" + params.id);
+      return !!food;
+    } catch (e) {
+      return false;
+    }
+  },
   async asyncData({ $axios, route }) {
     let address = "",
       openclose = false,
@@ -324,6 +335,118 @@ export default {
     user() {
       return (this.$store.state.auth || {}).user || {};
     }
+  },
+  head() {
+    const host = process.server
+      ? this.$ssrContext.req.headers.host
+      : window.location.host;
+    return {
+      title:
+        (this.food && this.food.metaTitle) ||
+        (this.food && this.food.name) ||
+        TITLE,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content:
+            (this.food && this.food.metaDescription) ||
+            (this.food && this.food.description) ||
+            DESCRIPTION
+        },
+        {
+          hid: "keywords",
+          name: "Keywords",
+          property: "keywords",
+          content:
+            (this.food && this.food.metaKeywords) ||
+            (this.food && this.food.keywords) ||
+            KEYWORDS
+        },
+
+        // OpenGraph data
+        {
+          hid: "og:title",
+          name: "og_title",
+          property: "og:title",
+          content:
+            (this.food && this.food.metaTitle) ||
+            (this.food && this.food.name) ||
+            TITLE
+        },
+        {
+          hid: "og:description",
+          name: "Description",
+          property: "og:description",
+          content:
+            (this.food && this.food.metaDescription) ||
+            (this.food && this.food.description) ||
+            DESCRIPTION
+        },
+        {
+          name: "og_url",
+          property: "og:url",
+          content: host + "/" + this.food.slug + "?id=" + this.food._id
+        },
+        {
+          name: "og_image",
+          property: "og:image",
+          content: (this.food && this.food.img) || sharingLogo
+        },
+        {
+          property: "og:image:width",
+          content: "600"
+        },
+        {
+          property: "og:image:height",
+          content: "600"
+        },
+        // Twitter
+        {
+          name: "twitter:title",
+          content:
+            (this.food && this.food.metaTitle) ||
+            (this.food && this.food.name) ||
+            TITLE
+        },
+        {
+          name: "twitter:description",
+          content:
+            (this.food && this.food.metaDescription) ||
+            (this.food && this.food.description) ||
+            DESCRIPTION
+        },
+        {
+          name: "twitter:image:src",
+          content: (this.food && this.food.img) || sharingLogo
+        },
+        // Google / Schema.org markup:
+        {
+          hid: "product_name",
+          itemprop: "name",
+          content: (this.food && this.food.name) || TITLE
+        },
+        {
+          hid: "product_description",
+          itemprop: "description",
+          content:
+            (this.food && this.food.metaDescription) ||
+            (this.food && this.food.description) ||
+            DESCRIPTION
+        },
+        {
+          hid: "product_image",
+          itemprop: "image",
+          content: (this.food && this.food.img) || sharingLogo
+        },
+        {
+          hid: "product_price",
+          name: "product_price",
+          property: "product:price",
+          content: this.food && this.food.rate
+        }
+      ]
+    };
   }
 };
 </script>
@@ -495,11 +618,10 @@ h3 {
 .p-top {
   padding-top: 1rem;
 }
-.description{
+.description {
   padding-top: 0.6rem;
-    padding-left: 0.3rem;
-    color: grey;
+  padding-left: 0.3rem;
+  color: grey;
   font-weight: 500;
 }
-
 </style>

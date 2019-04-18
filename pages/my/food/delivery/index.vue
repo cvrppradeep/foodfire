@@ -34,10 +34,10 @@
               >
                 <v-btn
                   flat
-                  value="Order placed"
+                  value="Cancelled"
                   class="btn4 font"
                 >
-                  Order placed
+                  Cancelled
                 </v-btn>
                 <v-btn
                   flat
@@ -131,9 +131,6 @@ ul > li {
 .p-left {
   padding-left: 0px;
 }
-.font {
-  padding-left: 1rem;
-}
 .seller {
   font-size: 1.4rem;
 }
@@ -179,6 +176,7 @@ ul > li {
   background-color: green;
 }
 .font {
+  padding-left: 1rem;
   font-size: 0.7rem;
   padding-left: 0.5rem !important;
   font-weight: 900;

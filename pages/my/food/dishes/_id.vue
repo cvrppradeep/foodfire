@@ -160,17 +160,22 @@ export default {
           if (openclose) return;
           try {
             res = await this.$axios.$post("foods", this.food);
+            if (!openclose) this.$router.push("/my/food/dishes");
           } catch (e) {
             this.$store.commit("setErr", e);
           }
         } else {
           if (!this.food.active) this.food.stock = 0;
-          res = await this.$axios.$put(
-            "foods/" + this.$route.params.id,
-            this.food
-          );
+          try {
+            res = await this.$axios.$put(
+              "foods/" + this.$route.params.id,
+              this.food
+            );
+            if (!openclose) this.$router.push("/my/food/dishes");
+          } catch (e) {
+            this.$store.commit("setErr", e);
+          }
         }
-        if (!openclose) this.$router.push("/my/food/dishes");
       } catch (e) {
         // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", e.toString());
         this.$store.commit("setErr", e.toString());
