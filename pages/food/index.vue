@@ -17,8 +17,65 @@
       </v-dialog>
     </v-layout> -->
     <div>
-      <div class="heading">Food Orders <span class="time">Live Now</span></div>
-      <div class="align-row">
+      <div class="heading p-bottom">Food Orders <span class="time">Live Now</span></div>
+      <div class="row p-top">
+        <div class="p-left">
+              <v-btn-toggle
+              >
+                <v-btn
+                  flat
+                  value="Order placed"
+                  class="btn4 font"
+                >
+                  Home
+                </v-btn>
+                <v-btn
+                  flat
+                  value="Prepared"
+                  class="btn1 font"
+                >
+                  All
+                </v-btn>
+                <v-btn
+                  flat
+                  value="Out For Delivery"
+                  class="btn2 font"
+                >
+                  Restaurant
+                </v-btn>
+             
+              </v-btn-toggle>
+            </div>
+       <div class="p-right">
+              <v-btn-toggle
+              >
+                <v-btn
+                  flat
+                  value="Order placed"
+                  class="btn4 font"
+                >
+                  Veg
+                </v-btn>
+                <v-btn
+                  flat
+                  value="Prepared"
+                  class="btn1 font"
+                >
+                  All
+                </v-btn>
+                <v-btn
+                  flat
+                  value="Out For Delivery"
+                  class="btn2 font"
+                >
+                  Non-veg
+                </v-btn>
+             
+              </v-btn-toggle>
+            </div>
+          </div>
+           </div>
+      <div class="align-row p-top">
         <div
           class="product-card"
           v-for="d in foods"
@@ -189,5 +246,59 @@ export default {
   padding-top: 0.4rem;
   font-weight: 400;
   color: #0c921e;
+}
+.center {
+  text-align: cente
+  
+}
+.btn1--active:before,
+.btn1:hover:before,
+.btn1:focus:before {
+  background-color: red;
+}
+.btn2--active:before,
+.btn2:hover:before,
+.btn2:focus:before {
+  background-color: orange;
+}
+.btn3--active:before,
+.btn3:hover:before,
+.btn3:focus:before {
+  background-color: blue;
+}
+.btn4--active:before,
+.btn4:hover:before,
+.btn4:focus:before {
+  background-color: green;
+}
+.font {
+  font-size: 0.7rem;
+  padding-left: 0.5rem !important;
+  font-weight: 900;
+}
+.row{
+      display: flex;
+    justify-content: space-between;
+}
+.v-btn-toggle {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    border-radius: 4rem;
+    -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    will-change: background, box-shadow;
+}
+.p-left{
+  padding-left: 1rem;
+}
+.p-right{
+  padding-right: 1rem;
+}
+.p-top{
+  padding-top: 1rem;
+}
+.p-bottom{
+  padding-bottom: 1rem;
 }
 </style>
