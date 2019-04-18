@@ -4,6 +4,10 @@
     <div class="heading">Today's Delivery</div>
     <a href="/api/food-orders/export/500">Export</a>
     <div>
+      <div class="fx">
+        <h2>{{todayTotal.count}}</h2>
+        <h1>{{todayTotal.total | currency}}</h1>
+      </div>
       <ul class="p-left">
         <li
           class="card"
@@ -20,12 +24,12 @@
           >
             <div class="p-bottom">{{i.name}} ({{i.phone}}) </div>
             <div class="items">
-            <div
-              class="p-bottom"
-              style="color:#333"
-            >{{i.item}}</div>
-            <div class="p-bottom">{{i.qty}} * {{i.rate | currency}} = {{i.amount | currency}}</div>
-            <div style="color:red">{{i.qrno}}</div>
+              <div
+                class="p-bottom"
+                style="color:#333"
+              >{{i.item}}</div>
+              <div class="p-bottom">{{i.qty}} * {{i.rate | currency}} = {{i.amount | currency}}</div>
+              <div style="color:red">{{i.qrno}}</div>
             </div>
             <div class="center">
               <v-btn-toggle
@@ -65,7 +69,7 @@
           </div>
 
         </li>
-        
+
       </ul>
     </div>
     <nuxt-link
@@ -82,11 +86,13 @@ let socket = io(WS_URL);
 export default {
   async asyncData({ $axios }) {
     let orders = [],
-      status = "Received";
+      status = "Received",
+      todayTotal = null;
     try {
       orders = await $axios.$get("food-orders/group");
+      todayTotal = await $axios.$get("food-orders/summary/today");
     } catch (e) {}
-    return { orders };
+    return { orders, todayTotal };
   },
   async created() {
     let axios = this.$axios;
@@ -143,17 +149,16 @@ ul > li {
 .p-bottom {
   padding-bottom: 1rem;
 }
-.items{
+.items {
   display: flex;
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .p-top {
   padding-top: 1rem;
 }
 .center {
-  text-align: cente
-  
+  text-align: cente;
 }
 .btn1--active:before,
 .btn1:hover:before,

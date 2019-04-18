@@ -54,7 +54,7 @@
             src="/fastfood.svg"
             width="25px"
           />
-          <nuxt-link to="/food/delivery"> My Deliveries</nuxt-link>
+          <nuxt-link to="/my/food/delivery"> My Deliveries</nuxt-link>
         </li>
         <!-- <li>
           <img src="/orders.svg" />

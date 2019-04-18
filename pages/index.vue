@@ -28,7 +28,7 @@
           src="/chef.png"
           style="width:30px"
         />
-        <div class="abs">Registered Chefs.</div>
+        <div class="abs">Registered Chefs</div>
       </nuxt-link>
       <nuxt-link
         class="fx blue banner"
@@ -38,10 +38,10 @@
           src="/chef.png"
           style="width:30px"
         />
-        <div class="abs">Join as Chef.</div>
+        <div class="abs">Join as Chef</div>
       </nuxt-link>
     </div>
-    <Notification/>
+    <Notification />
     <!-- <nuxt-link
       class="fx banner yellow"
       to="/food"

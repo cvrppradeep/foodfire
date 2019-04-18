@@ -3,6 +3,11 @@
     <Header />
     <div class="heading">Today's Orders</div>
     <div>
+      <div class="fx">
+        <h2>{{todayTotal.count}}</h2>
+        <h1>{{todayTotal.total | currency}}</h1>
+        <div>{{orders && orders[0] && orders[0].createdAt}}</div>
+      </div>
       <ul class="p-left">
         <li
           class="card"
@@ -66,11 +71,13 @@ let socket = io(WS_URL);
 export default {
   async asyncData({ $axios }) {
     let orders = [],
-      status = "Received";
+      status = "Received",
+      todayTotal = null;
     try {
       orders = await $axios.$get("food-orders/my-customers");
+      todayTotal = await $axios.$get("food-orders/my/today");
     } catch (e) {}
-    return { orders };
+    return { orders, todayTotal };
   },
   async created() {
     let axios = this.$axios;

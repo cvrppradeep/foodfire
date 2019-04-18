@@ -4,12 +4,12 @@
       <Header />
       Item not found</h1>
     <div v-else>
-      <Notification/>
+      <Notification />
       <!-- <Header /> -->
       <!-- <label>{{f._id.deliveryDate}}</label> -->
       <div
         class="img-height backgroundimg"
-        v-lazy:background-image="'/images'+food.img"
+        v-lazy:background-image="IMAGEKIT+'/images'+food.img"
         alt=""
       >
       </div>
@@ -217,7 +217,14 @@
   </div>
 </template>
 <script>
-import { HOST, TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from "~/config";
+import {
+  HOST,
+  TITLE,
+  DESCRIPTION,
+  KEYWORDS,
+  sharingLogo,
+  IMAGEKIT
+} from "~/config";
 const Ratingcircle = () => import("~/components/Ratingcircle");
 const Foodcartbutton = () => import("~/components/Foodcartbutton");
 const Header = () => import("~/components/HeaderFood");
@@ -226,7 +233,7 @@ import { SocketService } from "~/service/socket";
 let ss = new SocketService();
 
 export default {
-  components: { Ratingcircle, Foodcartbutton, Header,Notification },
+  components: { Ratingcircle, Foodcartbutton, Header, Notification },
   async validate({ params, $axios }) {
     try {
       let food = await $axios.$get("foods/" + params.id);
@@ -257,6 +264,7 @@ export default {
   },
   data() {
     return {
+      IMAGEKIT,
       qty: 1,
       firstName: "",
       lastName: "",

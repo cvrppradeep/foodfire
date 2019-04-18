@@ -79,7 +79,7 @@
           <div class="a-listing">
             <div class="height ">
               <img
-                v-lazy="'/images'+d.img"
+                v-lazy="IMAGEKIT+'/images'+d.img"
                 class="backgroundimg"
               />
             </div>
@@ -124,7 +124,14 @@
   </div>
 </template>
 <script>
-import { HOST, TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from "~/config";
+import {
+  HOST,
+  TITLE,
+  DESCRIPTION,
+  KEYWORDS,
+  sharingLogo,
+  IMAGEKIT
+} from "~/config";
 const Ratingcircle = () => import("~/components/Ratingcircle");
 const CartButtons = () => import("~/components/CartButtons");
 const HeaderFood = () => import("~/components/HeaderFood");
@@ -150,7 +157,8 @@ export default {
   },
   data() {
     return {
-      daily: "null",
+      IMAGEKIT,
+      daily: "false",
       type: "null"
     };
   },
