@@ -16,16 +16,18 @@
           <div
             v-for="(i,ixx) in o.data"
             :key="'i-'+ixx"
-            class="fx customer"
+            class="customer"
           >
             <div class="p-bottom">{{i.name}} ({{i.phone}}) </div>
+            <div class="items">
             <div
               class="p-bottom"
               style="color:#333"
             >{{i.item}}</div>
             <div class="p-bottom">{{i.qty}} * {{i.rate | currency}} = {{i.amount | currency}}</div>
             <div style="color:red">{{i.qrno}}</div>
-            <div class="center p-top">
+            </div>
+            <div class="center">
               <v-btn-toggle
                 v-model="i.status"
                 @change='save(i)'
@@ -63,6 +65,7 @@
           </div>
 
         </li>
+        
       </ul>
     </div>
     <nuxt-link
@@ -143,12 +146,17 @@ ul > li {
 .p-bottom {
   padding-bottom: 1rem;
 }
+.items{
+  display: flex;
+    justify-content: space-between;
+}
+
 .p-top {
   padding-top: 1rem;
 }
 .center {
-  text-align: center;
-  padding-top: 1rem;
+  text-align: cente
+  
 }
 .btn1--active:before,
 .btn1:hover:before,
