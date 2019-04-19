@@ -49,15 +49,15 @@
             placeholder="Email"
           />
         </div>
-        <!-- <div class="form-element">
+        <div class="form-element">
           <label>QrNo:</label>
           <input
             type="text"
             name="qrno"
-            v-model="profile.qrno"
+            v-model="profile.address.qrno"
             placeholder="QrNo"
           />
-        </div> -->
+        </div>
         <div v-if="user && user.role=='chef'">
           <div class="form-element">
             <label>Restaurant:</label>
@@ -68,7 +68,7 @@
               placeholder="Restaurant"
             />
           </div>
-          <div class="form-element">
+          <!-- <div class="form-element">
             <label>Dish1:</label>
             <input
               type="text"
@@ -112,7 +112,7 @@
               v-model="profile.dish5"
               placeholder="Dish5"
             />
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="footer">
@@ -136,14 +136,13 @@ export default {
       return redirect("/login?return=/my/profile");
   },
   async asyncData({ store }) {
-    let profile = {};
+    let profile = { address: { qrno: "" } };
     let userDetails = await store.dispatch("auth/fetch");
     profile = Object.assign({}, userDetails);
     return { profile };
   },
   data() {
     return {
-      user: null,
       showImageModal: false,
       userAvatar: null
     };

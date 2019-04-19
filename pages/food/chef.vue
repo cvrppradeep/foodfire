@@ -55,7 +55,7 @@
             type="text"
             name="name"
             autofocus
-            v-model="profile.qrno"
+            v-model="profile.address.qrno"
             placeholder="Quarter No with zone"
           /><span style="color:green"> (Private)</span>
         </div>
@@ -137,7 +137,7 @@ export default {
       return redirect("/login?return=/food/chef");
   },
   async asyncData({ store }) {
-    let profile = {};
+    let profile = { address: {} };
     let userDetails = await store.dispatch("auth/fetch");
     profile = Object.assign({}, userDetails);
     return { profile };
@@ -159,6 +159,19 @@ export default {
       updateProfile: "auth/updateProfile"
     }),
     save(profile) {
+      if (!this.profile.restaurant) {
+        this.$store.commit("setErr", "Please enter Display Name");
+        return;
+      } else if (!this.profile.firstName) {
+        this.$store.commit("setErr", "Please enter firstName");
+        return;
+      } else if (!this.profile.lastName) {
+        this.$store.commit("setErr", "Please enter lastName");
+        return;
+      } else if (!this.profile.address.qrno) {
+        this.$store.commit("setErr", "Please enter qrno");
+        return;
+      }
       profile.role = "chef";
       this.updateProfile(profile);
       this.$router.push("/food/chefs");

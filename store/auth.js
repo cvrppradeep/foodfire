@@ -127,15 +127,17 @@ export const actions = {
             commit('setErr', err, { root: true })
         }
     },
-    async updateProfile({ commit, rootState }, { firstName, lastName, email, city, zip, avatar, gender, dob, language, role, restaurant, dish1, dish2, dish3, dish4, dish5 }) {
+    async updateProfile({ commit, rootState }, { firstName, lastName, email, city, zip, avatar, gender, dob, language, role, restaurant, address }) {
         if (rootState.settings.demo) {
             commit('info', 'Demo mode: Unable to update profile info', { root: true })
             return
         }
         try {
-            const data = await this.$axios.$put('/users/profile', { firstName, lastName, email, city, zip, avatar, gender, dob, language, role, restaurant, dish1, dish2, dish3, dish4, dish5 })
+            let user = { firstName, lastName, email, city, zip, avatar, gender, dob, language, role, restaurant, address }
+
+            const data = await this.$axios.$put('/users/profile', user)
             if (data) {
-                commit('setUser', { email: data.email, firstName: data.firstName, lastName: data.lastName, phone1: data.phone1, avatar: data.avatar, dob: data.dob, gender: data.gender, language: data.language, restaurant: data.restaurant })
+                commit('setUser', { email: data.email, firstName: data.firstName, lastName: data.lastName, phone1: data.phone1, avatar: data.avatar, dob: data.dob, gender: data.gender, language: data.language, restaurant: data.restaurant, address: data.address })
                 try {
                     const userdata = await this.$axios.$get('/users/me')
                     commit('setUser', userdata)

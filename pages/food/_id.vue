@@ -399,7 +399,7 @@ export default {
         {
           name: "og_image",
           property: "og:image",
-          content: (this.food && this.food.img) || sharingLogo
+          content: (this.food && IMAGEKIT + this.food.img) || sharingLogo
         },
         {
           property: "og:image:width",
@@ -426,7 +426,7 @@ export default {
         },
         {
           name: "twitter:image:src",
-          content: (this.food && this.food.img) || sharingLogo
+          content: (this.food && IMAGEKIT + this.food.img) || sharingLogo
         },
         // Google / Schema.org markup:
         {
@@ -445,7 +445,7 @@ export default {
         {
           hid: "product_image",
           itemprop: "image",
-          content: (this.food && this.food.img) || sharingLogo
+          content: (this.food && IMAGEKIT + this.food.img) || sharingLogo
         },
         {
           hid: "product_price",
