@@ -99,6 +99,7 @@ export default {
     let vm = this;
     socket.on("food-order" + ":save", async function(item) {
       vm.orders = await axios.$get("food-orders/group");
+      vm.todayTotal = await axios.$get("food-orders/summary/today");
     });
   },
   components: { Header },

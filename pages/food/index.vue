@@ -144,7 +144,7 @@ export default {
     let foods = [],
       openclose = false;
     try {
-      foods = await $axios.$get("foods/group");
+      foods = await $axios.$get("foods/group?daily=false");
     } catch (e) {
       foods = [];
     }

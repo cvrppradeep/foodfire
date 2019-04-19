@@ -19,11 +19,11 @@
       <div class="card shadow columns">
         <br />
         <div class="margin-phn">
-          <v-checkbox
+          <!-- <v-checkbox
             v-model="food.active"
-            @change="submit(true)"
+            @change="submit()"
             label="Open Kitchen"
-          />
+          /> -->
           <v-text-field
             label="Dish Name"
             name="name"
@@ -80,7 +80,14 @@
       </div>
       <div class="footer">
         <div class="form-element">
-          <button type="submit">Save Changes</button>
+          <button
+            type="submit"
+            v-if="$route.params.id == 'new'"
+          >Add Dish</button>
+          <button
+            type="submit"
+            v-else
+          >Save Changes</button>
         </div>
       </div>
     </form>
@@ -121,8 +128,8 @@ export default {
       const food = await this.$axios.$get("foods/" + this.$route.params.id);
       this.food = food;
     } catch (e) {}
-    this.date = moment("2019-04-14 18:00:00").format("YYYY-MM-DD");
-    this.time = moment("2019-04-14 18:00:00").format("h A");
+    // this.date = moment("2019-04-14 18:00:00").format("YYYY-MM-DD");
+    // this.time = moment("2019-04-14 18:00:00").format("h A");
     try {
       this.dishes = await this.$axios.$get("dishes/chef");
     } catch (err) {
@@ -137,44 +144,54 @@ export default {
     remove(name) {
       this.food.img = "";
     },
-    add(qty) {
-      if (qty < 5 && this.qty <= 0) return;
-      // if (qty > 0 && this.qty >= 300) {
-      //   this.$store.commit("setErr", "Sorry! Maximum 300 qty allowed.");
-      //   return;
-      // }
-      this.qty += qty;
-    },
-    async submit(openclose) {
-      let res = {};
+    // add(qty) {
+    //   if (qty < 5 && this.qty <= 0) return;
+    //   // if (qty > 0 && this.qty >= 300) {
+    //   //   this.$store.commit("setErr", "Sorry! Maximum 300 qty allowed.");
+    //   //   return;
+    //   // }
+    //   this.qty += qty;
+    // },
+    async submit() {
+      const vm = this;
+      if (!vm.food.name) {
+        this.$store.commit("setErr", "Please name your dish");
+        return;
+      } else if (!vm.food.type) {
+        this.$store.commit("setErr", "Please select Veg or Non Veg");
+        return;
+      } else if (!vm.food.rate || vm.food.rate < 30) {
+        this.$store.commit("setErr", "Rate must be atleast 30");
+        return;
+      }
       try {
         this.loading = true;
-        let date = moment(this.date + " " + this.time, "YYYY-MM-DD h a");
+        // let date = moment(this.date + " " + this.time, "YYYY-MM-DD h a");
         // if (date.diff(moment()) < 0) {
         //   console.log("Delivery time is invalid");
         //   this.$store.commit("setErr", "Delivery time is invalid");
         //   return;
         // }
-        this.food.deliveryDate = date;
-        if (this.$route.params.id == "new") {
-          if (openclose) return;
-          try {
-            res = await this.$axios.$post("foods", this.food);
-            if (!openclose) this.$router.push("/my/food/dishes");
-          } catch (e) {
-            this.$store.commit("setErr", e);
-          }
+        // this.food.deliveryDate = date;
+        if (this.food.stock == 0) {
+          await vm.publishDish();
+        } else if (this.food.stock > 0) {
+          this.$swal({
+            title: "Are you sure to activate this dish?",
+            text: "This will be available for booking by users",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Publish!"
+          }).then(async result => {
+            if (result.value) {
+              await vm.publishDish();
+            }
+          });
         } else {
-          if (!this.food.active) this.food.stock = 0;
-          try {
-            res = await this.$axios.$put(
-              "foods/" + this.$route.params.id,
-              this.food
-            );
-            if (!openclose) this.$router.push("/my/food/dishes");
-          } catch (e) {
-            this.$store.commit("setErr", e);
-          }
+          this.$store.commit("setErr", "Quantity must be > 0");
+          return;
         }
       } catch (e) {
         // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", e.toString());
@@ -182,6 +199,28 @@ export default {
         return;
       } finally {
         this.loading = false;
+      }
+    },
+    async publishDish() {
+      let res = {};
+      if (this.$route.params.id == "new") {
+        try {
+          res = await this.$axios.$post("foods", this.food);
+          this.$router.push("/my/food/dishes");
+        } catch (e) {
+          this.$store.commit("setErr", e);
+        }
+      } else {
+        if (!this.food.active) this.food.stock = 0;
+        try {
+          res = await this.$axios.$put(
+            "foods/" + this.$route.params.id,
+            this.food
+          );
+          this.$router.push("/my/food/dishes");
+        } catch (e) {
+          this.$store.commit("setErr", e);
+        }
       }
     }
   },
