@@ -64,7 +64,7 @@
     </div> -->
     <div
       class="fx hero-banner"
-      @click="go('/food/steps')"
+      @click="go('/food')"
     >
       <img
         v-lazy="'food-mela.jpg'"
