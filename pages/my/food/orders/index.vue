@@ -17,21 +17,14 @@
         class="container"
         @click="go('/food/'+o.item._id)"
       >
-        <div class="card shadow-lg2">
-          <div class="border">
-            <div class="flex-row-nocenter flex-space-between  orderno-margin">
-              <div>
-                <h2>ORDER No: {{o.orderNo}}</h2>
-              </div>
-              <div class="date">
-                <h4>Date: {{o.createdAt | ago}} </h4>
-              </div>
-            </div>
-            <div class="fx center p-top">
-              <div class="address">Address: {{o.address.qrno}}, {{o.address.city}}</div>
-            </div>
-            <h3>Order Status: {{o.status}}</h3>
-          </div>
+      <div class="card shadow">
+      <div>
+        <h4>Date: {{o.createdAt | ago}} </h4>
+        <h2>ORDER No: {{o.orderNo}}</h2>
+      </div>
+      <div class="order">
+        <h3>Order Status: {{o.status}}</h3>
+      </div>
           <div class="columns is-mobile border ">
             <div class="container">
               <div
@@ -45,6 +38,9 @@
               </div>
             </div>
           </div>
+           <div class="fx center p-top">
+              <div class="address">Address: {{o.address.qrno}}, {{o.address.city}}</div>
+            </div>
         </div>
       </div>
     </div>
@@ -178,6 +174,8 @@ center {
   padding-top: 10px;
 }
 .card {
+  padding: 1rem;
+  margin: 1rem;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -194,6 +192,10 @@ center {
   border-radius: 0.25rem;
   position: relative;
 }
+.shadow {
+  -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
 h1 {
   font-size: 14px;
   padding-left: 10px;
@@ -202,17 +204,19 @@ h1 {
 }
 h2 {
   font-size: 12px;
-  padding-left: 10px;
   color: #1cac7b;
-  margin-top: 0px;
+  margin-top: 0.7rem;
+    text-align: center;
 }
-h3 {
-  padding-right: 10px;
-  margin-top: 6px;
+.order{
+  text-align: center;
+    border: 1px solid gray;
+    padding: 0.4rem;
+    margin-top: 0.5rem;
 }
 h4 {
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: 0.8rem;
   letter-spacing: 0;
   margin-top: 1px;
 }
@@ -284,8 +288,12 @@ p {
   font-size: 13px;
 }
 .p-top {
-  padding-top: 1rem;
+  
   color: blue;
+  border: 1px solid gray;
+    padding: 0.5rem;
+    background-color: #e6d9d9;
+    border-radius: 0.5rem;
 }
 </style>
 

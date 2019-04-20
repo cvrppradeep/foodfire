@@ -11,14 +11,15 @@
     </div>
     <div class="product-name">
       <strong>{{product.name}}</strong>
-      <div class="fx m-left">
+      <div class="fx ">
         <div class="variants">
-          <strong>{{product.qty}}</strong>
+          <strong>Qty: {{product.qty}}</strong>
         </div>
       </div>
-    </div>
+    
     <div class="price">
-      <div class="font-bold">{{product.price | currency}}</div>
+      <div class="font-bold">Price : {{product.price | currency}}</div>
+    </div>
     </div>
   </div>
 </template>
@@ -40,26 +41,28 @@ export default {
   flex: 1;
   margin-top: 5px;
   line-height: 1.2rem;
+  padding-left: 1rem;
 }
 strong {
   color: #363636;
   font-weight: 700;
+  font-size: 1rem;
 }
 .image {
-  width: 104px;
+  width: 139px;
 }
 .image img {
-  border-radius: 50px;
+  border-radius: 12px;
 }
 .border {
   border-top: 1px solid hsla(0, 0%, 85.9%, 0.5);
 }
 .price {
-  text-align: right;
+  
   margin-top: 5px;
 }
 .font-bold {
-  font-size: 1.5em;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 .head {
