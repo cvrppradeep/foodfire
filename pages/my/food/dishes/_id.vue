@@ -190,7 +190,7 @@ export default {
             }
           });
         } else {
-          this.$store.commit("setErr", "Quantity must be > 0");
+          this.$store.commit("setErr", "Quantity must be >= 0");
           return;
         }
       } catch (e) {
@@ -211,7 +211,7 @@ export default {
           this.$store.commit("setErr", e);
         }
       } else {
-        if (!this.food.active) this.food.stock = 0;
+        // if (!this.food.active) this.food.stock = 0;
         try {
           res = await this.$axios.$put(
             "foods/" + this.$route.params.id,
