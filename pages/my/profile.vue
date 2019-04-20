@@ -139,6 +139,9 @@ export default {
     let profile = { address: { qrno: "" } };
     let userDetails = await store.dispatch("auth/fetch");
     profile = Object.assign({}, userDetails);
+    if (!profile.address) {
+      profile.address = {};
+    }
     return { profile };
   },
   data() {

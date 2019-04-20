@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$router.push("/search/" + this.search);
+      this.$router.push("/grocery/search/" + this.search);
     },
     closeSidebar() {
       this.sidebar = false;
@@ -160,7 +160,7 @@ export default {
         this.typingTimer = setTimeout(function() {
           if (!value || value == "undefined") value = ""; // When clear button clicked
           vm.searchString = value;
-          vm.$router.push("/search/" + value);
+          vm.$router.push("/grocery/search/" + value);
         }, vm.typingTimeout);
       }
     },
