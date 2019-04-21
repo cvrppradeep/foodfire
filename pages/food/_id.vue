@@ -359,7 +359,7 @@ export default {
           name: "description",
           content:
             (this.food && this.food.metaDescription) ||
-            (this.food && this.food.description) ||
+            (this.food && this.food.restaurant + "-" + this.food.description) ||
             DESCRIPTION
         },
         {
@@ -388,7 +388,7 @@ export default {
           property: "og:description",
           content:
             (this.food && this.food.metaDescription) ||
-            (this.food && this.food.description) ||
+            (this.food && this.food.restaurant + "-" + this.food.description) ||
             DESCRIPTION
         },
         {
@@ -422,7 +422,7 @@ export default {
           name: "twitter:description",
           content:
             (this.food && this.food.metaDescription) ||
-            (this.food && this.food.description) ||
+            (this.food && this.food.restaurant + "-" + this.food.description) ||
             DESCRIPTION
         },
         {
@@ -441,7 +441,7 @@ export default {
           itemprop: "description",
           content:
             (this.food && this.food.metaDescription) ||
-            (this.food && this.food.description) ||
+            (this.food && this.food.restaurant + "-" + this.food.description) ||
             DESCRIPTION
         },
         {

@@ -62,7 +62,7 @@
         <div>Get Delivered at home</div>
       </nuxt-link>
     </div> -->
-    <div
+    <!-- <div
       class="fx hero-banner"
       @click="go('/food')"
     >
@@ -70,7 +70,7 @@
         v-lazy="'food-mela.jpg'"
         class="backgroundimg"
       />
-    </div>
+    </div> -->
     <nuxt-link
       class="fx banner yellow"
       to="/food/steps"
