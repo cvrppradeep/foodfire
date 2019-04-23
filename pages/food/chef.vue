@@ -140,6 +140,7 @@ export default {
     let profile = { address: {} };
     let userDetails = await store.dispatch("auth/fetch");
     profile = Object.assign({}, userDetails);
+    profile.address = profile.address || {};
     return { profile };
   },
   data() {
