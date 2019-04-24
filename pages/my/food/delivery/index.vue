@@ -66,6 +66,7 @@
                 </v-btn>
               </v-btn-toggle>
             </div>
+            <div style="color:violet;font-size:0.7rem;text-align:center">{{i.createdAt | date}}</div>
           </div>
 
         </li>

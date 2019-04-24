@@ -21,6 +21,7 @@
             <div class="p-top">{{i.name}} ({{i.phone}})</div>
             <div class="p-top">{{i.qty}} * {{i.rate | currency}} = {{i.amount | currency}}</div>
             <div style="color:red">{{i.qrno}}</div>
+            <div style="color:violet;font-size:0.7rem;text-align:center">{{i.createdAt | date}}</div>
           </div>
           <div class="center p-top">
             <v-btn-toggle

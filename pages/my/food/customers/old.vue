@@ -49,6 +49,7 @@
               </v-btn>
             </v-btn-toggle>
           </div>
+          <div style="color:violet;font-size:0.7rem;text-align:center">{{o.createdAt | date}}</div>
         </li>
       </ul>
     </div>
