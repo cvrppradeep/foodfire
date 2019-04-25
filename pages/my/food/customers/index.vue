@@ -6,20 +6,20 @@
       <div class="fx">
         <h2>{{todayTotal.count}}</h2>
         <h1>{{todayTotal.total | currency}}</h1>
-        <div>{{orders && orders[0] && orders[0].createdAt}}</div>
+        <div>{{orders && orders[0] && orders[0].createdAt | date}}</div>
       </div>
-      <ul class="p-left">
+      <ul class="p-left fx">
         <li
           class="card"
           v-for="(o,ix) in orders"
           :key="ix"
         >
-          <h1 class="seller">{{o.address.recipient_name}} ({{o.phone}})</h1>
-          <h3 class="fx customer">
-            <div><span style="color:#333">{{o.item.name}}</span> {{o.rate | currency}} * {{o.qty}} = {{o.amount | currency}}</div>
-            <div style="color:red">QrNo: {{o.address.qrno}}</div>
-          </h3>
-          <div class="center">
+          <h1 style="color:red">QrNo: {{o.address.qrno}}</h1>
+          <p>{{o.address.recipient_name}} ({{o.phone}})</p>
+          <p>{{o.item.name}}</p>
+          <p> {{o.rate | currency}} * {{o.qty}} = <span class="big">{{o.amount | currency}}</span> </p>
+          <h3 style="text-align: right;"> {{o.vendor.restaurant}} </h3>
+          <div class="statusbar">
             <v-btn-toggle
               v-model="o.status"
               @change='save(o)'
@@ -54,7 +54,7 @@
               </v-btn>
             </v-btn-toggle>
           </div>
-          <div style="color:violet;font-size:0.7rem;text-align:center">{{o.createdAt | date}}</div>
+          <div style="color:violet;font-size:0.7rem;text-align:right">{{o.createdAt | date}}</div>
         </li>
       </ul>
     </div>
@@ -102,6 +102,10 @@ export default {
 </script>
 
 <style scoped>
+.big {
+  font-weight: 700;
+  font-size: 2rem;
+}
 h1 {
   margin: 0px 0px 10px 0px;
 }
@@ -117,6 +121,12 @@ ul > li {
   -webkit-box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
   box-shadow: 0 -0.1rem 1.1rem rgba(0, 0, 0, 0.175) !important;
   border-radius: 0.5rem;
+  width: 330px;
+}
+@media print {
+  .statusbar {
+    display: none !important;
+  }
 }
 .p-left {
   padding-left: 0px;
@@ -133,7 +143,7 @@ ul > li {
   color: blue;
   font-weight: 500;
 }
-.center {
+.statusbar {
   text-align: center;
   padding-top: 1rem;
 }
@@ -164,4 +174,3 @@ ul > li {
   font-weight: 900;
 }
 </style>
-
