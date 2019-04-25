@@ -103,7 +103,7 @@
                 <div
                   class="f-pink"
                   v-else
-                > Sold out </div>
+                > Sold out on <br />{{d.updatedAt | date}}</div>
                 <img
                   v-if="d.type=='N'"
                   src="non-veg.png"
