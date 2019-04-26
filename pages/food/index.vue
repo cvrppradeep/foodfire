@@ -76,7 +76,7 @@
           :key="d._id"
           @click="go('/food/'+d._id)"
         >
-          <div class="a-listing">
+          <div class="column">
             <div class="height ">
               <img
                 v-lazy="IMAGEKIT+'/images'+d.img"
@@ -88,7 +88,7 @@
             </div>
             <div class="card-container">
               <div class="a-contain">
-                <div style="font-weight: 600;">
+                <div style="font-weight:600;min-width: 3rem;">
                   {{d.rate | currency}}
                 </div>
                 <div
@@ -258,7 +258,7 @@ export default {
   /* box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.175) !important; */
 }
 
-.a-listing {
+.column {
   display: flex;
   flex-direction: column;
 }
@@ -287,10 +287,7 @@ export default {
     flex-direction: row;
     } 
     } */
-.name {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
+ 
 .f-pink {
   color: rgb(255, 0, 104);
   font-size: 0.7rem;

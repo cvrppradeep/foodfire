@@ -374,9 +374,7 @@ export default {
 .sb {
   justify-content: space-between;
 }
-.sa {
-  justify-content: space-around;
-}
+
 .vcenter {
   align-items: center;
 }

@@ -18,10 +18,10 @@
         @click="go('/food/'+o.item._id)"
       >
       <div class="card shadow">
-      <div>
-        <h4>Date: {{o.createdAt | ago}} </h4>
-        <h2>ORDER No: {{o.orderNo}}</h2>
-      </div>
+      <div class="jc-sb p-bottom">
+        <div class="h2">{{o.orderNo}}</div>
+        <div class="h4">{{o.createdAt | ago}} </div>
+</div>
       <div class="order">
         <h3>Order Status: {{o.status}}</h3>
       </div>
@@ -165,9 +165,9 @@ export default {
   font-weight: 700;
   margin-left: 15px;
 }
-.orderno-margin {
+/* .orderno-margin {
   margin-top: 14px;
-}
+} */
 center {
   font-size: 23px;
   font-weight: 700;
@@ -202,11 +202,11 @@ h1 {
   color: #3a3ac9;
   letter-spacing: 0;
 }
-h2 {
+.h2 {
   font-size: 12px;
   color: #1cac7b;
-  margin-top: 0.7rem;
-    text-align: center;
+  font-weight: 600;
+ 
 }
 .order{
   text-align: center;
@@ -214,19 +214,13 @@ h2 {
     padding: 0.4rem;
     margin-top: 0.5rem;
 }
-h4 {
+.h4 {
   text-transform: uppercase;
   font-size: 0.8rem;
   letter-spacing: 0;
-  margin-top: 1px;
+  font-weight: 600;
 }
-h5 {
-  text-align: -webkit-center;
-  color: gray;
-  padding-top: 0px;
-  /* height: 0px; */
-  margin-top: 7px;
-}
+
 h6 {
   margin-top: 7px;
   padding-left: 10px;
@@ -237,12 +231,12 @@ h6 {
   flex-direction: column;
   /* line-height: 1px; */
 }
-.media-content {
+/* .media-content {
   flex-basis: auto;
   flex-grow: 1;
   flex-shrink: 1;
   text-align: left;
-}
+} */
 .columns {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -257,7 +251,7 @@ h6 {
   margin: 0 auto;
   padding: 0 1px;
   width: 97%;
-  padding-top: 10px;
+  /* padding-top: 10px; */
 }
 .date {
   padding-right: 10px;
@@ -288,12 +282,18 @@ p {
   font-size: 13px;
 }
 .p-top {
-  
   color: blue;
   border: 1px solid gray;
     padding: 0.5rem;
     background-color: #e6d9d9;
     border-radius: 0.5rem;
+}
+.jc-sb{
+display: flex;
+    justify-content: space-between;
+}
+.p-bottom{
+  padding-bottom: 0.5rem;
 }
 </style>
 

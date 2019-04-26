@@ -231,12 +231,12 @@ h6 {
   flex-direction: column;
   /* line-height: 1px; */
 }
-.media-content {
+/* .media-content {
   flex-basis: auto;
   flex-grow: 1;
   flex-shrink: 1;
   text-align: left;
-}
+} */
 .columns {
   margin-left: 0.25rem;
   margin-right: 0.25rem;

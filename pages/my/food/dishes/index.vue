@@ -182,10 +182,10 @@ body {
   padding-right: 0.4rem;
   padding-bottom: 0.4rem;
 }
-.time {
+/* .time {
   font-size: 0.8rem;
   color: #eee;
-}
+} */
 .delete-icon {
   margin-top: -9rem;
   margin-left: 8rem;

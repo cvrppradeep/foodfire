@@ -259,15 +259,7 @@ export default {
   margin-right: -15px;
   margin-left: -15px;
 }
-.text-white {
-  color: #fff !important;
-}
-.lead {
-  font-size: 1.25rem;
-  font-weight: 300;
-  line-height: 1.7;
-  margin-top: 1.5rem;
-}
+
 .order-margin {
   margin-top: 1rem !important;
 }
@@ -320,14 +312,7 @@ a {
   cursor: pointer;
   text-decoration: none;
 }
-h1 {
-  margin-bottom: 0.5rem;
-  font-family: inherit;
-  font-weight: 400;
-  line-height: 1px;
-  color: #32325d;
-  font-size: 20px;
-}
+
 h2 {
   font-size: 13px;
   margin-top: -10px;
@@ -358,14 +343,14 @@ h3 {
   font-family: sans-serif;
   color: white;
 }
-h4 {
+/* h4 {
   text-transform: uppercase;
   font-size: 14px;
   letter-spacing: 1px;
   padding-left: 10px;
   padding-right: 10px;
   color: slategray;
-}
+} */
 h5 {
   margin-top: -4px;
   font-size: 13px;

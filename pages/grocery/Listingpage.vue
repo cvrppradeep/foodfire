@@ -93,8 +93,7 @@ export default {
 <style scope>
 .listingcard {
   height: 29vh;
-
-  border-radius: 1rem;
+border-radius: 1rem;
   background-color: rgb(247, 247, 247);
   display: flex;
   justify-content: center;

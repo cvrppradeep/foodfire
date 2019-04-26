@@ -104,10 +104,11 @@ export default {
   max-height: 2.3rem;
 }
 .header-logo {
-  align-items: stretch;
-  display: flex;
-  flex-shrink: 0;
-  min-height: 3.25rem;
+      -webkit-box-align: stretch;
+    align-items: stretch;
+    display: flex;
+    flex-shrink: 0;
+    min-height: 3.25rem;
 }
 .header.has-shadow {
   box-shadow: 0 2px 0 0 #f5f5f5;
@@ -151,14 +152,13 @@ a.header-item {
   cursor: pointer;
 }
 .header-item {
-  color: #4a4a4a;
-  /* display: block; */
-  /* line-height: 1.5; */
-  padding: 0.5rem 0.75rem;
   position: relative;
-  flex-grow: 0;
-  flex-shrink: 0;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 0.5rem 0.75rem;
 }
+
 .shadow,
 .profile-page .card-profile .card-profile-image img {
   -webkit-box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),

@@ -8,12 +8,13 @@
       <div class="header-logo">
         <a class="header-item flex-center">
           <router-link to="/">
-            <img
+            Misiki
+            <!-- <img
               class="logo"
-              src="/logo.png"
-              alt="FoodFire"
+              src="/logo48x48.png"
+              alt="Misiki"
               height="28"
-            >
+            > -->
           </router-link>
         </a>
       </div>
@@ -179,10 +180,33 @@ export default {
 };
 </script>
 <style scoped>
+.header-logo {
+  font-size: 1.5rem;
+}
+.header-logo a {
+  color: #fff;
+}
+a.header-item {
+  cursor: pointer;
+}
+.header-item {
+  position: relative;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 0.5rem 0.75rem;
+}
+.header-logo {
+      -webkit-box-align: stretch;
+    align-items: stretch;
+    display: flex;
+    flex-shrink: 0;
+    min-height: 3.25rem;
+}
 .searchIcon {
   position: absolute;
   right: 0;
-  top: 5px;
+  top: 2px;
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
   justify-content: flex-end;
@@ -199,21 +223,16 @@ export default {
 }
 .search {
   position: relative;
+  background-color: white;
+  border-radius: 0.3rem;
 }
 @media screen and (min-width: 600px) {
   .search {
     width: 70%;
   }
 }
-.header-item img {
-  max-height: 2.3rem;
-}
-.header-logo {
-  align-items: stretch;
-  display: flex;
-  flex-shrink: 0;
-  min-height: 3.25rem;
-}
+
+
 .header.has-shadow {
   box-shadow: 0 2px 0 0 #f5f5f5;
 }
@@ -244,26 +263,7 @@ img {
   height: auto;
   max-width: 100%;
 }
-.header-item img {
-  max-height: 1.75rem;
-}
-a {
-  color: #3273dc;
-  cursor: pointer;
-  text-decoration: none;
-}
-a.header-item {
-  cursor: pointer;
-}
-.header-item {
-  color: #4a4a4a;
-  display: block;
-  /* line-height: 1.5; */
-  padding: 0.5rem 0.75rem;
-  position: relative;
-  flex-grow: 0;
-  flex-shrink: 0;
-}
+
 .shadow,
 .profile-page .card-profile .card-profile-image img {
   -webkit-box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
@@ -288,13 +288,17 @@ a.header-item {
   align-items: center;
 }
 .logo {
-  width: 31px;
-  margin-top: 3px;
+ width: 3.5rem;
+    margin-top: 3px;
+    margin-left: 3px;
 }
 .img {
   width: 42px;
   height: 28px;
   border-radius: 54px;
+}
+.p-top{
+padding-top: 0.4rem;
 }
 </style>
 

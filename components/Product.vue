@@ -103,6 +103,7 @@ strong {
 .price {
   text-align: right;
   margin-top: 5px;
+  margin-right: 1rem;
 }
 .font-bold {
   font-size: 1.5em;

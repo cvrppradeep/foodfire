@@ -3,7 +3,7 @@
     <Header />
     <div class="heading">Delivery Details</div>
     <div class="product-card">
-      <div class="a-listing fx">
+      <div class="column fx">
         <div class="card-container">
           <div class="a-contain pl-1">
             <div><img
@@ -11,7 +11,7 @@
                 src="/shop1.png"
               /> </div>
             <div
-              class="a-listing"
+              class="column"
               v-if="order.vendor"
             >
               <div class="text-bold ">{{order.vendor.restaurant}}</div>
@@ -32,7 +32,7 @@
                 src="/person2.png"
               /> </div>
             <div
-              class="a-listing"
+              class="column"
               v-if="order.address"
             >
               <div class="text-bold ">{{order.address.recipient_name}}</div>
@@ -205,10 +205,7 @@ h3 {
   padding-top: 0.6rem;
   padding-left: 0.5rem;
 }
-.a-listing {
-  display: flex;
-  flex-direction: column;
-}
+
 .img-size {
   width: 3rem;
   height: 3rem;
@@ -220,25 +217,19 @@ h3 {
 .pl-1 {
   padding-left: 0.5rem;
 }
-.p-name {
-  font-size: 1.2rem;
-  line-height: 1rem;
-}
-.align-row {
+
+/* .align-row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-}
+} */
 /* @media (min-width:300px) and (max-width:800px ) {
      .align-row{
         display: flex;
     flex-direction: row;
     } 
     } */
-.name {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
+
 .text-bold {
   font-size: 1.2rem;
   /* letter-spacing: 1px; */
