@@ -1,9 +1,13 @@
 <template>
   <div>
-    <Header />
-    <div class="heading">Today's Orders</div>
+    <Header class="noprint" />
+    <div class="heading noprint">Today's Orders</div>
+    <button
+      @click="printOut()"
+      class="noprint"
+    >Print</button>
     <div>
-      <div class="fx">
+      <div class="fx noprint">
         <h2>{{todayTotal.count}}</h2>
         <h1>{{todayTotal.total | currency}}</h1>
         <div>{{orders && orders[0] && orders[0].createdAt | date}}</div>
@@ -19,7 +23,7 @@
           <p>{{o.item.name}}</p>
           <p> {{o.rate | currency}} * {{o.qty}} = <span class="big">{{o.amount | currency}}</span> </p>
           <h3 style="text-align: right;"> {{o.vendor.restaurant}} </h3>
-          <div class="statusbar">
+          <div class="statusbar noprint">
             <v-btn-toggle
               v-model="o.status"
               @change='save(o)'
@@ -60,7 +64,7 @@
     </div>
     <nuxt-link
       to="/my/food/customers/old/"
-      class="history-button"
+      class="history-button noprint"
     >Old Customers</nuxt-link>
   </div>
 </template>
@@ -89,6 +93,11 @@ export default {
   },
   components: { Header },
   methods: {
+    printOut() {
+      if (process.client) {
+        window.print();
+      }
+    },
     async save(o) {
       try {
         await this.$axios.$put("food-orders/" + o._id, { status: o.status });
@@ -124,7 +133,7 @@ ul > li {
   width: 330px;
 }
 @media print {
-  .statusbar {
+  .noprint {
     display: none !important;
   }
 }

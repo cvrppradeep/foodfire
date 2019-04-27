@@ -2,7 +2,8 @@
   <div>
     <Header />
     <div class="heading">Today's Delivery</div>
-    <a href="/api/food-orders/export/500">Export</a>
+    <a href="/api/food-orders/export/500">Export Today's</a>
+    <a href="/api/food-orders/dailyTotalByChef">Total by date</a>
     <div>
       <div class="fx">
         <h2>{{todayTotal.count}}</h2>
