@@ -19,6 +19,10 @@
         <div>Misiki Taxi</div>
       </nuxt-link>
     </div>
+  <div class="redclr banner abs note">
+    Sunday Special <br /> <br />
+Lunch Order Accepted
+  </div>
     <div class="column pb-1rem">
     <div class="center">
       <button class="greenclr banner ">
@@ -151,6 +155,15 @@ justify-content: center
 .greenclr{
   box-shadow: 10px 10px 30px -15px #003102;
   background: linear-gradient(87deg, #65e46b 0, #16821a 100%);
+}
+.redclr{
+  box-shadow: 10px 10px 30px -15px #6f0502;
+    background: linear-gradient(87deg, #b32020 0, #ff0000 100%);
+}
+.note{
+  text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;
 }
 </style>
 
