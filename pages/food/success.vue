@@ -50,15 +50,13 @@
       <h5><strong class="redclr">Note: </strong>Order once booked can not be cancelled.</h5>
     </div>
     <div class=" btn1  center">
-
-      <router-link
+ <router-link
         to="/my/food/orders"
         class="button1 "
       >
         My Orders
       </router-link>
-
-    </div>
+</div>
     <div class=" footer">
       <div class="btn btn-block btn-white back-to-menu-btn">
         <div>

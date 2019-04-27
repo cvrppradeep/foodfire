@@ -83,6 +83,12 @@
                 class="backgroundimg"
               />
             </div>
+            <div class="fx">
+            <div></div>
+          <div class="m-choice m-align" v-if="d.recommended">
+                misiki choice
+              </div>
+            </div>
             <div class="restroname">
               {{d.name}}
             </div>
@@ -95,8 +101,7 @@
                   class="f-pink"
                   v-if="!openclose"
                 >Open 6AM - 6PM</div>
-
-                <div
+                 <div
                   class="f-pink"
                   v-else-if="d.stock>0"
                 > Only {{d.stock}} left</div>
@@ -314,5 +319,17 @@ export default {
   padding-left: 1rem;
   font-size: 0.8rem;
   padding-left: 0.5rem !important;
+}
+.m-choice{
+  border: none;
+    background-color: darkorange;
+    border-radius: 0 1rem;
+   padding: 0.2rem 0.8rem;
+    color: cornsilk;
+    font-size: 0.8rem;
+} 
+.m-align{
+  margin-top: -0.7rem;
+    margin-right: 0.2rem;
 }
 </style>

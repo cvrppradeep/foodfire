@@ -385,3 +385,7 @@ img[lazy="loaded"] {
   background: linear-gradient(87deg, #fb6340 0, #da1c5f 100%);
   border-color: #fb6340;
 }
+.column{
+  display: flex;
+  flex-direction: column;
+}

@@ -19,28 +19,25 @@
         <div>Misiki Taxi</div>
       </nuxt-link>
     </div>
-    <div class="fx hero">
-      <nuxt-link
-        class="fx green banner"
+    <div class="column pb-1rem">
+    <div class="center">
+      <button class="greenclr banner ">
+        <img
+          src="/chef.png"
+          style="width:30px"
+        />
+        <div class="abs">Request to join as Chef</div>
+      </button>
+      </div>
+       <nuxt-link
+        class="center"
         to="/food/chefs"
       >
-        <img
-          src="/chef.png"
-          style="width:30px"
-        />
-        <div class="abs">Registered Chefs</div>
-      </nuxt-link>
-      <nuxt-link
-        class="fx blue banner"
-        to="/food/chef"
-      >
-        <img
-          src="/chef.png"
-          style="width:30px"
-        />
-        <div class="abs">Join as Chef</div>
+      <div class="abs border-b">Registered Chefs</div>
       </nuxt-link>
     </div>
+
+
     <Notification />
     <!-- <nuxt-link
       class="fx banner yellow"
@@ -72,14 +69,14 @@
       />
     </div> -->
     <nuxt-link
-      class="fx banner yellow"
+      class="flex-center banner yellow "
       to="/food/steps"
     >
       <img
         src="/paper-plane.svg"
-        style="width:20px"
+        style="width:20px;padding-right: 0.5rem;"
       />
-      <div class="abs">Know more about Food Festival...???</div>
+      <div class="abs">How to...???</div>
       <!-- <div>14th April' 2019</div> -->
     </nuxt-link>
     <div class="footer">
@@ -137,6 +134,23 @@ export default {
 // }
 .banner .abs {
   color: #fff;
+}
+.center{
+  text-align: center;
+}
+.pb-1rem{
+  padding-bottom: 1rem;
+}
+.border-b{
+border-bottom: 1px solid;
+}
+.flex-center{
+  display: flex;
+justify-content: center
+}
+.greenclr{
+  box-shadow: 10px 10px 30px -15px #003102;
+  background: linear-gradient(87deg, #65e46b 0, #16821a 100%);
 }
 </style>
 
