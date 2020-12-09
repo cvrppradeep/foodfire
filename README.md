@@ -3,9 +3,9 @@
 
 ## Static Generated Progressive food delivery web app using NuxtJS + Firebase
 
-![Home Page Image](https://github.com/itswadesh/foodfire/blob/master/static/screenshots/home.jpg?raw=true)
+![Home Page Image](https://github.com/cvrppradeep/foodfire/blob/master/static/screenshots/home.jpg?raw=true)
 ![Cart Image](https://github.com/cvrppradeep/foodfire/blob/master/static/screenshots/cart.jpg?raw=true)
-![Order Processing Page](https://github.com/itswadesh/foodfire/blob/master/static/screenshots/orders.jpg?raw=true)
+![Order Processing Page](https://github.com/cvrppradeep/foodfire/blob/master/static/screenshots/orders.jpg?raw=true)
 
 ## Quick start
 > Make sure you have **Node** version >= 10.x, **NPM** >= 6.x
